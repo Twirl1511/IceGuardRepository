@@ -2934,7 +2934,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  TimeToReachNextTile: 0.5
+  TimeToReachNextTile: 0.7
   RotationSpeed: 1
 --- !u!1 &1139198494
 GameObject:
