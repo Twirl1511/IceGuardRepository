@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
     {
         MoveForwardMouse();
         RotateMouse();
-        //MoveForward();
-        //Rotate();
+        MoveForward();
+        Rotate();
 
     }
     private void MoveForward()
