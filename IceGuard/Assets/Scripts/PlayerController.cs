@@ -1,12 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private Joystick joystick;
+    public Button Up;
+    public Button Down;
+    public Button Left;
+    public Button Right;
+    private bool _upPressed;
+    private bool _downPressed;
+    private bool _leftPressed;
+    private bool _rightPressed;
+
     public AnimationCurve Easing;
-    [SerializeField] float TimeToReachNextTile = 3;
+    public static float TimeToReachNextTile = 0.7f;
     private Vector3 _startPosition;
     private Vector3 _endPosition;
     private float _time;
@@ -14,96 +24,90 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _startPosition = transform.position;
-        //_endPosition = _startPosition + new Vector3(-1.1f, 0f, 0f);
     }
 
-
-    void Update()
+    private void Update()
     {
-        MoveForwardMouse();
-        RotateMouse();
-        MoveForward();
-        Rotate();
+        MoveUp();
+        MoveDown();
+        MoveLeft();
+        MoveRight();
 
     }
-    private void MoveForward()
+
+    private void MoveUp()
     {
-        if (Input.GetTouch(0).phase.ToString() == "Stationary")
+        if (Up.GetComponent<ButtonState>().IsPressed)
         {
             if(_time == 0)
             {
-                _endPosition = _startPosition + transform.forward * 1.1f;
+                _endPosition = _startPosition + Vector3.left * 1.1f;
             }
-            
-            _time += Time.deltaTime;
-            
             transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
+            _time += Time.deltaTime;
         }
         if (_time >= TimeToReachNextTile)
         {
             _startPosition = _endPosition;
             _time = 0;
+            Up.GetComponent<ButtonState>().IsPressed = false;
         }
     }
-    private void MoveForwardMouse()
+    private void MoveDown()
     {
-        if (Input.GetMouseButton(0))
+        if (Down.GetComponent<ButtonState>().IsPressed)
         {
             if (_time == 0)
             {
-                _endPosition = _startPosition + transform.forward * 1.1f;
+                _endPosition = _startPosition + Vector3.left * -1.1f;
             }
-
-            _time += Time.deltaTime;
-
             transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
+            _time += Time.deltaTime;
         }
         if (_time >= TimeToReachNextTile)
         {
             _startPosition = _endPosition;
             _time = 0;
+            Down.GetComponent<ButtonState>().IsPressed = false;
         }
     }
-    private int y = 0;
-    private bool flag = true;
-    private void Rotate()
+    private void MoveLeft()
     {
-        if (joystick.Horizontal < -0.8f && flag)
+        if (Left.GetComponent<ButtonState>().IsPressed)
         {
-            y -= 90;
-            flag = false;
+            if (_time == 0)
+            {
+                _endPosition = _startPosition + Vector3.forward * -1.1f;
+            }
+            transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
+            _time += Time.deltaTime;
         }
-        if (joystick.Horizontal > 0.8f && flag)
+        if (_time >= TimeToReachNextTile)
         {
-            y += 90;
-            flag = false;
+            _startPosition = _endPosition;
+            _time = 0;
+            Left.GetComponent<ButtonState>().IsPressed = false;
         }
-        if (_time == 0)
-        {
-            flag = true;
-        }
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, y, 0), 1f);
     }
-    private void RotateMouse()
+    private void MoveRight()
     {
-        Debug.Log(Input.GetAxis("Mouse X"));
-        if (Input.GetAxis("Mouse X") < -0.8f && flag)
+        if (Right.GetComponent<ButtonState>().IsPressed)
         {
-            Debug.Log("left");
-            y -= 90;
-            flag = false;
+            if (_time == 0)
+            {
+                _endPosition = _startPosition + Vector3.forward * 1.1f;
+            }
+            transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
+            _time += Time.deltaTime;
         }
-        if (Input.GetAxis("Mouse X") > 0.8f && flag)
+        if (_time >= TimeToReachNextTile)
         {
-            y += 90;
-            flag = false;
+            _startPosition = _endPosition;
+            _time = 0;
+            Right.GetComponent<ButtonState>().IsPressed = false;
         }
-        if (_time == 0)
-        {
-            flag = true;
-        }
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, y, 0), 1f);
     }
+
     /// <summary>
     /// Плавно двигаем объект
     /// </summary>
@@ -114,5 +118,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 LerpMoveTo(Vector3 start, Vector3 end, float time)
     {
         return Vector3.Lerp(start, end, Easing.Evaluate(_time / time));
+    }
+
+    // колбэки для проверки нажимаем ли мы мышкой на объект
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }
