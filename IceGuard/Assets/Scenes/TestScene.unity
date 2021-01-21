@@ -2928,7 +2928,7 @@ Camera:
   far clip plane: 1000
   field of view: 72
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 2.68
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3956,14 +3956,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: force_field
       objectReference: {fileID: 0}
-    - target: {fileID: 186829275466403298, guid: 7342747e78a96021db20cb8035b51bbc,
+    - target: {fileID: -927199367670048503, guid: 7342747e78a96021db20cb8035b51bbc,
         type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 186829275466403298, guid: 7342747e78a96021db20cb8035b51bbc,
         type: 3}
       propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 186829275466403298, guid: 7342747e78a96021db20cb8035b51bbc,
+        type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 186829275466403298, guid: 7342747e78a96021db20cb8035b51bbc,
@@ -4285,6 +4290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floating Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791961219459, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
