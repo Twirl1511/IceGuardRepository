@@ -36,7 +36,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     private bool flag = false;
     private void Move()
     {
-
+        
         if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
         {
             

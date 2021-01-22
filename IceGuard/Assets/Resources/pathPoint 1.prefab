@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6847191118903795573}
   - component: {fileID: 3439440236571235919}
   m_Layer: 0
-  m_Name: pathPoint
+  m_Name: pathPoint 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b72f65846ff470b459261f8aa87c348e, type: 2}
+  - {fileID: 2100000, guid: cacbbc6f74997854d8aa170a50062609, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
