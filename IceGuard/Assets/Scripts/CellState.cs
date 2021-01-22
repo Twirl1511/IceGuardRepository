@@ -36,6 +36,8 @@ public class CellState : MonoBehaviour
         }   
     }
 
+    
+
     public bool IsCellAdjacentToPrevoiusOne(Vector3 currentPosition)
     {
         adjacentPositionsForCell[0] = previousCell + Vector3.left;
