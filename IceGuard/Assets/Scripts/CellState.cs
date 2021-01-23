@@ -17,19 +17,19 @@ public class CellState : MonoBehaviour
                 {
                     isStartedFromAdjacentPosition = true;
                 }
-                if (isStartedFromAdjacentPosition) Debug.Log(isStartedFromAdjacentPosition);
+                
             }
             if(PlayerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition)
             {
                 PlayerControllerDrawPath.queuePath.Enqueue(transform.position);
-                Instantiate(Resources.Load("pathPoint 1"), transform.position, Quaternion.identity);
+                PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint 1"), transform.position, Quaternion.identity) as GameObject);
                 previousCell = transform.position;
                 
             }
             else if(PlayerControllerDrawPath.queuePath.Count > 0 && IsCellAdjacentToPrevoiusOne(transform.position))
             {
                 PlayerControllerDrawPath.queuePath.Enqueue(transform.position);
-                Instantiate(Resources.Load("pathPoint"), transform.position, Quaternion.identity);
+                PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint"), transform.position, Quaternion.identity) as GameObject);
                 previousCell = transform.position;
             }
             isStartedFromAdjacentPosition = false;

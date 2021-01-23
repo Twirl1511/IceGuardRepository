@@ -12,6 +12,8 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static Vector3 _startPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositions = new Vector3[4];
+    public List<GameObject> allForceFields = new List<GameObject>(36);
+    public static List<GameObject> allPathPoints = new List<GameObject>(36);
 
     private float _time;
     [SerializeField] private int RotationSpeed = 1;
@@ -26,6 +28,9 @@ public class PlayerControllerDrawPath : MonoBehaviour
         AdjacentPositions();
         Move();
     }
+    /// <summary>
+    /// массив где храним смежные позиции для начала пути
+    /// </summary>
     private void AdjacentPositions()
     {
         adjacentPositions[0] = _startPosition + Vector3.left;
@@ -33,99 +38,108 @@ public class PlayerControllerDrawPath : MonoBehaviour
         adjacentPositions[2] = _startPosition + Vector3.forward;
         adjacentPositions[3] = _startPosition + Vector3.forward * -1;
     }
-    private bool flag = false;
+    private bool flagStartMoving = false;
     private void Move()
     {
-        
+        /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
+        /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
+        /// то запускаем скрипт движения
         if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
         {
-            
-            _endPosition = queuePath.Dequeue();
-            flag = true;
+            /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
+            if (allForceFields.Count > 0) 
+            {
+                foreach (var e in allForceFields)
+                {
+                    if (e == null) allForceFields.Remove(e);
+                }
+            }
 
-            CreateEnergyField();
+            
+            /// в буферную векторную переменную записываем следующую координату для пути игрока
+            Vector3 nextPosition = queuePath.Dequeue();
+            /// если на карте есть силовые поля, проверяем не находится ли силовое поле на позиции куда мы собираемся переместиться
+            if (allForceFields.Count > 0)
+            {
+                foreach (var e in allForceFields)
+                {
+                    /// если в массиве силовых полей находим такое, позиция которого равна позиции следующей клетке движения,
+                    /// то очищаем очередь перемещений игрока,
+                    /// flagStartMoving ставит фолс - запрещаем начинать следующее движение
+                    /// _endPosition = _startPosition - говорим, что мы стоим на месте и никуда не двигаемся
+                    /// DestroyAllPathPoints() - уничтожаем все точки указатели пути
+                    if (e.transform.position == nextPosition)
+                    {
+                        queuePath.Clear();
+                        flagStartMoving = false;
+                        _endPosition = _startPosition;
+                        DestroyAllPathPoints();
+                        break;
+                    }
+                    /// если на следующей клетке движения нет силовых полей,
+                    /// flagStartMoving = true; - даем добро на выполнение цикла движения
+                    /// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
+                    else
+                    {
+                        flagStartMoving = true;
+                        _endPosition = nextPosition;
+                    }
+                }
+            }
+            /// если на карте нет активных силовых полей,
+            /// разрешаем движение
+            /// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
+            else
+            {
+                Debug.Log("!!");
+                flagStartMoving = true;
+                _endPosition = nextPosition;
+            }
             
         }
-        if (flag)
+
+        /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть
+        /// закончено ровно за время TimeToReachNextTile
+        if (flagStartMoving)
         {
             transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
             _time += Time.deltaTime;
         }
-        
+        /// когда заканчивается время движения игрок должен закончить свой путь и мы можем сказать что его новая начальная
+        /// позиция равна той на которую он перемещался, также создаем энерго поле на последней позиции где он был
+        /// обнуляем время
+        /// flagStartMoving = false не даем больше заходить в цикл где происходит движение, считаем что оно закончено и ждем нового пути
         if (_time >= TimeToReachNextTile)
         {
+            CreateEnergyField(_startPosition);
             _startPosition = _endPosition;
-            flag = false;
-            _time = 0;
-            
-                
+            flagStartMoving = false;
+            _time = 0;       
         }
     }
-
-    private void CreateEnergyField()
+    /// <summary>
+    /// уничтожаем все точки пути
+    /// </summary>
+    private void DestroyAllPathPoints()
     {
-        Instantiate(Resources.Load("force_field"), transform.position, Quaternion.identity);
+        foreach(var e in allPathPoints)
+        {
+            Destroy(e.gameObject);
+        }
     }
-    IEnumerator DelayForEnergyField()
+    /// <summary>
+    /// создаем энергополя на предыдущей клетке движения и заносим их в массив allForceFields
+    /// </summary>
+    /// <param name="position">предыдущая позиция игрока</param>
+    private void CreateEnergyField(Vector3 position)
     {
-        yield return new WaitForSeconds(TimeToReachNextTile);
+       
+        allForceFields.Add(Instantiate(Resources.Load("force_field"), position, Quaternion.identity) as GameObject);
         
     }
 
-    //private void MoveDown()
-    //{
-    //    if (Down.GetComponent<ButtonState>().IsPressed)
-    //    {
-    //        if (_time == 0)
-    //        {
-    //            _endPosition = _startPosition + Vector3.left * -1.1f;
-    //        }
-    //        transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
-    //        _time += Time.deltaTime;
-    //    }
-    //    if (_time >= TimeToReachNextTile)
-    //    {
-    //        _startPosition = _endPosition;
-    //        _time = 0;
-    //        Down.GetComponent<ButtonState>().IsPressed = false;
-    //    }
-    //}
-    //private void MoveLeft()
-    //{
-    //    if (Left.GetComponent<ButtonState>().IsPressed)
-    //    {
-    //        if (_time == 0)
-    //        {
-    //            _endPosition = _startPosition + Vector3.forward * -1.1f;
-    //        }
-    //        transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
-    //        _time += Time.deltaTime;
-    //    }
-    //    if (_time >= TimeToReachNextTile)
-    //    {
-    //        _startPosition = _endPosition;
-    //        _time = 0;
-    //        Left.GetComponent<ButtonState>().IsPressed = false;
-    //    }
-    //}
-    //private void MoveRight()
-    //{
-    //    if (Right.GetComponent<ButtonState>().IsPressed)
-    //    {
-    //        if (_time == 0)
-    //        {
-    //            _endPosition = _startPosition + Vector3.forward * 1.1f;
-    //        }
-    //        transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
-    //        _time += Time.deltaTime;
-    //    }
-    //    if (_time >= TimeToReachNextTile)
-    //    {
-    //        _startPosition = _endPosition;
-    //        _time = 0;
-    //        Right.GetComponent<ButtonState>().IsPressed = false;
-    //    }
-    //}
+
+
 
     /// <summary>
     /// Плавно двигаем объект
