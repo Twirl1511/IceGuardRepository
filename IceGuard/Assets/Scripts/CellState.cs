@@ -7,6 +7,7 @@ public class CellState : MonoBehaviour
     private bool isStartedFromAdjacentPosition = false;
     public static Vector3 previousCell;
     public static Vector3[] adjacentPositionsForCell = new Vector3[4];
+    private bool _stopPath = false;
     private void OnMouseEnter()
     {
         if (Input.touchCount == 1)
@@ -17,7 +18,6 @@ public class CellState : MonoBehaviour
                 {
                     isStartedFromAdjacentPosition = true;
                 }
-                
             }
             if(PlayerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition)
             {
@@ -34,9 +34,27 @@ public class CellState : MonoBehaviour
             }
             isStartedFromAdjacentPosition = false;
         }   
+        
+    }
+    private void OnMouseDown()
+    {
+        if (Input.touchCount == 1 && PlayerControllerDrawPath.queuePath.Count > 0)
+        {
+
+            foreach (var e in PlayerControllerDrawPath.queuePath)
+            {
+                if (e == transform.position)
+                {
+                    PlayerControllerDrawPath.StopPosition = transform.position;
+                }
+                
+            }
+            
+
+        }
     }
 
-    
+
 
     public bool IsCellAdjacentToPrevoiusOne(Vector3 currentPosition)
     {

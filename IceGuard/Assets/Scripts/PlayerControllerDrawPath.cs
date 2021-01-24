@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerControllerDrawPath : MonoBehaviour
 {
     public static Queue<Vector3> queuePath;
+    public static Vector3 StopPosition;
     public AnimationCurve Easing;
     public static float TimeToReachNextTile = 0.7f;
     public static Vector3 _startPosition;
@@ -41,13 +42,24 @@ public class PlayerControllerDrawPath : MonoBehaviour
     private bool flagStartMoving = false;
     private void Move()
     {
+
+        //if (Input.GetMouseButton(0) && queuePath.Count > 0)
+        //{
+        //    queuePath.Clear();
+        //    flagStartMoving = false;
+        //    _endPosition = _startPosition;
+        //    transform.position = _startPosition;
+        //    DestroyAllPathPoints();
+            
+        //}
+
         /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
         /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
         /// то запускаем скрипт движения
         if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
         {
             /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
-            if (allForceFields.Count > 0) 
+            if (allForceFields.Count > 0)
             {
                 foreach (var e in allForceFields)
                 {
@@ -55,7 +67,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
                 }
             }
 
-            
+
             /// в буферную векторную переменную записываем следующую координату для пути игрока
             Vector3 nextPosition = queuePath.Dequeue();
             /// если на карте есть силовые поля, проверяем не находится ли силовое поле на позиции куда мы собираемся переместиться
@@ -91,11 +103,21 @@ public class PlayerControllerDrawPath : MonoBehaviour
             /// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
             else
             {
-                Debug.Log("!!");
                 flagStartMoving = true;
                 _endPosition = nextPosition;
             }
-            
+
+
+            if (StopPosition == _startPosition)
+            {
+                queuePath.Clear();
+                flagStartMoving = false;
+                _endPosition = _startPosition;
+                DestroyAllPathPoints();
+                StopPosition.x = 99;
+            }
+
+
         }
 
         /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть
@@ -114,7 +136,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
             CreateEnergyField(_startPosition);
             _startPosition = _endPosition;
             flagStartMoving = false;
-            _time = 0;       
+            _time = 0;
         }
     }
     /// <summary>
@@ -122,7 +144,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     /// </summary>
     private void DestroyAllPathPoints()
     {
-        foreach(var e in allPathPoints)
+        foreach (var e in allPathPoints)
         {
             Destroy(e.gameObject);
         }
@@ -133,9 +155,9 @@ public class PlayerControllerDrawPath : MonoBehaviour
     /// <param name="position">предыдущая позиция игрока</param>
     private void CreateEnergyField(Vector3 position)
     {
-       
+
         allForceFields.Add(Instantiate(Resources.Load("force_field"), position, Quaternion.identity) as GameObject);
-        
+
     }
 
 
