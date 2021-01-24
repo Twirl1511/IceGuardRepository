@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class PlayerControllerDrawPath : MonoBehaviour
 {
+    public GameObject[] AllCells = new GameObject[36];
     public static Queue<Vector3> queuePath;
-    public static Vector3 StopPosition;
+    public static bool Stop;
     public AnimationCurve Easing;
-    public static float TimeToReachNextTile = 0.7f;
+    public static float TimeToReachNextTile = 3f;
     public static Vector3 _startPosition;
     private Vector3 _endPosition;
-    public static Vector3[] adjacentPositions = new Vector3[4];
+    public static Vector3[] adjacentPositionsForStart = new Vector3[4];
     public List<GameObject> allForceFields = new List<GameObject>(36);
     public static List<GameObject> allPathPoints = new List<GameObject>(36);
 
@@ -26,18 +27,25 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
-        AdjacentPositions();
+        if (Input.touchCount > 1 && PlayerControllerDrawPath.queuePath.Count > 0)
+        {
+            PlayerControllerDrawPath.Stop = true;
+
+        }
+
+
+        AdjacentPositionsForStart();
         Move();
     }
     /// <summary>
     /// массив где храним смежные позиции для начала пути
     /// </summary>
-    private void AdjacentPositions()
+    private void AdjacentPositionsForStart()
     {
-        adjacentPositions[0] = _startPosition + Vector3.left;
-        adjacentPositions[1] = _startPosition + Vector3.left * -1;
-        adjacentPositions[2] = _startPosition + Vector3.forward;
-        adjacentPositions[3] = _startPosition + Vector3.forward * -1;
+        adjacentPositionsForStart[0] = _startPosition + Vector3.left;
+        adjacentPositionsForStart[1] = _startPosition + Vector3.left * -1;
+        adjacentPositionsForStart[2] = _startPosition + Vector3.forward;
+        adjacentPositionsForStart[3] = _startPosition + Vector3.forward * -1;
     }
     private bool flagStartMoving = false;
     private void Move()
@@ -108,13 +116,13 @@ public class PlayerControllerDrawPath : MonoBehaviour
             }
 
 
-            if (StopPosition == _startPosition)
+            if (Stop)
             {
                 queuePath.Clear();
                 flagStartMoving = false;
                 _endPosition = _startPosition;
                 DestroyAllPathPoints();
-                StopPosition.x = 99;
+                Stop = false;
             }
 
 

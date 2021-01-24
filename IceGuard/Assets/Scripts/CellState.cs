@@ -12,7 +12,7 @@ public class CellState : MonoBehaviour
     {
         if (Input.touchCount == 1)
         {
-            foreach (var e in PlayerControllerDrawPath.adjacentPositions)
+            foreach (var e in PlayerControllerDrawPath.adjacentPositionsForStart)
             {
                 if (e.x == transform.position.x && e.z == transform.position.z)
                 {
@@ -38,20 +38,7 @@ public class CellState : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (Input.touchCount == 1 && PlayerControllerDrawPath.queuePath.Count > 0)
-        {
-
-            foreach (var e in PlayerControllerDrawPath.queuePath)
-            {
-                if (e == transform.position)
-                {
-                    PlayerControllerDrawPath.StopPosition = transform.position;
-                }
-                
-            }
-            
-
-        }
+        
     }
 
 
