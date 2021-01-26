@@ -10,6 +10,7 @@ public class Sound
     [Range(0f,1f)] public float volume;
     [HideInInspector] public AudioSource source;
     public bool loop;
+    public AudioMixerGroup mixerGroup;
     public enum SoundName
     {
         PlayerMove,
