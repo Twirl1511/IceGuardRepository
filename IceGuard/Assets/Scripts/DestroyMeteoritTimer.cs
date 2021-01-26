@@ -15,6 +15,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         MeteoritScript.CURRENT_NUMBER_OF_METEORITS = 0;
+        FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MeteoriteCrashEarth);
         Destroy(this.gameObject);
     }
   

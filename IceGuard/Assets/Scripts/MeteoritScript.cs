@@ -13,6 +13,7 @@ public class MeteoritScript : MonoBehaviour
     {
         if (CURRENT_NUMBER_OF_METEORITS < MAX_NUMBER_OF_METEORITS)
         {
+            FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MeteoriteAlert);
             int random = Random.Range(0, 36);
             Vector3 position = new Vector3(AllCells[random].transform.position.x, 0.08f, AllCells[random].transform.position.y);
             GameObject.Instantiate(Resources.Load("MeteoritTimer"), position, Quaternion.Euler(-90, 0, 45));

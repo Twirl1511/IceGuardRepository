@@ -36,6 +36,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
         AdjacentPositionsForStart();
         Move();
+        PlayerMoveSound();
     }
     /// <summary>
     /// массив где храним смежные позиции для начала пути
@@ -48,6 +49,13 @@ public class PlayerControllerDrawPath : MonoBehaviour
         adjacentPositionsForStart[3] = _startPosition + Vector3.forward * -1;
     }
     private bool flagStartMoving = false;
+    private void PlayerMoveSound()
+    {
+        if (flagStartMoving)
+        {
+            FindObjectOfType<SoundManager>().PlaySound(Sound.SoundName.PlayerMove);
+        }
+    }
     private void Move()
     {
 
@@ -163,7 +171,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     /// <param name="position">предыдущая позиция игрока</param>
     private void CreateEnergyField(Vector3 position)
     {
-
+        FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.ForceFieldCreate);
         allForceFields.Add(Instantiate(Resources.Load("force_field"), position, Quaternion.identity) as GameObject);
 
     }

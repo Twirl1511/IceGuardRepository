@@ -448,18 +448,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: PlayerMove
+  - elementName: PlayerMove
+    name: 0
     audioClip: {fileID: 8300000, guid: 1fcafcdd6bd2d4140bddab503141faff, type: 3}
     volume: 0.42
-  - name: ForceShieldCreate
+    source: {fileID: 0}
+    loop: 0
+  - elementName: ForceFieldCreate
+    name: 2
     audioClip: {fileID: 8300000, guid: 1183b35b91093f04eb72fe4c407f6ce6, type: 3}
-    volume: 0.39
-  - name: MeteoriteAlert
+    volume: 1
+    source: {fileID: 0}
+    loop: 0
+  - elementName: MeteoriteAlert
+    name: 5
     audioClip: {fileID: 8300000, guid: 075ed15de79c7624e80bf539624393a8, type: 3}
     volume: 0.42
-  - name: MeteoriteCrashEarth
+    source: {fileID: 0}
+    loop: 0
+  - elementName: MeteoriteCrashEarth
+    name: 9
     audioClip: {fileID: 8300000, guid: 14fd6e3c32a87c34297d15b560abce66, type: 3}
     volume: 0.6
+    source: {fileID: 0}
+    loop: 0
 --- !u!1001 &214497659
 PrefabInstance:
   m_ObjectHideFlags: 0
