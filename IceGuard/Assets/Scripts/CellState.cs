@@ -8,7 +8,7 @@ public class CellState : MonoBehaviour
     public static Vector3 previousCell;
     public static Vector3[] adjacentPositionsForCell = new Vector3[4];
     private bool _stopPath = false;
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
         if (Input.touchCount == 1)
         {
@@ -36,7 +36,7 @@ public class CellState : MonoBehaviour
         }   
         
     }
-    private void OnMouseDown()
+    private void OnMouseEnter()
     {
         
     }
