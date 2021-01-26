@@ -451,13 +451,13 @@ MonoBehaviour:
   - elementName: PlayerMove
     name: 0
     audioClip: {fileID: 8300000, guid: 1fcafcdd6bd2d4140bddab503141faff, type: 3}
-    volume: 0.42
+    volume: 0.728
     source: {fileID: 0}
     loop: 0
   - elementName: ForceFieldCreate
     name: 2
     audioClip: {fileID: 8300000, guid: 1183b35b91093f04eb72fe4c407f6ce6, type: 3}
-    volume: 1
+    volume: 0.72
     source: {fileID: 0}
     loop: 0
   - elementName: MeteoriteAlert
