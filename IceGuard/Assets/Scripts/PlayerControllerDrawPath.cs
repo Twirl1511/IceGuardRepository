@@ -27,11 +27,11 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 1 && PlayerControllerDrawPath.queuePath.Count > 0)
-        {
-            PlayerControllerDrawPath.Stop = true;
+        //if (Input.touchCount > 1 && PlayerControllerDrawPath.queuePath.Count > 0)
+        //{
+        //    PlayerControllerDrawPath.Stop = true;
 
-        }
+        //}
 
 
         AdjacentPositionsForStart();
@@ -86,52 +86,54 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
             /// в буферную векторную переменную записываем следующую координату для пути игрока
             Vector3 nextPosition = queuePath.Dequeue();
+            flagStartMoving = true;
+            _endPosition = nextPosition;
             /// если на карте есть силовые поля, проверяем не находится ли силовое поле на позиции куда мы собираемся переместиться
-            if (allForceFields.Count > 0)
-            {
-                foreach (var e in allForceFields)
-                {
-                    /// если в массиве силовых полей находим такое, позиция которого равна позиции следующей клетке движения,
-                    /// то очищаем очередь перемещений игрока,
-                    /// flagStartMoving ставит фолс - запрещаем начинать следующее движение
-                    /// _endPosition = _startPosition - говорим, что мы стоим на месте и никуда не двигаемся
-                    /// DestroyAllPathPoints() - уничтожаем все точки указатели пути
-                    if (e.transform.position == nextPosition)
-                    {
-                        queuePath.Clear();
-                        flagStartMoving = false;
-                        _endPosition = _startPosition;
-                        DestroyAllPathPoints();
-                        break;
-                    }
-                    /// если на следующей клетке движения нет силовых полей,
-                    /// flagStartMoving = true; - даем добро на выполнение цикла движения
-                    /// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
-                    else
-                    {
-                        flagStartMoving = true;
-                        _endPosition = nextPosition;
-                    }
-                }
-            }
-            /// если на карте нет активных силовых полей,
-            /// разрешаем движение
-            /// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
-            else
-            {
-                flagStartMoving = true;
-                _endPosition = nextPosition;
-            }
+            //if (allForceFields.Count > 0)
+            //{
+            //    foreach (var e in allForceFields)
+            //    {
+            //        /// если в массиве силовых полей находим такое, позиция которого равна позиции следующей клетке движения,
+            //        /// то очищаем очередь перемещений игрока,
+            //        /// flagStartMoving ставит фолс - запрещаем начинать следующее движение
+            //        /// _endPosition = _startPosition - говорим, что мы стоим на месте и никуда не двигаемся
+            //        /// DestroyAllPathPoints() - уничтожаем все точки указатели пути
+            //        if (e.transform.position == nextPosition)
+            //        {
+            //            queuePath.Clear();
+            //            flagStartMoving = false;
+            //            _endPosition = _startPosition;
+            //            DestroyAllPathPoints();
+            //            break;
+            //        }
+            //        /// если на следующей клетке движения нет силовых полей,
+            //        /// flagStartMoving = true; - даем добро на выполнение цикла движения
+            //        /// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
+            //        else
+            //        {
+            //            flagStartMoving = true;
+            //            _endPosition = nextPosition;
+            //        }
+            //    }
+            //}
+            ///// если на карте нет активных силовых полей,
+            ///// разрешаем движение
+            ///// в поле следующей позиции движения передаем буферную позицию которую проверяли выше
+            //else
+            //{
+            //    flagStartMoving = true;
+            //    _endPosition = nextPosition;
+            //}
 
 
-            if (Stop)
-            {
-                queuePath.Clear();
-                flagStartMoving = false;
-                _endPosition = _startPosition;
-                DestroyAllPathPoints();
-                Stop = false;
-            }
+            //if (Stop)
+            //{
+            //    queuePath.Clear();
+            //    flagStartMoving = false;
+            //    _endPosition = _startPosition;
+            //    DestroyAllPathPoints();
+            //    Stop = false;
+            //}
 
 
         }
