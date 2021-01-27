@@ -40,6 +40,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
         }
         if (_kostyl)
         {
+            PlayerHitPoints.HitPoints = 0;
             Debug.Log("ударилось в Землю");
         }
     }
