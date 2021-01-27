@@ -36,11 +36,7 @@ public class CellState : MonoBehaviour
         }   
         
     }
-    private void OnMouseEnter()
-    {
-        
-    }
-
+ 
 
 
     public bool IsCellAdjacentToPrevoiusOne(Vector3 currentPosition)
