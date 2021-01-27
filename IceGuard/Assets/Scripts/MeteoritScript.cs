@@ -6,9 +6,13 @@ public class MeteoritScript : MonoBehaviour
 {
 
     [SerializeField] private float TimeToSpawnNeMeteorite = 10;
-    private float _time = 9;
+    private float _time;
     public GameObject[] AllCells = new GameObject[36];
 
+    private void Start()
+    {
+        _time = 9;
+    }
     private void FixedUpdate()
     {
         _time += Time.deltaTime;

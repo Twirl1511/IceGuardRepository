@@ -10,7 +10,7 @@ public class PlayerHitPoints : MonoBehaviour
     [SerializeField] private GameObject[] HPs;
     void Start()
     {
-        
+        HitPoints = 3;
     }
 
     // Update is called once per frame
