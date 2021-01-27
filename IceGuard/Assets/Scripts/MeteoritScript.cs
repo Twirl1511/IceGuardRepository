@@ -8,7 +8,7 @@ public class MeteoritScript : MonoBehaviour
     public static int CURRENT_NUMBER_OF_METEORITS = 0;
     public GameObject[] AllCells = new GameObject[36];
 
-    // Update is called once per frame
+
     void Update()
     {
         if (CURRENT_NUMBER_OF_METEORITS < MAX_NUMBER_OF_METEORITS)

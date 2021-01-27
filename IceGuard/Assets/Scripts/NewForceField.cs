@@ -15,4 +15,12 @@ public class NewForceField : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         Destroy(this.gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            
+        }
+    }
 }
