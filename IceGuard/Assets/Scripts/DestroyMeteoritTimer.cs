@@ -36,6 +36,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     }
 
     private bool _isMeteoriteKillEarth = true;
+    private bool _isMeteoriteDestroed = false;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -46,20 +47,15 @@ public class DestroyMeteoritTimer : MonoBehaviour
         }
         if (other.CompareTag("ForceField"))
         {
-            __isMeteoriteDestroed = true;
+            if (_isMeteoriteDestroed) return;
             _isMeteoriteKillEarth = false;
+            _isMeteoriteDestroed = true;
+            Vibrator.Vibrate();
             Debug.Log("ударилось в поле");
             
         }
     }
-    private bool __isMeteoriteDestroed = false;
-    private void VibrateOnce()
-    {
-        if (__isMeteoriteDestroed)
-        {
-            Handheld.Vibrate();
-        }
-        
-    }
+    
+ 
 
 }

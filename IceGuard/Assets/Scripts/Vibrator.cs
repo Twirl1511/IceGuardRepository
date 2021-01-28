@@ -12,7 +12,7 @@ public static class Vibrator
     public static AndroidJavaObject vibrator;
 #endif
 
-    public static void Vibrate(long milliseconds = 250)
+    public static void Vibrate(long milliseconds = 200)
     {
         if (IsAndroid())
         {
