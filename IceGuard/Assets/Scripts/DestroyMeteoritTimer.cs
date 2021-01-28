@@ -9,6 +9,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     {
         StartCoroutine(LaterDestroy());
         StartCoroutine(ActivateCollider());
+        StartCoroutine(CheckMeteoriteKillEarth());
     }
 
     
@@ -21,11 +22,20 @@ public class DestroyMeteoritTimer : MonoBehaviour
 
     IEnumerator ActivateCollider()
     {
-        yield return new WaitForSeconds(seconds -1.1f);
+        yield return new WaitForSeconds(seconds -2f);
         gameObject.GetComponent<Collider>().enabled = true;
     }
+    IEnumerator CheckMeteoriteKillEarth()
+    {
+        yield return new WaitForSeconds(seconds - 1f);
+        if (_isMeteoriteKillEarth)
+        {
+            PlayerHitPoints.HitPoints = 0;
+            Debug.Log("ударилось в Землю");
+        }
+    }
 
-    private bool _kostyl = true;
+    private bool _isMeteoriteKillEarth = true;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -35,13 +45,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
         }
         if (other.CompareTag("ForceField"))
         {
-            _kostyl = false;
+            _isMeteoriteKillEarth = false;
             Debug.Log("ударилось в поле");
-        }
-        if (_kostyl)
-        {
-            PlayerHitPoints.HitPoints = 0;
-            Debug.Log("ударилось в Землю");
         }
     }
 
