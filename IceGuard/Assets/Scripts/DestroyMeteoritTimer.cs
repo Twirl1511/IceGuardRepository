@@ -40,14 +40,26 @@ public class DestroyMeteoritTimer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            _isMeteoriteKillEarth = false;
             PlayerHitPoints.HitPoints = 0;
             Debug.Log("ударило по плееру " + PlayerHitPoints.HitPoints);
         }
         if (other.CompareTag("ForceField"))
         {
+            __isMeteoriteDestroed = true;
             _isMeteoriteKillEarth = false;
             Debug.Log("ударилось в поле");
+            
         }
+    }
+    private bool __isMeteoriteDestroed = false;
+    private void VibrateOnce()
+    {
+        if (__isMeteoriteDestroed)
+        {
+            Handheld.Vibrate();
+        }
+        
     }
 
 }
