@@ -10,7 +10,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static Queue<Vector3> queuePath;
     public static bool Stop;
     public AnimationCurve Easing;
-    public static float TimeToReachNextTile = 0.7f;
+    public static float TimeToReachNextTile = 0.5f;
     public static Vector3 _startPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];

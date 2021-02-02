@@ -13,16 +13,20 @@ public class PlayerHitPoints : MonoBehaviour
         HitPoints = 3;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MinusHP()
     {
-        foreach(var e in HPs)
+        foreach (var e in HPs)
         {
             e.SetActive(false);
         }
-        HPs[HitPoints-1].SetActive(true);
-       
+        if (HitPoints - 1 < 0) return;
+        HPs[HitPoints - 1].SetActive(true);
+    }
+    private void Update()
+    {
+        MinusHP();
     }
 
-   
+
+
 }

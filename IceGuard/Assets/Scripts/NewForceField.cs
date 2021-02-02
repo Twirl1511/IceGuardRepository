@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewForceField : MonoBehaviour
 {
-    public float seconds = 20;
+    public float seconds = 30;
     private float _timer = 0;
     [SerializeField] private float HowLongToStayToTakeDamage = 2f;
     void Start()

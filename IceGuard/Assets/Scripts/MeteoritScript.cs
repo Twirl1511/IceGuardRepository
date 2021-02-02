@@ -28,4 +28,7 @@ public class MeteoritScript : MonoBehaviour
             GameObject.Instantiate(Resources.Load("MeteoritTimer"), position, Quaternion.Euler(-90, 0, 45));
         }
     }
+
+
+    
 }
