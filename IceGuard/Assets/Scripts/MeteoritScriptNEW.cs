@@ -10,10 +10,7 @@ public class MeteoritScriptNEW : MonoBehaviour
     public int Z1 = Random.Range(0, 36);
     public int Z2 = Random.Range(0, 36);
 
-    private void Update()
-    {
-        
-    }
+    
 
 
 }

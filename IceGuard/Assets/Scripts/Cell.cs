@@ -38,7 +38,7 @@ public class Cell : MonoBehaviour
             case "ForceField":
                 currentState = State.ForceField;
                 break;
-            case "Meteorite":
+            case "MeteoriteIsComming":
                 currentState = State.MeteoriteIsComming;
                 break;
             default:
