@@ -6,7 +6,7 @@ public class CellController : MonoBehaviour
 {
     public Cell[] Cells;
     public static Cell[,] CellDouble = new Cell[6,6];
-    private void Start()
+    private void Awake()
     {
         int j = 0;
         int k = 0;
@@ -18,12 +18,14 @@ public class CellController : MonoBehaviour
                 k = 0;
             }
             CellDouble[j, k] = Cells[i];
-            Debug.Log($"CellDouble[{j}, {k}]" + CellDouble[j, k]);
+            //Debug.Log($"CellDouble[{j}, {k}]" + CellDouble[j, k]);
             k++;
         }   
 
 
 
     }
+
+
 
 }
