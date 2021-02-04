@@ -47,13 +47,13 @@ public class MeteoritScriptNEW : MonoBehaviour
 
     public void CreateFirstMeteorite()
     {
-        meteoriteOne.rowPosition = Random.Range(0, 7);
-        meteoriteOne.columnPosition = Random.Range(0, 7);
+        meteoriteOne.rowPosition = Random.Range(0, 6);
+        meteoriteOne.columnPosition = Random.Range(0, 6);
     }
     public void CreateSecondMeteorite()
     {
-        meteoriteTwo.rowPosition = Random.Range(0, 7);
-        meteoriteTwo.columnPosition = Random.Range(0, 7);
+        meteoriteTwo.rowPosition = Random.Range(0, 6);
+        meteoriteTwo.columnPosition = Random.Range(0, 6);
     }
 
     public bool IsDistanceCorrect(Player player, Meteorite meteorite, out float seconds)
