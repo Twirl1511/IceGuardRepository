@@ -12,6 +12,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public AnimationCurve Easing;
     public static float TimeToReachNextTile = 0.5f;
     public static Vector3 _startPosition;
+    private Vector3 _previousPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];
     public List<GameObject> allForceFields = new List<GameObject>(36);
@@ -66,12 +67,13 @@ public class PlayerControllerDrawPath : MonoBehaviour
         //    _endPosition = _startPosition;
         //    transform.position = _startPosition;
         //    DestroyAllPathPoints();
-            
+
         //}
 
         /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
         /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
         /// то запускаем скрипт движения
+        /// if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
         if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
         {
             /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива

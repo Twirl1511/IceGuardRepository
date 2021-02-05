@@ -10,6 +10,8 @@ public class MeteoritScriptNEW : MonoBehaviour
     public MeteoritePlace meteoriteTwo;
     private int rows;
     private int columns;
+    [SerializeField] private int minTimeToCrash = 5;
+    [SerializeField] private int maxTimeToCrash = 16;
 
 
     private void Start()
@@ -39,10 +41,10 @@ public class MeteoritScriptNEW : MonoBehaviour
     }
 
 
-    public void CreateRandomMeteoriteTimers(int maxSeconds = 21)
+    public void CreateRandomMeteoriteTimers()
     {
-        meteoriteOne.timer = Random.Range(5, maxSeconds-5);
-        meteoriteTwo.timer = 20 - meteoriteOne.timer;
+        meteoriteOne.timer = Random.Range(minTimeToCrash, maxTimeToCrash);
+        meteoriteTwo.timer = Random.Range(minTimeToCrash, maxTimeToCrash);
     }
 
     public void CreateFirstMeteorite()
@@ -124,17 +126,16 @@ public class MeteoritScriptNEW : MonoBehaviour
         float z = CellController.CellDouble[meteoriteOne.rowPosition, meteoriteOne.columnPosition].transform.position.z;
         Vector3 position = new Vector3(x, 0.08f, z);
         GameObject meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
-        meteorite.GetComponent<DestroyMeteoritTimer>().currentSeconds = meteoriteOne.timer;
+        meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = meteoriteOne.timer;
 
-        StartCoroutine(NextMeteoriteAfter(Random.Range(0.5f, 3f)));
+        
+        x = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.x;
+        z = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.z;
+        position = new Vector3(x, 0.08f, z);
+        meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
+        meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = meteoriteTwo.timer;
     }
-    private IEnumerator NextMeteoriteAfter(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-        float x = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.x;
-        float z = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.z;
-        Vector3 position = new Vector3(x, 0.08f, z);
-        GameObject meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
-        meteorite.GetComponent<DestroyMeteoritTimer>().currentSeconds = meteoriteTwo.timer;
-    }
+    
+        
+    
 }
