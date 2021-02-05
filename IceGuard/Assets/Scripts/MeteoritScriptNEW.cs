@@ -41,7 +41,7 @@ public class MeteoritScriptNEW : MonoBehaviour
 
     public void CreateRandomMeteoriteTimers(int maxSeconds = 21)
     {
-        meteoriteOne.timer = Random.Range(5, maxSeconds);
+        meteoriteOne.timer = Random.Range(5, maxSeconds-5);
         meteoriteTwo.timer = 20 - meteoriteOne.timer;
     }
 
