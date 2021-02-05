@@ -12,6 +12,7 @@ public class MeteoritScriptNEW : MonoBehaviour
     private int columns;
     [SerializeField] private int minTimeToCrash = 5;
     [SerializeField] private int maxTimeToCrash = 16;
+    [SerializeField] private float pridumaiNazvanieYaXZkakEtoObozvat = 8f;
 
 
     private void Start()
@@ -99,7 +100,7 @@ public class MeteoritScriptNEW : MonoBehaviour
 
         float P = DistanceBtwMeteorites(meteoriteOne, meteoriteTwo);
 
-        if(B1 - P >= 8f && B2 - P >= 8f)
+        if(B1 - P >= pridumaiNazvanieYaXZkakEtoObozvat && B2 - P >= pridumaiNazvanieYaXZkakEtoObozvat)
         {
             CreateRealMeteorites();
         }
