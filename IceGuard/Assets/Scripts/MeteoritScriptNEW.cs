@@ -59,6 +59,15 @@ public class MeteoritScriptNEW : MonoBehaviour
         meteoriteTwo.columnPosition = Random.Range(0, 6);
     }
 
+    public bool AreMeteoritesOnSmaePostion()
+    {
+        if(meteoriteOne.rowPosition == meteoriteTwo.rowPosition && meteoriteOne.columnPosition == meteoriteTwo.columnPosition)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool IsDistanceCorrect(Player player, MeteoritePlace meteorite, out float seconds)
     {
         seconds = 0f;
@@ -92,7 +101,7 @@ public class MeteoritScriptNEW : MonoBehaviour
             CreateSecondMeteorite();
             Debug.Log("перебираем второй");
         }
-        while (!IsDistanceCorrect(player, meteoriteTwo, out Y2));
+        while (!IsDistanceCorrect(player, meteoriteTwo, out Y2) && AreMeteoritesOnSmaePostion());
 
 
         float B1 = meteoriteOne.timer + meteoriteTwo.timer - Y1;
