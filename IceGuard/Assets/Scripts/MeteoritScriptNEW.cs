@@ -6,8 +6,8 @@ public class MeteoritScriptNEW : MonoBehaviour
 {
 
     public Player player;
-    public Meteorite meteoriteOne;
-    public Meteorite meteoriteTwo;
+    public MeteoritePlace meteoriteOne;
+    public MeteoritePlace meteoriteTwo;
     private int rows;
     private int columns;
 
@@ -15,8 +15,8 @@ public class MeteoritScriptNEW : MonoBehaviour
     private void Start()
     {
         player = new Player();
-        meteoriteOne = new Meteorite();
-        meteoriteTwo = new Meteorite();
+        meteoriteOne = new MeteoritePlace();
+        meteoriteTwo = new MeteoritePlace();
         rows = CellController.CellDouble.GetUpperBound(0) + 1;
         columns = CellController.CellDouble.Length / rows;
     }
@@ -56,7 +56,7 @@ public class MeteoritScriptNEW : MonoBehaviour
         meteoriteTwo.columnPosition = Random.Range(0, 6);
     }
 
-    public bool IsDistanceCorrect(Player player, Meteorite meteorite, out float seconds)
+    public bool IsDistanceCorrect(Player player, MeteoritePlace meteorite, out float seconds)
     {
         seconds = 0f;
         int rowABS = Mathf.Abs(player.rowPosition - meteorite.rowPosition);
@@ -112,7 +112,7 @@ public class MeteoritScriptNEW : MonoBehaviour
 
     }
 
-    public float DistanceBtwMeteorites(Meteorite meteoriteOne, Meteorite meteoriteTwo)
+    public float DistanceBtwMeteorites(MeteoritePlace meteoriteOne, MeteoritePlace meteoriteTwo)
     {
         float P = Mathf.Abs(meteoriteOne.rowPosition - meteoriteTwo.rowPosition) + Mathf.Abs(meteoriteOne.columnPosition - meteoriteTwo.columnPosition);
 
@@ -123,11 +123,13 @@ public class MeteoritScriptNEW : MonoBehaviour
         float x = CellController.CellDouble[meteoriteOne.rowPosition, meteoriteOne.columnPosition].transform.position.x;
         float z = CellController.CellDouble[meteoriteOne.rowPosition, meteoriteOne.columnPosition].transform.position.z;
         Vector3 position = new Vector3(x, 0.08f, z);
-        GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f));
+        GameObject meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
+        meteorite.GetComponent<DestroyMeteoritTimer>().currentSeconds = meteoriteOne.timer;
 
         x = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.x;
         z = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.z;
         position = new Vector3(x, 0.08f, z);
-        GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f,0f,0f));
+        meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f,0f,0f)) as GameObject;
+        meteorite.GetComponent<DestroyMeteoritTimer>().currentSeconds = meteoriteTwo.timer;
     }
 }

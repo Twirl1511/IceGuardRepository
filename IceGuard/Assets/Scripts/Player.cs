@@ -7,7 +7,7 @@ public class Player
     public int rowPosition;
     public int columnPosition;
 }
-public class Meteorite
+public class MeteoritePlace
 {
     public int rowPosition;
     public int columnPosition;

@@ -4,14 +4,35 @@ using UnityEngine;
 
 public class DestroyMeteoritTimer : MonoBehaviour
 {
-    public float seconds = 13;
+    public float seconds;
+    public float currentSeconds;
+    public TextMesh timer;
+
+    private void Update()
+    {
+        ShowTimer();
+    }
+
+    private void ShowTimer()
+    {
+        currentSeconds -= Time.deltaTime;  
+        if(currentSeconds <= 0.5f)
+        {
+            timer.text = "Boom!";
+        }
+        else
+        {
+            timer.text = currentSeconds.ToString("#");
+        }
+    }
     void Start()
     {
+        seconds = currentSeconds + 1;
         StartCoroutine(LaterDestroy());
         StartCoroutine(ActivateCollider());
         StartCoroutine(CheckMeteoriteKillEarth());
     }
-
+    
     
     IEnumerator LaterDestroy()
     {
@@ -22,12 +43,12 @@ public class DestroyMeteoritTimer : MonoBehaviour
 
     IEnumerator ActivateCollider()
     {
-        yield return new WaitForSeconds(seconds -2f);
+        yield return new WaitForSeconds(seconds -1f);
         gameObject.GetComponent<Collider>().enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
     {
-        yield return new WaitForSeconds(seconds - 1f);
+        yield return new WaitForSeconds(seconds - 0.5f);
         if (_isMeteoriteKillEarth)
         {
             PlayerHitPoints.HitPoints = 0;
