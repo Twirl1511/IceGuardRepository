@@ -126,10 +126,15 @@ public class MeteoritScriptNEW : MonoBehaviour
         GameObject meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
         meteorite.GetComponent<DestroyMeteoritTimer>().currentSeconds = meteoriteOne.timer;
 
-        x = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.x;
-        z = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.z;
-        position = new Vector3(x, 0.08f, z);
-        meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f,0f,0f)) as GameObject;
+        StartCoroutine(NextMeteoriteAfter(Random.Range(0.5f, 3f)));
+    }
+    private IEnumerator NextMeteoriteAfter(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        float x = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.x;
+        float z = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.z;
+        Vector3 position = new Vector3(x, 0.08f, z);
+        GameObject meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
         meteorite.GetComponent<DestroyMeteoritTimer>().currentSeconds = meteoriteTwo.timer;
     }
 }
