@@ -12,8 +12,9 @@ public class MeteoritScriptNEW : MonoBehaviour
     private int columns;
     [SerializeField] private int minTimeToCrash = 5;
     [SerializeField] private int maxTimeToCrash = 16;
-    [SerializeField] private float pridumaiNazvanieYaXZkakEtoObozvat = 8f;
-
+    [SerializeField] private float Delay = 8f;
+    [SerializeField] private float DelayBtwNewMeteorites = 15f;
+    private bool _areMeteoritesReady = true;
 
     private void Start()
     {
@@ -22,6 +23,22 @@ public class MeteoritScriptNEW : MonoBehaviour
         meteoriteTwo = new MeteoritePlace();
         rows = CellController.CellDouble.GetUpperBound(0) + 1;
         columns = CellController.CellDouble.Length / rows;
+        TestBUTTON();
+    }
+    
+    public IEnumerator DelayBtwMeteorites()
+    {
+        _areMeteoritesReady = false;
+        yield return new WaitForSeconds(DelayBtwNewMeteorites);
+        TestBUTTON();
+        _areMeteoritesReady = true;
+    }
+    private void Update()
+    {
+        if (_areMeteoritesReady)
+        {
+            StartCoroutine(DelayBtwMeteorites());
+        }
     }
     public void TestBUTTON()
     {
@@ -92,14 +109,12 @@ public class MeteoritScriptNEW : MonoBehaviour
         do
         {
             CreateFirstMeteorite();
-            Debug.Log("перебираем первый");
         }
         while (!IsDistanceCorrect(player, meteoriteOne, out Y1));
 
         do
         {
             CreateSecondMeteorite();
-            Debug.Log("перебираем второй");
         }
         while (!IsDistanceCorrect(player, meteoriteTwo, out Y2) && AreMeteoritesOnSmaePostion());
 
@@ -109,7 +124,7 @@ public class MeteoritScriptNEW : MonoBehaviour
 
         float P = DistanceBtwMeteorites(meteoriteOne, meteoriteTwo);
 
-        if(B1 - P >= pridumaiNazvanieYaXZkakEtoObozvat && B2 - P >= pridumaiNazvanieYaXZkakEtoObozvat)
+        if(B1 - P >= Delay && B2 - P >= Delay)
         {
             CreateRealMeteorites();
         }
