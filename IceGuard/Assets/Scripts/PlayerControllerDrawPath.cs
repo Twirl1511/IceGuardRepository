@@ -15,7 +15,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     private Vector3 _previousPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];
-    public List<GameObject> allForceFields = new List<GameObject>(36);
+    public static List<GameObject> allForceFields = new List<GameObject>(36);
     public static List<GameObject> allPathPoints = new List<GameObject>(36);
 
     private float _time;
@@ -28,9 +28,11 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
+        RemoveNullForceFields();
         AdjacentPositionsForStart();
         Move();
         PlayerMoveSound();
+        
     }
     /// <summary>
     /// массив где храним смежные позиции для начала пути
@@ -50,6 +52,16 @@ public class PlayerControllerDrawPath : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySound(Sound.SoundName.PlayerMove);
         }
     }
+    public static void RemoveNullForceFields()
+    {
+        if (allForceFields.Count > 0)
+        {
+            foreach (var e in allForceFields)
+            {
+                if (e == null) allForceFields.Remove(e);
+            }
+        }
+    }
     private void Move()
     {
         /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
@@ -59,18 +71,11 @@ public class PlayerControllerDrawPath : MonoBehaviour
         if ( queuePath.Count > 0 && _time == 0)
         {
             /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
-            if (allForceFields.Count > 0)
-            {
-                foreach (var e in allForceFields)
-                {
-                    if (e == null) allForceFields.Remove(e);
-                }
-            }
+            
 
             /// в буферную векторную переменную записываем следующую координату для пути игрока
              
             _endPosition = queuePath.Dequeue();
-            Debug.Log(queuePath.Count);
             flagStartMoving = true;
         }
 
@@ -89,6 +94,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
         {
             transform.position = _endPosition;
             CreateEnergyField(_startPosition);
+            Debug.Log("!!!");
             _time = 0;
             _startPosition = transform.position;
             flagStartMoving = false;

@@ -51,7 +51,6 @@ public class MeteoritScriptNEW : MonoBehaviour
                 {
                     player.rowPosition = i;
                     player.columnPosition = j;
-
                 }
             }
         }
@@ -84,10 +83,8 @@ public class MeteoritScriptNEW : MonoBehaviour
     {
         if(meteoriteOne.rowPosition == meteoriteTwo.rowPosition && meteoriteOne.columnPosition == meteoriteTwo.columnPosition)
         {
-            Debug.Log("в одной позиции");
             return true;
         }
-        Debug.Log("в разных позициях");
         return false;
     }
 

@@ -27,7 +27,6 @@ public class CellState : MonoBehaviour
             if(playerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition && _stopPath)
             {
                 StartCoroutine(WaitFor(PlayerControllerDrawPath.TimeToReachNextTile));
-                Debug.Log("!!!!!!!!");
                 _stopPath = false;
                 playerControllerDrawPath.queuePath.Enqueue(transform.position);
                 PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint 1"), transform.position, Quaternion.identity) as GameObject);
