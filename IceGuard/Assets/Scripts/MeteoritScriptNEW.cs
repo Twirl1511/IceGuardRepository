@@ -74,14 +74,20 @@ public class MeteoritScriptNEW : MonoBehaviour
     {
         meteoriteTwo.rowPosition = Random.Range(0, 6);
         meteoriteTwo.columnPosition = Random.Range(0, 6);
+        if (AreMeteoritesOnSmaePostion())
+        {
+            CreateSecondMeteorite();
+        }
     }
 
     public bool AreMeteoritesOnSmaePostion()
     {
         if(meteoriteOne.rowPosition == meteoriteTwo.rowPosition && meteoriteOne.columnPosition == meteoriteTwo.columnPosition)
         {
+            Debug.Log("в одной позиции");
             return true;
         }
+        Debug.Log("в разных позициях");
         return false;
     }
 
@@ -110,13 +116,13 @@ public class MeteoritScriptNEW : MonoBehaviour
         {
             CreateFirstMeteorite();
         }
-        while (!IsDistanceCorrect(player, meteoriteOne, out Y1));
+        while (!IsDistanceCorrect(player, meteoriteOne, out Y1) );
 
         do
         {
             CreateSecondMeteorite();
         }
-        while (!IsDistanceCorrect(player, meteoriteTwo, out Y2) && AreMeteoritesOnSmaePostion());
+        while (!IsDistanceCorrect(player, meteoriteTwo, out Y2) );
 
 
         float B1 = meteoriteOne.timer + meteoriteTwo.timer - Y1;
@@ -127,16 +133,21 @@ public class MeteoritScriptNEW : MonoBehaviour
         if(B1 - P >= Delay && B2 - P >= Delay)
         {
             CreateRealMeteorites();
+            SetDefaultMeteoritePositions();
         }
         else
         {
             /// по новой запускаем этот же метод
             RandomMeteoritePosition();
         }
+    }
 
-
-
-
+    public void SetDefaultMeteoritePositions()
+    {
+        meteoriteOne.rowPosition = 0;
+        meteoriteTwo.rowPosition = 0;
+        meteoriteOne.columnPosition = 0;
+        meteoriteTwo.columnPosition = 0;
     }
 
     public float DistanceBtwMeteorites(MeteoritePlace meteoriteOne, MeteoritePlace meteoriteTwo)
