@@ -7,10 +7,10 @@ public class NewForceField : MonoBehaviour
     public float seconds = 30;
     void Start()
     {
-        StartCoroutine(LaterDestroy());
+        StartCoroutine(LaterDestroy(seconds));
     }
 
-    IEnumerator LaterDestroy()
+    IEnumerator LaterDestroy(float seconds = 30)
     {
         yield return new WaitForSeconds(seconds);
         Destroy(this.gameObject);
@@ -25,7 +25,7 @@ public class NewForceField : MonoBehaviour
         }
         if (other.CompareTag("Meteorite"))
         {
-            Destroy(this.gameObject);
+            StartCoroutine(LaterDestroy(1));
         }
     }
    
