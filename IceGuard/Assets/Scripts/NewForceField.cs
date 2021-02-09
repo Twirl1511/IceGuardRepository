@@ -5,8 +5,6 @@ using UnityEngine;
 public class NewForceField : MonoBehaviour
 {
     public float seconds = 30;
-    private float _timer = 0;
-    [SerializeField] private float HowLongToStayToTakeDamage = 2f;
     void Start()
     {
         StartCoroutine(LaterDestroy());
@@ -23,18 +21,12 @@ public class NewForceField : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHitPoints.HitPoints--;
+            Destroy(this.gameObject);
         }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Meteorite"))
         {
-            _timer += Time.deltaTime;
-            if (_timer >= HowLongToStayToTakeDamage)
-            {
-                PlayerHitPoints.HitPoints--;
-                _timer = 0;
-            } 
+            Destroy(this.gameObject);
         }
     }
+   
 }

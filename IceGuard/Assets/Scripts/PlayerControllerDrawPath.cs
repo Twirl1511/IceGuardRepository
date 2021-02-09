@@ -27,13 +27,6 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.touchCount > 1 && PlayerControllerDrawPath.queuePath.Count > 0)
-        //{
-        //    PlayerControllerDrawPath.Stop = true;
-
-        //}
-
-
         AdjacentPositionsForStart();
         Move();
         PlayerMoveSound();

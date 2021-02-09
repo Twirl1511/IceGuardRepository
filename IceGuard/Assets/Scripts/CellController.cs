@@ -18,14 +18,7 @@ public class CellController : MonoBehaviour
                 k = 0;
             }
             CellDouble[j, k] = Cells[i];
-            //Debug.Log($"CellDouble[{j}, {k}]" + CellDouble[j, k]);
             k++;
         }   
-
-
-
     }
-
-
-
 }
