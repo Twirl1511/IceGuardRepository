@@ -646,7 +646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -93.9, y: -30.6}
+  m_AnchoredPosition: {x: -93.900024, y: -30.599976}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115039117
@@ -907,20 +907,20 @@ MonoBehaviour:
   - elementName: ForceFieldCreate
     name: 2
     audioClip: {fileID: 8300000, guid: 1183b35b91093f04eb72fe4c407f6ce6, type: 3}
-    volume: 0.72
+    volume: 0.63
     source: {fileID: 0}
     loop: 0
     mixerGroup: {fileID: 0}
   - elementName: MeteoriteAlert
     name: 5
     audioClip: {fileID: 8300000, guid: 075ed15de79c7624e80bf539624393a8, type: 3}
-    volume: 0.42
+    volume: 0.54
     source: {fileID: 0}
     loop: 0
     mixerGroup: {fileID: 0}
   - elementName: MeteoriteCrashEarth
     name: 9
-    audioClip: {fileID: 8300000, guid: 14fd6e3c32a87c34297d15b560abce66, type: 3}
+    audioClip: {fileID: 0}
     volume: 0.6
     source: {fileID: 0}
     loop: 0
@@ -5459,7 +5459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9db0e385a47c84698c81762da7f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToCrash: 5
+  minTimeToCrash: 8
   maxTimeToCrash: 16
   Delay: 8
 --- !u!1 &1054053596 stripped
