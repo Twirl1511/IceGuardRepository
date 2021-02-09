@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class CellState : MonoBehaviour
 {
+    public PlayerControllerDrawPath playerControllerDrawPath;
     private bool isStartedFromAdjacentPosition = false;
     public static Vector3 previousCell;
     public static Vector3[] adjacentPositionsForCell = new Vector3[4];
-    private bool _stopPath = false;
+    public static bool _stopPath = true;
+    private void Start()
+    {
+        _stopPath = true;
+    }
     private void OnMouseOver()
     {
         if (Input.touchCount == 1)
@@ -19,16 +24,19 @@ public class CellState : MonoBehaviour
                     isStartedFromAdjacentPosition = true;
                 }
             }
-            if(PlayerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition)
+            if(playerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition && _stopPath)
             {
-                PlayerControllerDrawPath.queuePath.Enqueue(transform.position);
+                StartCoroutine(WaitFor(PlayerControllerDrawPath.TimeToReachNextTile));
+                Debug.Log("!!!!!!!!");
+                _stopPath = false;
+                playerControllerDrawPath.queuePath.Enqueue(transform.position);
                 PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint 1"), transform.position, Quaternion.identity) as GameObject);
                 previousCell = transform.position;
                 
             }
-            else if(PlayerControllerDrawPath.queuePath.Count > 0 && IsCellAdjacentToPrevoiusOne(transform.position))
+            if((!_stopPath || playerControllerDrawPath.queuePath.Count > 0) && IsCellAdjacentToPrevoiusOne(transform.position))
             {
-                PlayerControllerDrawPath.queuePath.Enqueue(transform.position);
+                playerControllerDrawPath.queuePath.Enqueue(transform.position);
                 PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint"), transform.position, Quaternion.identity) as GameObject);
                 previousCell = transform.position;
             }
@@ -37,7 +45,11 @@ public class CellState : MonoBehaviour
         
     }
  
-
+    public IEnumerator WaitFor(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _stopPath = true;
+    }
 
     public bool IsCellAdjacentToPrevoiusOne(Vector3 currentPosition)
     {
