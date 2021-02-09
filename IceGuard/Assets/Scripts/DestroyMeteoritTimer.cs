@@ -4,51 +4,81 @@ using UnityEngine;
 
 public class DestroyMeteoritTimer : MonoBehaviour
 {
-    public float seconds;
-    public float currentSeconds;
+    
+    public float currentTime;
+    /// <summary>
+    /// рандомное время падения которое мы получаем при генерации метеоритов
+    /// </summary>
+    public float timetoFall;
     public TextMesh timer;
+    private bool IsTimerActive;
+
+    void Start()
+    {
+        IsTimerActive = false;
+        /// включаем объект текс меша через 1 секунду после создания метеорита
+        StartCoroutine(WaitToCreateTimer());
+        currentTime = timetoFall + 2;
+        /// уничтожаем объект метеорита после истечения timeToFall
+        StartCoroutine(LaterDestroy());
+        StartCoroutine(ActivateCollider());
+        StartCoroutine(CheckMeteoriteKillEarth());
+    }
 
     private void Update()
     {
-        ShowTimer();
+        if (timer.gameObject.activeSelf && IsTimerActive == false)
+        {
+            
+            StartCoroutine(CerrentTimeMinusOne());
+        }
+        
     }
 
+    private IEnumerator WaitToCreateTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        timer.gameObject.SetActive(true);
+        timer.text = timetoFall.ToString();
+    }
+
+    private IEnumerator CerrentTimeMinusOne()
+    {
+        IsTimerActive = true;
+        yield return new WaitForSeconds(1f);
+        ShowTimer();
+        IsTimerActive = false;
+    }
     private void ShowTimer()
     {
-        currentSeconds -= Time.deltaTime;  
-        if(currentSeconds <= 0.5f)
+        timetoFall -= 1f;  
+        if(timetoFall <= 0.5f)
         {
             timer.text = "Boom!";
         }
         else
         {
-            timer.text = currentSeconds.ToString("#");
+            timer.text = timetoFall.ToString("#");
         }
     }
-    void Start()
-    {
-        seconds = currentSeconds + 1;
-        StartCoroutine(LaterDestroy());
-        StartCoroutine(ActivateCollider());
-        StartCoroutine(CheckMeteoriteKillEarth());
-    }
+    
     
     
     IEnumerator LaterDestroy()
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(currentTime);
         FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MeteoriteCrashEarth);
         Destroy(this.gameObject);
     }
 
     IEnumerator ActivateCollider()
     {
-        yield return new WaitForSeconds(seconds -1f);
+        yield return new WaitForSeconds(currentTime -1f);
         gameObject.GetComponent<Collider>().enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
     {
-        yield return new WaitForSeconds(seconds - 0.5f);
+        yield return new WaitForSeconds(currentTime - 0.5f);
         if (_isMeteoriteKillEarth)
         {
             PlayerHitPoints.HitPoints = 0;

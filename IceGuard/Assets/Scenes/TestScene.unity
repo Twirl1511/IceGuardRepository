@@ -2109,7 +2109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &490656300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4597,6 +4597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9db0e385a47c84698c81762da7f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTimeToCrash: 5
+  maxTimeToCrash: 16
+  Delay: 8
+  DelayBtwNewMeteorites: 15
 --- !u!1 &1054053596 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5914188712556546903, guid: c87ab5417cd88ee4ea87d68e2a915dca,
