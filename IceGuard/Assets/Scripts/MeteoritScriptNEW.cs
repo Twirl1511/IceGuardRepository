@@ -129,7 +129,7 @@ public class MeteoritScriptNEW : MonoBehaviour
 
         if(B1 - P >= Delay && B2 - P >= Delay)
         {
-            //CreateRealMeteorites();
+            CreateRealMeteorites();
             SetDefaultMeteoritePositions();
         }
         else
