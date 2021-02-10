@@ -32,7 +32,6 @@ public class PlayerControllerDrawPath : MonoBehaviour
         AdjacentPositionsForStart();
         Move();
         PlayerMoveSound();
-        
     }
     /// <summary>
     /// массив где храним смежные позиции для начала пути
@@ -71,12 +70,23 @@ public class PlayerControllerDrawPath : MonoBehaviour
         if ( queuePath.Count > 0 && _time == 0)
         {
             /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
-            
+
 
             /// в буферную векторную переменную записываем следующую координату для пути игрока
-             
+
             _endPosition = queuePath.Dequeue();
+
+            /// избавляемся от того что иногда в очередь пути добавляются координаты того же места где стоит игрок, там образуется поле и игрок получает урон 0_о
+            while(_endPosition == transform.position)
+            {
+                _endPosition = queuePath.Dequeue();
+            }
+
+            
             flagStartMoving = true;
+
+            //_endPosition = queuePath.Dequeue();
+            //flagStartMoving = true;
         }
 
         /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть
@@ -92,9 +102,10 @@ public class PlayerControllerDrawPath : MonoBehaviour
         /// flagStartMoving = false не даем больше заходить в цикл где происходит движение, считаем что оно закончено и ждем нового пути
         if (_time > TimeToReachNextTile)
         {
+            
             transform.position = _endPosition;
             CreateEnergyField(_startPosition);
-            Debug.Log("!!!");
+            Debug.Log("создали поле");
             _time = 0;
             _startPosition = transform.position;
             flagStartMoving = false;

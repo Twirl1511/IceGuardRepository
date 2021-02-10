@@ -12,9 +12,9 @@ public class NewForceField : MonoBehaviour
 
     IEnumerator LaterDestroy(float seconds = 30)
     {
-        PlayerControllerDrawPath.RemoveNullForceFields();
+        
         yield return new WaitForSeconds(seconds);
-        PlayerControllerDrawPath.RemoveNullForceFields();
+        
         Destroy(this.gameObject);
     }
 
@@ -23,7 +23,7 @@ public class NewForceField : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHitPoints.HitPoints--;
-            PlayerControllerDrawPath.RemoveNullForceFields();
+            
             Destroy(this.gameObject);
         }
         if (other.CompareTag("Meteorite"))
