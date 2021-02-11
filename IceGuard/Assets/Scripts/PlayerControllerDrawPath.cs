@@ -102,7 +102,6 @@ public class PlayerControllerDrawPath : MonoBehaviour
         /// flagStartMoving = false не даем больше заходить в цикл где происходит движение, считаем что оно закончено и ждем нового пути
         if (_time > TimeToReachNextTile)
         {
-            
             transform.position = _endPosition;
             CreateEnergyField(_startPosition);
             Debug.Log("создали поле");
