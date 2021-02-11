@@ -10,7 +10,7 @@ public class MeteoritScriptNEW : MonoBehaviour
     public MeteoritePlace meteoriteTwo;
     private int rows;
     private int columns;
-    [SerializeField] private int minTimeToCrash = 5;
+    [SerializeField] private int minTimeToCrash = 8;
     [SerializeField] private int maxTimeToCrash = 16;
     [SerializeField] private float Delay = 8f;
     [SerializeField] public static float DelayBtwNewMeteorites = 13f;

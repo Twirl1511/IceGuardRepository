@@ -5820,7 +5820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9db0e385a47c84698c81762da7f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToCrash: 5
+  minTimeToCrash: 8
   maxTimeToCrash: 16
   Delay: 8
 --- !u!1 &1054053596 stripped
