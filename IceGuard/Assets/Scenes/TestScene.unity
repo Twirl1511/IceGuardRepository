@@ -2815,6 +2815,7 @@ MonoBehaviour:
   ForceFieldLifeTime: {fileID: 36335915}
   NewMeteoriteTimer: {fileID: 5234373}
   PlayerSpeed: {fileID: 1099491056}
+  Player: {fileID: 1121877189}
 --- !u!1 &491469410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5914188712556546903, guid: c87ab5417cd88ee4ea87d68e2a915dca,

@@ -10,7 +10,7 @@ public class NewForceField : MonoBehaviour
         StartCoroutine(LaterDestroy(seconds));
     }
 
-    IEnumerator LaterDestroy(float seconds = 30)
+    IEnumerator LaterDestroy(float seconds = 40)
     {
         
         yield return new WaitForSeconds(seconds);

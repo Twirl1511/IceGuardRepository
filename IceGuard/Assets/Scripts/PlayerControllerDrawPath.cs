@@ -30,13 +30,13 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
-        ChangeTimeToReachNextTile();
+        ChangeTimeToReachNextTile(PucliTimeToReachNextTile);
         RemoveNullForceFields();
         AdjacentPositionsForStart();
         Move();
         PlayerMoveSound();
     }
-    public void ChangeTimeToReachNextTile()
+    public void ChangeTimeToReachNextTile(float PucliTimeToReachNextTile)
     {
         TimeToReachNextTile = PucliTimeToReachNextTile;
     }

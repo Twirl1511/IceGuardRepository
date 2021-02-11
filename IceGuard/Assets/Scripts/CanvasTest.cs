@@ -44,11 +44,14 @@ public class CanvasTest : MonoBehaviour
 
     public void MinusPlayerSpeed()
     {
+        
         PlayerControllerDrawPath.TimeToReachNextTile -= 0.1f;
+        
     }
 
     public void PlusPlayerSpeed()
     {
         PlayerControllerDrawPath.TimeToReachNextTile += 0.1f;
+        
     }
 }
