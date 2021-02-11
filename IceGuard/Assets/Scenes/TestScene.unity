@@ -6286,6 +6286,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  PucliTimeToReachNextTile: 0.5
   RotationSpeed: 1
 --- !u!54 &1121877190
 Rigidbody:

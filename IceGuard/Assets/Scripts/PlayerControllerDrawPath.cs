@@ -11,6 +11,8 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static bool Stop;
     public AnimationCurve Easing;
     public static float TimeToReachNextTile = 0.5f;
+    [Range(0.1f,3f)]
+    public float PucliTimeToReachNextTile = 0.5f;
     public static Vector3 _startPosition;
     private Vector3 _previousPosition;
     private Vector3 _endPosition;
@@ -28,11 +30,17 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
+        ChangeTimeToReachNextTile();
         RemoveNullForceFields();
         AdjacentPositionsForStart();
         Move();
         PlayerMoveSound();
     }
+    public void ChangeTimeToReachNextTile()
+    {
+        TimeToReachNextTile = PucliTimeToReachNextTile;
+    }
+
     /// <summary>
     /// массив где храним смежные позиции для начала пути
     /// </summary>

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewForceField : MonoBehaviour
 {
-    public static float seconds = 30;
+    public static float seconds = 40;
     void Start()
     {
         StartCoroutine(LaterDestroy(seconds));
