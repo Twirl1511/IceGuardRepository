@@ -30,16 +30,13 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
-        ChangeTimeToReachNextTile(PucliTimeToReachNextTile);
+        
         RemoveNullForceFields();
         AdjacentPositionsForStart();
         Move();
         PlayerMoveSound();
     }
-    public void ChangeTimeToReachNextTile(float PucliTimeToReachNextTile)
-    {
-        TimeToReachNextTile = PucliTimeToReachNextTile;
-    }
+   
 
     /// <summary>
     /// массив где храним смежные позиции для начала пути
