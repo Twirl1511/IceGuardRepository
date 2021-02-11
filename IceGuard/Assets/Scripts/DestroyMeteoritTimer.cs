@@ -63,14 +63,20 @@ public class DestroyMeteoritTimer : MonoBehaviour
     }
     
     
-    
+    /// <summary>
+    /// если метеорит врежется в Землю
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LaterDestroy()
     {
         yield return new WaitForSeconds(currentTime);
         FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MeteoriteCrashEarth);
         Destroy(this.gameObject);
     }
-
+    /// <summary>
+    /// включаем коллайдер
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(currentTime -1f);
