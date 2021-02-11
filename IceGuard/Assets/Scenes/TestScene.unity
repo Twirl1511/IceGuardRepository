@@ -2815,7 +2815,6 @@ MonoBehaviour:
   ForceFieldLifeTime: {fileID: 36335915}
   NewMeteoriteTimer: {fileID: 5234373}
   PlayerSpeed: {fileID: 1099491056}
-  Player: {fileID: 1121877189}
 --- !u!1 &491469410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5914188712556546903, guid: c87ab5417cd88ee4ea87d68e2a915dca,
@@ -6182,7 +6181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121877185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 482859502}
