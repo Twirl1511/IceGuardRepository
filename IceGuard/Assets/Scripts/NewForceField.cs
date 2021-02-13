@@ -4,10 +4,43 @@ using UnityEngine;
 
 public class NewForceField : MonoBehaviour
 {
-    public static float seconds = 40;
+    public static float lifeTime = 40f;
+    public static float NewLifeTime;
+    public float SecondsToDestroy;
+    
     void Start()
     {
-        StartCoroutine(LaterDestroy(seconds));
+        NewLifeTime = lifeTime;
+        SecondsToDestroy = 0;
+        //StartCoroutine(LaterDestroy(SecondsToDestroy));
+    }
+    private void Update()
+    {
+        AdjustedLifeTimer();
+        LifeTimer();
+    }
+
+
+    public void LifeTimer()
+    {
+        SecondsToDestroy += Time.deltaTime;
+        if (SecondsToDestroy >= NewLifeTime)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void AdjustedLifeTimer()
+    {
+        
+        if (PlayerControllerDrawPath.allForceFields.Count == 1 
+            || PlayerControllerDrawPath.allForceFields.Count == 0)
+        {
+            NewLifeTime = lifeTime;
+        }else
+        {
+            NewLifeTime = Mathf.Pow(0.9f, PlayerControllerDrawPath.allForceFields.Count - 1) * lifeTime;
+        } 
     }
 
     IEnumerator LaterDestroy(float seconds = 40)

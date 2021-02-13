@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class CanvasTest : MonoBehaviour
 {
     public Text ForceFieldLifeTime;
+    public Text ForceFieldLifeTimeCommon;
     public Text NewMeteoriteTimer;
     public Text PlayerSpeed;
 
     private void Update()
     {
-        ForceFieldLifeTime.text = NewForceField.seconds.ToString();
+        ForceFieldLifeTime.text = NewForceField.lifeTime.ToString();
         NewMeteoriteTimer.text = MeteoritScriptNEW.DelayBtwNewMeteorites.ToString();
         PlayerSpeed.text = PlayerControllerDrawPath.TimeToReachNextTile.ToString();
+        ForceFieldLifeTimeCommon.text = NewForceField.NewLifeTime.ToString();
     }
 
 
@@ -23,11 +25,11 @@ public class CanvasTest : MonoBehaviour
 
     public void PlusForceFieldSecondsButton()
     {
-        NewForceField.seconds++;
+        NewForceField.lifeTime++;
     }
     public void MinusForceFieldSecondsButton()
     {
-        NewForceField.seconds--;
+        NewForceField.lifeTime--;
     }
 
 
