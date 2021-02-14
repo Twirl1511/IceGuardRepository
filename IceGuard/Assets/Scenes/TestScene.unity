@@ -5656,7 +5656,6 @@ GameObject:
   - component: {fileID: 918907541}
   - component: {fileID: 918907543}
   - component: {fileID: 918907542}
-  - component: {fileID: 918907544}
   m_Layer: 5
   m_Name: DayCounter
   m_TagString: Untagged
@@ -5722,21 +5721,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918907540}
   m_CullTransparentMesh: 0
---- !u!114 &918907544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918907540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf60ac4e78799541b8d90bf45cb5b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Counter: {fileID: 1507712591}
-  SecondsInDay: 3
-  timer: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7827,6 +7811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346017746}
   - component: {fileID: 1346017745}
+  - component: {fileID: 1346017747}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -7848,7 +7833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 479113913}
   Days: {fileID: 163003334}
-  DayCounter: {fileID: 918907540}
+  DayCounter: {fileID: 1346017744}
 --- !u!4 &1346017746
 Transform:
   m_ObjectHideFlags: 0
@@ -7863,6 +7848,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1346017747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346017744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf60ac4e78799541b8d90bf45cb5b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Counter: {fileID: 1507712591}
+  SecondsInDay: 30
+  timer: 0
 --- !u!1 &1369563206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5914188712556546903, guid: c87ab5417cd88ee4ea87d68e2a915dca,
