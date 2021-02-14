@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class DayCounter : MonoBehaviour
 {
-    [SerializeField] private Text Counter;
+    [SerializeField] public Text Counter;
     [SerializeField] private int SecondsInDay;
+    public float timer;
     void Start()
     {
-        
+        timer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Counter.text = (Time.time / SecondsInDay).ToString("0");
+        timer += Time.deltaTime;
+        Counter.text = (timer / SecondsInDay).ToString("0");
     }
 }

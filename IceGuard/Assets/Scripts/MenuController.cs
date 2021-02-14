@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField] private GameObject GameOverPanel;
+    [SerializeField] private Text Days;
+    [SerializeField] private GameObject DayCounter;
     private void Update()
     {
         if(PlayerHitPoints.HitPoints <= 0)
         {
             GameOverPanel.SetActive(true);
+            Days.text = DayCounter.GetComponent<DayCounter>().Counter.text;
             Time.timeScale = 0;
         }
     }
@@ -21,6 +25,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("TestScene");
         GameOverPanel.SetActive(false);
+        DayCounter.GetComponent<DayCounter>().timer = 0;
     }
     public void OnClickExit()
     {
