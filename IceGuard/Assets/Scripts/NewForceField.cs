@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NewForceField : MonoBehaviour
 {
-    public static float lifeTime = 40f;
+    public static float lifeTime = 60f;
     public static float NewLifeTime;
     public float SecondsToDestroy;
     
