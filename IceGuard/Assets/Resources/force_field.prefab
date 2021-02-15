@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4fd5c44d709b8459480181c9527cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 30
+  SecondsToDestroy: 0
+  gameObjectMaterial: {fileID: 232926721606037103}
 --- !u!65 &8520599040838496860
 BoxCollider:
   m_ObjectHideFlags: 0
