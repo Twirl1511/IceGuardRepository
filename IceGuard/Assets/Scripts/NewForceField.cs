@@ -39,12 +39,17 @@ public class NewForceField : MonoBehaviour
         float transperency;
         if((transperency = (0.1f * NewLifeTime) / SecondsToDestroy) < 0.1f)
         {
+            if (transperency >= 0.8f)
+            {
+                return transperency;
+            }
             return 0.1f;
         }
         else
         {
             return transperency;
         }
+        
     }
 
     public void LifeTimer()
