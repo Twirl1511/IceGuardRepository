@@ -3495,7 +3495,7 @@ PrefabInstance:
     - target: {fileID: 8445474050779896998, guid: a3b8044b0065fb4409f257b20f300236,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8445474050779896998, guid: a3b8044b0065fb4409f257b20f300236,
         type: 3}
@@ -3551,6 +3551,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: airship_repair_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115155128959338012, guid: a3b8044b0065fb4409f257b20f300236,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3b8044b0065fb4409f257b20f300236, type: 3}
@@ -3644,7 +3649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &585321418
 GameObject:
@@ -12264,7 +12269,7 @@ Transform:
   - {fileID: 1711327716}
   - {fileID: 1118405974}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5735694352661839912
 MonoBehaviour:
