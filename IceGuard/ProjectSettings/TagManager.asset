@@ -9,6 +9,7 @@ TagManager:
   - EmptyField
   - Meteorite
   - MeteoriteIsComming
+  - Path
   layers:
   - Default
   - TransparentFX
