@@ -20,29 +20,24 @@ public class DrawPath : MonoBehaviour
         {
             if (IsCellAdjacentToPrevoiusOne(transform.position))
             {
+                
+                
+                GameObject newPathPoint = Object.Instantiate(Resources.Load("Path"), transform.position, Quaternion.identity) as GameObject;
+                PathsPoints.Add(newPathPoint);
+                WichSide(previousCell, newPathPoint);
                 previousCell = transform.position;
-
-                PathsPoints.Add(Object.Instantiate(Resources.Load("Path"), transform.position, Quaternion.identity) as GameObject);
                 for (int i = 0; i < PathsPoints.Count-1; i++)
                 {
-                    Debug.Log("1111111");
+
                     if ((PathsPoints[i].transform.position).Equals(transform.position))
                     {
                         for (int j = i + 1; j < PathsPoints.Count; j++)
                         {
                             GameObject.Destroy(PathsPoints[j].gameObject);
                         }
-
-                        Debug.Log("222222");
                         PathsPoints.RemoveRange(i + 1, PathsPoints.Count - (i + 1));
-                        
-                        //PathsPoints.RemoveRange(i + 1, PathsPoints.Count);
-                        Debug.Log("33333");
                     }
                 }
-
-                Debug.Log(PathsPoints.Count);
-                Debug.Log(previousCell);
             }
         }
         
@@ -66,5 +61,28 @@ public class DrawPath : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void WichSide(Vector3 previousVector3, GameObject pathPoint)
+    {
+        if(transform.position.x < previousVector3.x)
+        {
+            pathPoint.GetComponent<PathPointScript>().Left(true);
+        }
+
+        if (transform.position.x > previousVector3.x)
+        {
+            pathPoint.GetComponent<PathPointScript>().Right(true);
+        }
+
+        if (transform.position.z < previousVector3.z)
+        {
+            pathPoint.GetComponent<PathPointScript>().Forward(true);
+        }
+
+        if (transform.position.z > previousVector3.z)
+        {
+            pathPoint.GetComponent<PathPointScript>().Back(true);
+        }
     }
 }
