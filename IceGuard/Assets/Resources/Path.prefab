@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 223897429913565722}
   - component: {fileID: 8654710855989802855}
+  - component: {fileID: 3175313868629610302}
   m_Layer: 0
   m_Name: Path
   m_TagString: Path
@@ -48,6 +49,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 1.32, z: 0.85}
   m_Center: {x: 0, y: -0.77, z: 0}
+--- !u!114 &3175313868629610302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588088730898113888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bea9828b7d9800458af4320edb3f12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowForward: {fileID: 5170335409672236968}
+  ArrowBack: {fileID: 5170335409672236968}
+  ArrowLeft: {fileID: 5170335409557409904}
+  ArrowRight: {fileID: 5170335409557409904}
 --- !u!1 &5170335409247985527
 GameObject:
   m_ObjectHideFlags: 0

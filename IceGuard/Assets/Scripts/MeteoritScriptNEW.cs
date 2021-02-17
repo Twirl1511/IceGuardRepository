@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeteoritScriptNEW : MonoBehaviour
 {
-
+    public bool RUNmeteorites;
     public Player player;
     public MeteoritePlace meteoriteOne;
     public MeteoritePlace meteoriteTwo;
@@ -129,7 +129,11 @@ public class MeteoritScriptNEW : MonoBehaviour
 
         if(B1 - P >= Delay && B2 - P >= Delay)
         {
-            CreateRealMeteorites();
+            if (RUNmeteorites)
+            {
+                CreateRealMeteorites();
+            }
+            
             SetDefaultMeteoritePositions();
         }
         else
