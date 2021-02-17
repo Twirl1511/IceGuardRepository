@@ -5,11 +5,11 @@ using UnityEngine;
 public class LinePathCellState : MonoBehaviour
 {
 
-    public bool IsPathDrown;
+    public bool IsPathDrawn;
 
     void Start()
     {
-        IsPathDrown = false;
+        IsPathDrawn = false;
     }
 
 
@@ -17,11 +17,11 @@ public class LinePathCellState : MonoBehaviour
     {
         if (other.CompareTag("Path"))
         {
-            IsPathDrown = true;
+            IsPathDrawn = true;
         }
         else
         {
-            IsPathDrown = false;
+            IsPathDrawn = false;
         }
     }
 }

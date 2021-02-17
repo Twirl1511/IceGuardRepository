@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerControllerDrawPath : MonoBehaviour
 {
-    public GameObject[] AllCells = new GameObject[36];
     public  Queue<Vector3> queuePath;
     public static bool Stop;
     public AnimationCurve Easing;
