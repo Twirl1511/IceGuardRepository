@@ -25,4 +25,12 @@ public class PathPointScript : MonoBehaviour
     {
         ArrowRight.SetActive(state);
     }
+
+    public void SetAllOff()
+    {
+        ArrowForward.SetActive(false);
+        ArrowBack.SetActive(false);
+        ArrowLeft.SetActive(false);
+        ArrowRight.SetActive(false);
+    }
 }

@@ -53,6 +53,10 @@ public class DrawPath : MonoBehaviour
                             GameObject.Destroy(PathsPoints[j].gameObject);
                         }
                         PathsPoints.RemoveRange(i + 1, PathsPoints.Count - (i + 1));
+                        //PathsPoints[PathsPoints.Count - 1].GetComponent<PathPointScript>().SetAllOff();
+                        //previousCell = PathsPoints[PathsPoints.Count - 2].transform.position;
+                        //WichSide(previousCell, PathsPoints[PathsPoints.Count - 1]);
+                        //WichSide(PathsPoints[PathsPoints.Count - 2].transform.position, PathsPoints[PathsPoints.Count - 1]);
                     }
                 }
 
