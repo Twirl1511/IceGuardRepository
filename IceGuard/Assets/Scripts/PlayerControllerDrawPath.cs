@@ -20,7 +20,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static List<GameObject> allPathPoints = new List<GameObject>(36);
 
     private float _time;
-    [SerializeField] private int RotationSpeed = 1;
+    
     void Start()
     {
         _startPosition = transform.position;
@@ -32,11 +32,20 @@ public class PlayerControllerDrawPath : MonoBehaviour
         
         RemoveNullForceFields();
         AdjacentPositionsForStart();
-        Move();
+        NewMove();
+        //Move();
         PlayerMoveSound();
     }
    
+    public Vector3 NewPathPoint()
+    {
+        Vector3 pathPoint = DrawPath.PathsPoints[0].transform.position;
+        DrawPath.PathsPoints.RemoveAt(0);
 
+        return pathPoint;
+
+        
+    }
     /// <summary>
     /// массив где храним смежные позиции для начала пути
     /// </summary>
@@ -113,6 +122,56 @@ public class PlayerControllerDrawPath : MonoBehaviour
             _startPosition = transform.position;
             flagStartMoving = false;
               
+        }
+    }
+    private void NewMove()
+    {
+        /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
+        /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
+        /// то запускаем скрипт движения
+        /// if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
+        if (DrawPath.PathsPoints.Count > 0 && _time == 0)
+        {
+            /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
+
+
+            /// в буферную векторную переменную записываем следующую координату для пути игрока
+
+            _endPosition = NewPathPoint();
+
+            /// избавляемся от того что иногда в очередь пути добавляются координаты того же места где стоит игрок, там образуется поле и игрок получает урон 0_о
+            while (_endPosition == transform.position)
+            {
+                _endPosition = NewPathPoint();
+            }
+
+
+            flagStartMoving = true;
+
+            //_endPosition = queuePath.Dequeue();
+            //flagStartMoving = true;
+        }
+
+        /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть
+        /// закончено ровно за время TimeToReachNextTile
+        if (flagStartMoving)
+        {
+            transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
+            _time += Time.deltaTime;
+        }
+        /// когда заканчивается время движения игрок должен закончить свой путь и мы можем сказать что его новая начальная
+        /// позиция равна той на которую он перемещался, также создаем энерго поле на последней позиции где он был
+        /// обнуляем время
+        /// flagStartMoving = false не даем больше заходить в цикл где происходит движение, считаем что оно закончено и ждем нового пути
+        if (_time > TimeToReachNextTile)
+        {
+            transform.position = _endPosition;
+            CreateEnergyField(_startPosition);
+            Debug.Log("создали поле");
+            _time = 0;
+            _startPosition = transform.position;
+            flagStartMoving = false;
+
         }
     }
     /// <summary>

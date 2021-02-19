@@ -20,6 +20,7 @@ public class DrawPath : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            
             if (IsCellAdjacentToPrevoiusOne(transform.position))
             {
                 
@@ -42,7 +43,10 @@ public class DrawPath : MonoBehaviour
                 
                 PathsPoints.Add(newPathPoint);
                 WichSide(previousCell, newPathPoint);
+
                 previousCell = transform.position;
+                PreviousPathPoint = newPathPoint;
+
                 for (int i = 0; i < PathsPoints.Count-1; i++)
                 {
 
@@ -53,16 +57,29 @@ public class DrawPath : MonoBehaviour
                             GameObject.Destroy(PathsPoints[j].gameObject);
                         }
                         PathsPoints.RemoveRange(i + 1, PathsPoints.Count - (i + 1));
-                        //PathsPoints[PathsPoints.Count - 1].GetComponent<PathPointScript>().SetAllOff();
-                        //previousCell = PathsPoints[PathsPoints.Count - 2].transform.position;
-                        //WichSide(previousCell, PathsPoints[PathsPoints.Count - 1]);
-                        //WichSide(PathsPoints[PathsPoints.Count - 2].transform.position, PathsPoints[PathsPoints.Count - 1]);
+                        PathsPoints[PathsPoints.Count - 1].GetComponent<PathPointScript>().SetAllOff();
+                        Debug.Log(PathsPoints.Count);
+                        previousCell = PathsPoints[PathsPoints.Count - 1].transform.position;
+                        Debug.Log(previousCell);
+                        //PathsPoints[PathsPoints.Count - 1].GetComponent<DrawPath>().WichSide(previousCell, PathsPoints[PathsPoints.Count - 1]);
+                        try
+                        {
+                            PathsPoints[PathsPoints.Count - 1].GetComponent<DrawPath>().WichSide(PathsPoints[PathsPoints.Count - 2].transform.position, PathsPoints[PathsPoints.Count - 1]);
+                        }
+                        catch
+                        {
+                            Debug.Log("!!!");
+                        }
+
+                        
+                        PreviousPathPoint = PathsPoints[PathsPoints.Count - 1];
                     }
                 }
 
-                PreviousPathPoint = newPathPoint;
+                
 
             }
+            
         }
         
         
@@ -89,22 +106,22 @@ public class DrawPath : MonoBehaviour
 
     public void WichSide(Vector3 previousVector3, GameObject pathPoint)
     {
-        if(transform.position.x < previousVector3.x)
+        if(pathPoint.transform.position.x < previousVector3.x)
         {
             pathPoint.GetComponent<PathPointScript>().Left(true);
         }
 
-        if (transform.position.x > previousVector3.x)
+        if (pathPoint.transform.position.x > previousVector3.x)
         {
             pathPoint.GetComponent<PathPointScript>().Right(true);
         }
 
-        if (transform.position.z < previousVector3.z)
+        if (pathPoint.transform.position.z < previousVector3.z)
         {
             pathPoint.GetComponent<PathPointScript>().Forward(true);
         }
 
-        if (transform.position.z > previousVector3.z)
+        if (pathPoint.transform.position.z > previousVector3.z)
         {
             pathPoint.GetComponent<PathPointScript>().Back(true);
         }
@@ -132,4 +149,6 @@ public class DrawPath : MonoBehaviour
             pathPoint.GetComponent<PathPointScript>().Back(true);
         }
     }
+
+    
 }

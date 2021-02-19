@@ -33,4 +33,12 @@ public class PathPointScript : MonoBehaviour
         ArrowLeft.SetActive(false);
         ArrowRight.SetActive(false);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
