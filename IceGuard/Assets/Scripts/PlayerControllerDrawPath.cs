@@ -126,6 +126,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     }
     private void NewMove()
     {
+        
         /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
         /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
         /// то запускаем скрипт движения
@@ -148,8 +149,12 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
             flagStartMoving = true;
 
-            //_endPosition = queuePath.Dequeue();
-            //flagStartMoving = true;
+                //_endPosition = queuePath.Dequeue();
+                //flagStartMoving = true;
+        }
+        else
+        {
+            
         }
 
         /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть

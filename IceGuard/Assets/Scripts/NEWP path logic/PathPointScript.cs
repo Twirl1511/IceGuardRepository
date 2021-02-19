@@ -38,7 +38,8 @@ public class PathPointScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
+            GameObject.Destroy(gameObject);
+            //gameObject.SetActive(false);
         }
     }
 }
