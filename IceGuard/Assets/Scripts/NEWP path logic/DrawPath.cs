@@ -150,5 +150,13 @@ public class DrawPath : MonoBehaviour
         }
     }
 
-    
+    public static void ClearDrawPath()
+    {
+        foreach(var e in PathsPoints)
+        {
+            GameObject.Destroy(e);
+        }
+        PathsPoints.Clear();
+        previousCell = PlayerControllerDrawPath._startPosition;
+    }
 }

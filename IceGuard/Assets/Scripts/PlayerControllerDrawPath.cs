@@ -36,10 +36,26 @@ public class PlayerControllerDrawPath : MonoBehaviour
         //Move();
         PlayerMoveSound();
     }
-   
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            DrawPath.ClearDrawPath();
+        }
+    }
     public Vector3 NewPathPoint()
     {
-        Vector3 pathPoint = DrawPath.PathsPoints[0].transform.position;
+        Vector3 pathPoint = transform.position;
+        try
+        {
+            pathPoint = DrawPath.PathsPoints[0].transform.position;
+        }
+        catch
+        {
+            DrawPath.ClearDrawPath();
+        }
+        
         DrawPath.PathsPoints.RemoveAt(0);
 
         return pathPoint;
@@ -124,6 +140,24 @@ public class PlayerControllerDrawPath : MonoBehaviour
               
         }
     }
+
+    public bool IsAdjacentToPlayerPosition()
+    {
+        bool flag = false;
+        Vector3 firstPathPosition = DrawPath.PathsPoints[0].transform.position;
+        Vector3[] adjacentPositions = new Vector3[4];
+        adjacentPositions[0] = _startPosition + Vector3.left;
+        adjacentPositions[1] = _startPosition + Vector3.left * -1;
+        adjacentPositions[2] = _startPosition + Vector3.forward;
+        adjacentPositions[3] = _startPosition + Vector3.forward * -1;
+
+        foreach(var e in adjacentPositions)
+        {
+            if (e == firstPathPosition) flag = true;
+        }
+
+        return flag;
+    }
     private void NewMove()
     {
         
@@ -176,6 +210,11 @@ public class PlayerControllerDrawPath : MonoBehaviour
             _time = 0;
             _startPosition = transform.position;
             flagStartMoving = false;
+
+            if (DrawPath.PathsPoints.Count > 0 && !IsAdjacentToPlayerPosition())
+            {
+                DrawPath.PathsPoints.Clear();
+            }
 
         }
     }

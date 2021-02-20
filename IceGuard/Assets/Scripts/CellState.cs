@@ -13,39 +13,39 @@ public class CellState : MonoBehaviour
     {
         _stopPath = true;
     }
-    private void OnMouseOver()
-    {
-        if (Input.touchCount == 1)
-        {
-            foreach (var e in PlayerControllerDrawPath.adjacentPositionsForStart)
-            {
-                if (e.x == transform.position.x && e.z == transform.position.z)
-                {
-                    isStartedFromAdjacentPosition = true;
-                }
-            }
-            if(playerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition && _stopPath)
-            {
-                Debug.Log("!!!!!!!");
-                StartCoroutine(WaitFor(PlayerControllerDrawPath.TimeToReachNextTile));
-                _stopPath = false;
-                playerControllerDrawPath.queuePath.Enqueue(transform.position);
-                PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint 1"), transform.position, Quaternion.identity) as GameObject);
-                previousCell = transform.position;
+    //private void OnMouseOver()
+    //{
+    //    if (Input.touchCount == 1)
+    //    {
+    //        foreach (var e in PlayerControllerDrawPath.adjacentPositionsForStart)
+    //        {
+    //            if (e.x == transform.position.x && e.z == transform.position.z)
+    //            {
+    //                isStartedFromAdjacentPosition = true;
+    //            }
+    //        }
+    //        if(playerControllerDrawPath.queuePath.Count == 0 && isStartedFromAdjacentPosition && _stopPath)
+    //        {
+    //            Debug.Log("!!!!!!!");
+    //            StartCoroutine(WaitFor(PlayerControllerDrawPath.TimeToReachNextTile));
+    //            _stopPath = false;
+    //            playerControllerDrawPath.queuePath.Enqueue(transform.position);
+    //            PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint 1"), transform.position, Quaternion.identity) as GameObject);
+    //            previousCell = transform.position;
                 
-            }
-            if((!_stopPath || playerControllerDrawPath.queuePath.Count > 0) 
-                && IsCellAdjacentToPrevoiusOne(transform.position))
-            {
+    //        }
+    //        if((!_stopPath || playerControllerDrawPath.queuePath.Count > 0) 
+    //            && IsCellAdjacentToPrevoiusOne(transform.position))
+    //        {
                 
-                playerControllerDrawPath.queuePath.Enqueue(transform.position);
-                PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint"), transform.position, Quaternion.identity) as GameObject);
-                previousCell = transform.position;
-            }
-            isStartedFromAdjacentPosition = false;
-        }   
+    //            playerControllerDrawPath.queuePath.Enqueue(transform.position);
+    //            PlayerControllerDrawPath.allPathPoints.Add(Instantiate(Resources.Load("pathPoint"), transform.position, Quaternion.identity) as GameObject);
+    //            previousCell = transform.position;
+    //        }
+    //        isStartedFromAdjacentPosition = false;
+    //    }   
         
-    }
+    //}
 
 
  
