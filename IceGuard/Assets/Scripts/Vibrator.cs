@@ -16,7 +16,15 @@ public static class Vibrator
     {
         if (IsAndroid())
         {
-            vibrator.Call("vibrate", milliseconds);
+            try
+            {
+                vibrator.Call("vibrate", milliseconds);
+            }
+            catch
+            {
+
+            }
+            
         }
         else
         {

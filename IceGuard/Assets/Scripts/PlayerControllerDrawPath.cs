@@ -13,7 +13,6 @@ public class PlayerControllerDrawPath : MonoBehaviour
     [Range(0.1f,3f)]
     public float PucliTimeToReachNextTile = 0.5f;
     public static Vector3 _startPosition;
-    private Vector3 _previousPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];
     public static List<GameObject> allForceFields = new List<GameObject>(36);
@@ -21,7 +20,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private float _time;
     
-    void Start()
+    void Awake()
     {
         _startPosition = transform.position;
         queuePath = new Queue<Vector3>();
