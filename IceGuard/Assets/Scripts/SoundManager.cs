@@ -46,5 +46,8 @@ public class SoundManager : MonoBehaviour
         s.source.PlayOneShot(s.audioClip);
     }
 
-
+    private void Start()
+    {
+        FindObjectOfType<SoundManager>().PlaySound(Sound.SoundName.Ambience);
+    }
 }

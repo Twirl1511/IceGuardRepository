@@ -1255,6 +1255,20 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
     mixerGroup: {fileID: 0}
+  - elementName: MinusHP
+    name: 12
+    audioClip: {fileID: 8300000, guid: c116f0d25d809bc4a9c56accacf4f26a, type: 3}
+    volume: 0.6
+    source: {fileID: 0}
+    loop: 0
+    mixerGroup: {fileID: 0}
+  - elementName: Ambience
+    name: 11
+    audioClip: {fileID: 8300000, guid: 26fb11e7b0434cd4f9985d0f501a011d, type: 3}
+    volume: 0.6
+    source: {fileID: 0}
+    loop: 1
+    mixerGroup: {fileID: 0}
 --- !u!1001 &214497659
 PrefabInstance:
   m_ObjectHideFlags: 0

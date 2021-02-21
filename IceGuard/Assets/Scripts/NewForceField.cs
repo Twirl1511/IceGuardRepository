@@ -86,6 +86,7 @@ public class NewForceField : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MinusHP);
             PlayerHitPoints.HitPoints--;
             
             Destroy(this.gameObject);

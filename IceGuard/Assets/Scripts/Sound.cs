@@ -23,7 +23,9 @@ public class Sound
         MeteoriteCrashForceField,
         MeteoriteCrashPlayer,
         MeteoriteCrashEarth,
-        GameOver
+        GameOver,
+        Ambience,
+        MinusHP
     }
 
     
