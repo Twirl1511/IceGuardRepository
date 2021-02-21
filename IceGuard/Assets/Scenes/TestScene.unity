@@ -1317,7 +1317,7 @@ MonoBehaviour:
   sounds:
   - elementName: PlayerMove
     name: 0
-    audioClip: {fileID: 8300000, guid: 1fcafcdd6bd2d4140bddab503141faff, type: 3}
+    audioClip: {fileID: 0}
     volume: 0.728
     source: {fileID: 0}
     loop: 0
@@ -1472,7 +1472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 82.6, y: -43.1}
+  m_AnchoredPosition: {x: 82.6001, y: -43.100098}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223448820
@@ -5993,7 +5993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -81.4, y: -51.7}
+  m_AnchoredPosition: {x: -81.3999, y: -51.69995}
   m_SizeDelta: {x: 138.5, y: 51.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918907542
