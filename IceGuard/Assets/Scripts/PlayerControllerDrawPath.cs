@@ -234,7 +234,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     private void CreateEnergyField(Vector3 position)
     {
         FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.ForceFieldCreate);
-        allForceFields.Add(Instantiate(Resources.Load("force_field"), position, Quaternion.identity) as GameObject);
+        allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, Quaternion.identity) as GameObject);
 
     }
 
