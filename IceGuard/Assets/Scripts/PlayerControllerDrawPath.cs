@@ -173,11 +173,15 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
             _endPosition = NewPathPoint();
 
+
             /// избавляемся от того что иногда в очередь пути добавляются координаты того же места где стоит игрок, там образуется поле и игрок получает урон 0_о
             while (_endPosition == transform.position)
             {
                 _endPosition = NewPathPoint();
             }
+
+            /// создаемн энергополе и активируем коллайдер через время которое нужно кораблю чтобы проехать клетку плюс 0.5
+            CreateEnergyField(_startPosition);
 
 
             flagStartMoving = true;
@@ -204,7 +208,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
         if (_time > TimeToReachNextTile)
         {
             transform.position = _endPosition;
-            CreateEnergyField(_startPosition);
+            //CreateEnergyField(_startPosition);
             Debug.Log("создали поле");
             _time = 0;
             _startPosition = transform.position;
@@ -217,16 +221,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
         }
     }
-    /// <summary>
-    /// уничтожаем все точки пути
-    /// </summary>
-    private void DestroyAllPathPoints()
-    {
-        foreach (var e in allPathPoints)
-        {
-            Destroy(e.gameObject);
-        }
-    }
+
     /// <summary>
     /// создаем энергополя на предыдущей клетке движения и заносим их в массив allForceFields
     /// </summary>
@@ -234,11 +229,40 @@ public class PlayerControllerDrawPath : MonoBehaviour
     private void CreateEnergyField(Vector3 position)
     {
         FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.ForceFieldCreate);
-        allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, Quaternion.identity) as GameObject);
+
+
+        Quaternion forceFieldQuaternion = Quaternion.Euler(0, 0, 0);
+        
+        
+        
+        for(int i = 0; i < adjacentPositionsForStart.Length; i++)
+        {
+            if (adjacentPositionsForStart[i] == _endPosition)
+            {
+                switch (i)
+                {
+                    case 0:
+                        forceFieldQuaternion = Quaternion.Euler(0,180,0); /// верх-право
+                        break;
+                    case 1:
+                        forceFieldQuaternion = Quaternion.Euler(0, 0, 0); /// низ-лево
+                        break;
+                    case 2:
+                        forceFieldQuaternion = Quaternion.Euler(0, 270, 0); /// низ-право
+                        break;
+                    case 3:
+                        forceFieldQuaternion = Quaternion.Euler(0, 90, 0); /// лево-верх
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
+        allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, forceFieldQuaternion) as GameObject);
 
     }
-
-
 
 
     /// <summary>

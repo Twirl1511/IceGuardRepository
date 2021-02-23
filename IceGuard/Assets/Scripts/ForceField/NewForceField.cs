@@ -9,9 +9,11 @@ public class NewForceField : MonoBehaviour
     public float SecondsToDestroy;
     [SerializeField] private GameObject gameObjectMaterial;
     private Material _material;
+    [SerializeField] private Collider collider;
 
     void Start()
     {
+        StartCoroutine(LaterColliderActivate());
         _material = gameObjectMaterial.GetComponent<Renderer>().material;
         ChangeAlpha(_material, 0.5f);
         NewLifeTime = lifeTime;
@@ -79,6 +81,12 @@ public class NewForceField : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         
         Destroy(this.gameObject);
+    }
+
+    IEnumerator LaterColliderActivate()
+    {
+        yield return new WaitForSeconds(PlayerControllerDrawPath.TimeToReachNextTile+0.5f);
+        collider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
