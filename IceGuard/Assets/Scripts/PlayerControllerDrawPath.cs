@@ -32,7 +32,6 @@ public class PlayerControllerDrawPath : MonoBehaviour
         RemoveNullForceFields();
         AdjacentPositionsForStart();
         NewMove();
-        //Move();
         PlayerMoveSound();
     }
 
@@ -89,56 +88,6 @@ public class PlayerControllerDrawPath : MonoBehaviour
             }
         }
     }
-    private void Move()
-    {
-        /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
-        /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
-        /// то запускаем скрипт движения
-        /// if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
-        if ( queuePath.Count > 0 && _time == 0)
-        {
-            /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
-
-
-            /// в буферную векторную переменную записываем следующую координату для пути игрока
-
-            _endPosition = queuePath.Dequeue();
-
-            /// избавляемся от того что иногда в очередь пути добавляются координаты того же места где стоит игрок, там образуется поле и игрок получает урон 0_о
-            while(_endPosition == transform.position)
-            {
-                _endPosition = queuePath.Dequeue();
-            }
-
-            
-            flagStartMoving = true;
-
-            //_endPosition = queuePath.Dequeue();
-            //flagStartMoving = true;
-        }
-
-        /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть
-        /// закончено ровно за время TimeToReachNextTile
-        if (flagStartMoving)
-        {
-            transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile);
-            _time += Time.deltaTime;
-        }
-        /// когда заканчивается время движения игрок должен закончить свой путь и мы можем сказать что его новая начальная
-        /// позиция равна той на которую он перемещался, также создаем энерго поле на последней позиции где он был
-        /// обнуляем время
-        /// flagStartMoving = false не даем больше заходить в цикл где происходит движение, считаем что оно закончено и ждем нового пути
-        if (_time > TimeToReachNextTile)
-        {
-            transform.position = _endPosition;
-            CreateEnergyField(_startPosition);
-            Debug.Log("создали поле");
-            _time = 0;
-            _startPosition = transform.position;
-            flagStartMoving = false;
-              
-        }
-    }
 
     public bool IsAdjacentToPlayerPosition()
     {
@@ -159,20 +108,14 @@ public class PlayerControllerDrawPath : MonoBehaviour
     }
     private void NewMove()
     {
-        
         /// если мы отпустили мышку/тач и в очереди движения есть куда двигаться (мы нарисовали путь)
         /// а также счетчик времени сброшен (мы закончили предыдущее движение или еще не начинали никакого),
         /// то запускаем скрипт движения
         /// if (!Input.GetMouseButton(0) && queuePath.Count > 0 && _time == 0)
         if (DrawPath.PathsPoints.Count > 0 && _time == 0)
         {
-            /// в массиве силовых полей проверяем нет ли уже тех что исчезли, если есть, то убирем их из массива
-
-
             /// в буферную векторную переменную записываем следующую координату для пути игрока
-
             _endPosition = NewPathPoint();
-
 
             /// избавляемся от того что иногда в очередь пути добавляются координаты того же места где стоит игрок, там образуется поле и игрок получает урон 0_о
             while (_endPosition == transform.position)
@@ -182,17 +125,8 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
             /// создаемн энергополе и активируем коллайдер через время которое нужно кораблю чтобы проехать клетку плюс 0.5
             CreateEnergyField(_startPosition);
-
-
             flagStartMoving = true;
-
-                //_endPosition = queuePath.Dequeue();
-                //flagStartMoving = true;
-        }
-        else
-        {
-            
-        }
+        }  
 
         /// если движение не закончено, то мы перемещаем игрока на новую позицию, движение должно быть
         /// закончено ровно за время TimeToReachNextTile
@@ -208,17 +142,15 @@ public class PlayerControllerDrawPath : MonoBehaviour
         if (_time > TimeToReachNextTile)
         {
             transform.position = _endPosition;
-            //CreateEnergyField(_startPosition);
-            Debug.Log("создали поле");
             _time = 0;
             _startPosition = transform.position;
             flagStartMoving = false;
 
+            /// если случился баг и мы нарисовали путь который не прилегает к игроку, очищаем массив пути
             if (DrawPath.PathsPoints.Count > 0 && !IsAdjacentToPlayerPosition())
             {
                 DrawPath.PathsPoints.Clear();
             }
-
         }
     }
 
@@ -228,14 +160,13 @@ public class PlayerControllerDrawPath : MonoBehaviour
     /// <param name="position">позиция где будет создано поле</param>
     private void CreateEnergyField(Vector3 position)
     {
+        /// проигрываем звук создания поля
         FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.ForceFieldCreate);
 
+        /// меняем угол поворота поля, которое будем спавнить за кораблем
 
         Quaternion forceFieldQuaternion = Quaternion.Euler(0, 0, 0);
-        
-        
-        
-        for(int i = 0; i < adjacentPositionsForStart.Length; i++)
+        for (int i = 0; i < adjacentPositionsForStart.Length; i++)
         {
             if (adjacentPositionsForStart[i] == _endPosition)
             {
@@ -259,9 +190,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
             }
         }
 
-
         allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, forceFieldQuaternion) as GameObject);
-
     }
 
 
