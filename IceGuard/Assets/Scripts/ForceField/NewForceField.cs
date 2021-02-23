@@ -13,6 +13,7 @@ public class NewForceField : MonoBehaviour
     void Start()
     {
         _material = gameObjectMaterial.GetComponent<Renderer>().material;
+        ChangeAlpha(_material, 0.5f);
         NewLifeTime = lifeTime;
         SecondsToDestroy = 0.0001f;
     }
@@ -35,11 +36,11 @@ public class NewForceField : MonoBehaviour
     public float Transperency()
     {
         float transperency;
-        if((transperency = (0.5f * NewLifeTime) / SecondsToDestroy) < 0.5f)
+        if((transperency = (0.1f * NewLifeTime) / SecondsToDestroy) < 0.5f)
         {
-            if (transperency >= 0.9f)
+            if (transperency >= 1f)
             {
-                return 0.9f;
+                return 1;
             }
             return 0.5f;
         }
@@ -68,7 +69,7 @@ public class NewForceField : MonoBehaviour
             NewLifeTime = lifeTime;
         }else
         {
-            NewLifeTime = Mathf.Pow(0.9f, PlayerControllerDrawPath.allForceFields.Count - 1) * lifeTime;
+            NewLifeTime = Mathf.Pow(0.97f, PlayerControllerDrawPath.allForceFields.Count - 1) * lifeTime;
         } 
     }
 
