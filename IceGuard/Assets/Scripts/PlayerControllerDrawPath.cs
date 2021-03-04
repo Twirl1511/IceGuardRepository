@@ -28,8 +28,15 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
+        try
+        {
+            RemoveNullForceFields();
+        }
+        catch 
+        {
+            Debug.Log("косяк с удалением пустых полей");
+        }
         
-        RemoveNullForceFields();
         AdjacentPositionsForStart();
         NewMove();
         PlayerMoveSound();
