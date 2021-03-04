@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d103ffa837233534daa68d733386bac5
+guid: d918e1286969e1740b2daa8c7eb5bcac
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Earth3968tris
+    4300000: Earth960tris
     9500000: //RootNode
   materials:
     importMaterials: 0
