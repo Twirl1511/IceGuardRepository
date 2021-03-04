@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 19dcdc22008309643a435bfa15affdb9
-timeCreated: 1454203566
+guid: b9bde0ce2b53f2144852ee95519c5736
+timeCreated: 1454204039
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
@@ -8,7 +8,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
-    linearTexture: 0
+    linearTexture: 1
     correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
@@ -16,7 +16,7 @@ TextureImporter:
     mipMapFadeDistanceEnd: 3
   bumpmap:
     convertToNormalMap: 0
-    externalNormalMap: 0
+    externalNormalMap: 1
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
@@ -26,8 +26,8 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: 10
-  maxTextureSize: 2048
+  textureFormat: 12
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
     aniso: -1
