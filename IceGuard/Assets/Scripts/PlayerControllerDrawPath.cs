@@ -17,6 +17,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];
     public static List<GameObject> allForceFields = new List<GameObject>(36);
     public static List<GameObject> allPathPoints = new List<GameObject>(36);
+    public bool ForceField_ON;
 
     private float _time;
     
@@ -197,7 +198,11 @@ public class PlayerControllerDrawPath : MonoBehaviour
             }
         }
 
-        allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, forceFieldQuaternion) as GameObject);
+        if (ForceField_ON)
+        {
+            allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, forceFieldQuaternion) as GameObject);
+        }
+        
     }
 
 

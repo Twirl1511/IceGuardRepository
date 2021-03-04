@@ -7566,6 +7566,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   PucliTimeToReachNextTile: 0.5
+  ForceField_ON: 0
 --- !u!54 &1121877190
 Rigidbody:
   m_ObjectHideFlags: 0
