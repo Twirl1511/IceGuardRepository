@@ -205,7 +205,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
         if (ForceField_ON)
         {
-            NewForceField.allForceFields.Add(Instantiate(Resources.Load(ForceFieldName), position, Quaternion.identity) as GameObject);
+            NewForceField.allForceFields.Add(Instantiate(Resources.Load(ForceFieldName), position, forceFieldQuaternion) as GameObject);
         }
         
     }
