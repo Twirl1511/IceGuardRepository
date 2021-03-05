@@ -61,7 +61,6 @@ MonoBehaviour:
   SecondsToDestroy: 0
   gameObjectMaterial: {fileID: 5178729057058308666}
   collider: {fileID: 6893181529637929488}
-  testAlpha: 150
 --- !u!1 &5178729057058308666
 GameObject:
   m_ObjectHideFlags: 0
