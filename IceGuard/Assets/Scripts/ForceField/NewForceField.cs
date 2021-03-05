@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewForceField : MonoBehaviour
 {
+    public static List<GameObject> allForceFields = new List<GameObject>(36);
     public static float lifeTime = 60f;
     public static float NewLifeTime;
     public float SecondsToDestroy;
@@ -58,6 +59,7 @@ public class NewForceField : MonoBehaviour
         SecondsToDestroy += Time.deltaTime;
         if (SecondsToDestroy >= NewLifeTime)
         {
+            Debug.Log(allForceFields.Count);
             Destroy(this.gameObject);
         }
     }
@@ -65,13 +67,13 @@ public class NewForceField : MonoBehaviour
     public void AdjustedLifeTimer()
     {
         
-        if (PlayerControllerDrawPath.allForceFields.Count == 1 
-            || PlayerControllerDrawPath.allForceFields.Count == 0)
+        if (allForceFields.Count == 1 
+            || allForceFields.Count == 0)
         {
             NewLifeTime = lifeTime;
         }else
         {
-            NewLifeTime = Mathf.Pow(0.97f, PlayerControllerDrawPath.allForceFields.Count - 1) * lifeTime;
+            NewLifeTime = Mathf.Pow(0.9f, allForceFields.Count - 1) * lifeTime;
         } 
     }
 
@@ -79,7 +81,7 @@ public class NewForceField : MonoBehaviour
     {
         
         yield return new WaitForSeconds(seconds);
-        
+        Debug.Log(allForceFields.Count);
         Destroy(this.gameObject);
     }
 
@@ -95,7 +97,7 @@ public class NewForceField : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MinusHP);
             PlayerHitPoints.HitPoints--;
-            
+            Debug.Log(allForceFields.Count);
             Destroy(this.gameObject);
         }
         if (other.CompareTag("Meteorite"))
@@ -103,5 +105,10 @@ public class NewForceField : MonoBehaviour
             StartCoroutine(LaterDestroy(1));
             
         }
+    }
+
+    private void OnDestroy()
+    {
+        allForceFields.Remove(gameObject);
     }
 }

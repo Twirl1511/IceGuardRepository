@@ -15,8 +15,8 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static Vector3 _startPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];
-    public static List<GameObject> allForceFields = new List<GameObject>(36);
-    public static List<GameObject> allPathPoints = new List<GameObject>(36);
+    
+    
     public bool ForceField_ON;
 
     private float _time;
@@ -29,14 +29,14 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
     private void Update()
     {
-        try
-        {
-            RemoveNullForceFields();
-        }
-        catch 
-        {
-            Debug.Log("косяк с удалением пустых полей");
-        }
+        //try
+        //{
+        //    RemoveNullForceFields();
+        //}
+        //catch 
+        //{
+        //    Debug.Log("косяк с удалением пустых полей");
+        //}
         
         AdjacentPositionsForStart();
         NewMove();
@@ -86,16 +86,16 @@ public class PlayerControllerDrawPath : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySound(Sound.SoundName.PlayerMove);
         }
     }
-    public static void RemoveNullForceFields()
-    {
-        if (allForceFields.Count > 0)
-        {
-            foreach (var e in allForceFields)
-            {
-                if (e == null) allForceFields.Remove(e);
-            }
-        }
-    }
+    //public static void RemoveNullForceFields()
+    //{
+    //    if (allForceFields.Count > 0)
+    //    {
+    //        foreach (var e in allForceFields)
+    //        {
+    //            if (e == null) allForceFields.Remove(e);
+    //        }
+    //    }
+    //}
 
     public bool IsAdjacentToPlayerPosition()
     {
@@ -200,7 +200,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
         if (ForceField_ON)
         {
-            allForceFields.Add(Instantiate(Resources.Load("GexedForceField"), position, Quaternion.identity) as GameObject);
+            NewForceField.allForceFields.Add(Instantiate(Resources.Load("GexedForceField"), position, Quaternion.identity) as GameObject);
         }
         
     }
