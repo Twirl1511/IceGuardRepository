@@ -10,13 +10,16 @@ public class NewForceField : MonoBehaviour
     public float SecondsToDestroy;
     [SerializeField] private GameObject gameObjectMaterial;
     private Material _material;
+    
     [SerializeField] private Collider collider;
+    public float testAlpha;
 
     void Start()
     {
         StartCoroutine(LaterColliderActivate());
-        //_material = gameObjectMaterial.GetComponent<Renderer>().material;
-        //ChangeAlpha(_material, 0.5f);
+        _material = gameObjectMaterial.GetComponent<Renderer>().material;
+
+        ChangeAlpha(_material, 0.5f);
         NewLifeTime = lifeTime;
         SecondsToDestroy = 0.0001f;
     }
@@ -24,35 +27,38 @@ public class NewForceField : MonoBehaviour
     {
         AdjustedLifeTimer();
         LifeTimer();
-        //ChangeAlpha(_material, Transperency());
+        ChangeAlpha(_material, Transperency());
+        Debug.Log(Transperency());
     }
 
-    //public void ChangeAlpha(Material mat, float alphaVal)
-    //{
-    //    Color oldColor = mat.color;
-    //    Color newClor = new Color(oldColor.r, oldColor.g, oldColor.b, alphaVal);
-    //    mat.SetColor("_Color", newClor);
+    public void ChangeAlpha(Material mat, float alphaVal)
+    {
+        Color oldColor = mat.color;
+        Color newClor = new Color(oldColor.r, oldColor.g, oldColor.b, alphaVal);
+        mat.SetColor("_Color", newClor);
+    }
+   
 
-
-    //}
-
-    //public float Transperency()
-    //{
-    //    float transperency;
-    //    if((transperency = (0.1f * NewLifeTime) / SecondsToDestroy) < 0.5f)
-    //    {
-    //        if (transperency >= 1f)
-    //        {
-    //            return 1;
-    //        }
-    //        return 0.5f;
-    //    }
-    //    else
-    //    {
-    //        return transperency;
-    //    }
+    public float Transperency()
+    {
+        float transperency;
         
-    //}
+
+        if ((transperency = (0.1f * NewLifeTime) / SecondsToDestroy) < 0.05f)
+        {
+            
+            return 0.05f;
+        }
+        if (transperency >= 1f)
+        {
+            return 1;
+        }
+        
+        
+            return transperency;
+        
+
+    }
 
     public void LifeTimer()
     {
@@ -66,20 +72,21 @@ public class NewForceField : MonoBehaviour
 
     public void AdjustedLifeTimer()
     {
-        
-        if (allForceFields.Count == 1 
+
+        if (allForceFields.Count == 1
             || allForceFields.Count == 0)
         {
             NewLifeTime = lifeTime;
-        }else
+        }
+        else
         {
             NewLifeTime = Mathf.Pow(0.9f, allForceFields.Count - 1) * lifeTime;
-        } 
+        }
     }
 
     IEnumerator LaterDestroy(float seconds = 40)
     {
-        
+
         yield return new WaitForSeconds(seconds);
         Debug.Log(allForceFields.Count);
         Destroy(this.gameObject);
@@ -87,7 +94,7 @@ public class NewForceField : MonoBehaviour
 
     IEnumerator LaterColliderActivate()
     {
-        yield return new WaitForSeconds(PlayerControllerDrawPath.TimeToReachNextTile+0.5f);
+        yield return new WaitForSeconds(PlayerControllerDrawPath.TimeToReachNextTile + 0.5f);
         collider.enabled = true;
     }
 
@@ -103,7 +110,7 @@ public class NewForceField : MonoBehaviour
         if (other.CompareTag("Meteorite"))
         {
             StartCoroutine(LaterDestroy(1));
-            
+
         }
     }
 
