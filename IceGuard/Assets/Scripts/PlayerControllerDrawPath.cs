@@ -15,8 +15,9 @@ public class PlayerControllerDrawPath : MonoBehaviour
     public static Vector3 _startPosition;
     private Vector3 _endPosition;
     public static Vector3[] adjacentPositionsForStart = new Vector3[4];
-    
-    
+    [SerializeField] private GameObject ForceFied;
+    private string ForceFieldName;
+
     public bool ForceField_ON;
 
     private float _time;
@@ -25,6 +26,10 @@ public class PlayerControllerDrawPath : MonoBehaviour
     {
         _startPosition = transform.position;
         queuePath = new Queue<Vector3>();
+    }
+    private void Start()
+    {
+        ForceFieldName = ForceFied.name;
     }
 
     private void Update()
@@ -200,7 +205,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
         if (ForceField_ON)
         {
-            NewForceField.allForceFields.Add(Instantiate(Resources.Load("GexedForceField"), position, Quaternion.identity) as GameObject);
+            NewForceField.allForceFields.Add(Instantiate(Resources.Load(ForceFieldName), position, Quaternion.identity) as GameObject);
         }
         
     }

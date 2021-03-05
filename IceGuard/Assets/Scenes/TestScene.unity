@@ -7566,6 +7566,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   PucliTimeToReachNextTile: 0.5
+  ForceFied: {fileID: 8000270357455985329, guid: 8742f0d37166db34d8f4196d268e8099,
+    type: 3}
   ForceField_ON: 1
 --- !u!54 &1121877190
 Rigidbody:
