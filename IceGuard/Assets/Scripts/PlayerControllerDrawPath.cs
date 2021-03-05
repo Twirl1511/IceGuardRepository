@@ -200,7 +200,7 @@ public class PlayerControllerDrawPath : MonoBehaviour
 
         if (ForceField_ON)
         {
-            allForceFields.Add(Instantiate(Resources.Load("ForceField"), position, forceFieldQuaternion) as GameObject);
+            allForceFields.Add(Instantiate(Resources.Load("GexedForceField"), position, Quaternion.identity) as GameObject);
         }
         
     }
