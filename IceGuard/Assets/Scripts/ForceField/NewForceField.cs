@@ -10,24 +10,15 @@ public class NewForceField : MonoBehaviour
     public float SecondsToDestroy;
     [SerializeField] private GameObject gameObjectMaterial;
     private Material _material;
-    private SpriteRenderer _spriteRendere;
-    [SerializeField] private Collider collider;
-    private bool IsActive;
     
-    public enum States
-    {
-        CloseToEnd,
-        IDLE
-    }
-    private States state;
+    [SerializeField] private Collider collider;
+    public float testAlpha;
 
     void Start()
     {
-        IsActive = true;
-        state = States.IDLE;
         StartCoroutine(LaterColliderActivate());
         _material = gameObjectMaterial.GetComponent<Renderer>().material;
-        _spriteRendere = gameObjectMaterial.GetComponent<SpriteRenderer>();
+
         ChangeAlpha(_material, 0.5f);
         NewLifeTime = lifeTime;
         SecondsToDestroy = 0.0001f;
@@ -53,7 +44,7 @@ public class NewForceField : MonoBehaviour
         float transperency;
         
 
-        if ((transperency = (0.4f * NewLifeTime) / SecondsToDestroy) < 0.05f)
+        if ((transperency = (0.1f * NewLifeTime) / SecondsToDestroy) < 0.05f)
         {
             
             return 0.05f;
@@ -76,28 +67,6 @@ public class NewForceField : MonoBehaviour
         {
             Debug.Log(allForceFields.Count);
             Destroy(this.gameObject);
-        }
-        if(SecondsToDestroy+10f >= NewLifeTime && state == States.IDLE)
-        {
-            state = States.CloseToEnd;
-            //StartCoroutine(Blink());
-        }
-    }
-
-
-
-
-
-
-    IEnumerator Blink()
-    {
-
-        for (int i = 0; i < 20; i++)
-        {
-            IsActive = !IsActive;
-            gameObjectMaterial.SetActive(IsActive);
-            yield return new WaitForSeconds(0.3f);
-            
         }
     }
 
