@@ -8,7 +8,8 @@ public class DrawPath : MonoBehaviour
     public static Vector3[] adjacentPositionsForCell = new Vector3[4];
     public static Vector3 previousCell;
     public static GameObject PreviousPathPoint;
-    
+    public PlayerControllerDrawPath playerControllerDrawPath;
+
     private void Start()
     {
         previousCell = PlayerControllerDrawPath._startPosition;
