@@ -39,7 +39,6 @@ public class NewPlayerController : MonoBehaviour
     {
         if(NewPathScript.PathPoints.Count > 0 && PlayerState == States.ReadyToMove)
         {
-            Debug.Log("if(NewPathScript.PathPoints.Count > 0 && PlayerState == States.ReadyToMove)");
             _endPosition = NewPathScript.GetPathPoint();
             PlayerState = States.Moving;
 
@@ -48,13 +47,13 @@ public class NewPlayerController : MonoBehaviour
             {
                 _lengthBtwPoints = (int)Mathf.Abs(_startPosition.z - _endPosition.z);
             }
-            
         }
+
         if(PlayerState == States.Moving)
         {
-            
             transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile * _lengthBtwPoints);
             _time += Time.deltaTime;
+
             if (_time >= TimeToReachNextTile * _lengthBtwPoints)
             {
                 _time = 0;
@@ -63,8 +62,22 @@ public class NewPlayerController : MonoBehaviour
                 _startPosition = _endPosition;
             }
         }
-
     }
+
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("EmptyField"))
+        {
+            GameObject NewForceField;
+            NewForceField = GameObject.Instantiate(Resources.Load("NewForceField"), other.transform.position, Quaternion.identity) as GameObject;
+            NewForceFieldScript.allForceFields.Add(NewForceField);
+        }
+    }
+
+
+
 
     private Vector3 LerpMoveTo(Vector3 start, Vector3 end, float time)
     {
