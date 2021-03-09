@@ -56,7 +56,7 @@ public class NewForceFieldScript : MonoBehaviour
 
     IEnumerator LaterColliderActivate()
     {
-        yield return new WaitForSeconds(PlayerControllerDrawPath.TimeToReachNextTile + 0.5f);
+        yield return new WaitForSeconds(NewPlayerController.TimeToReachNextTile + 0.5f);
         collider.enabled = true;
     }
 

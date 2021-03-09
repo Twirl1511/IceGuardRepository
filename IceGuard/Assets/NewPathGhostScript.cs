@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewPathScript : MonoBehaviour
+public class NewPathGhostScript : MonoBehaviour
 {
-    public static List<Vector3> PathPoints = new List<Vector3>();
-    public static Vector3 PreviousPoint;
+    public static List<Vector3> GhostPathPoints = new List<Vector3>();
+    public static Vector3 GhostPreviousPoint;
 
     private void OnMouseDown()
     {
-        if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))
+        if (CorrectNextPathPoint(GhostPreviousPoint, gameObject.transform.position))
         {
-            PathPoints.Add(gameObject.transform.position);
-            PreviousPoint = gameObject.transform.position;
-            Debug.Log(PathPoints.Count);
+            GhostPathPoints.Add(gameObject.transform.position);
+            GhostPreviousPoint = gameObject.transform.position;
+            Debug.Log(GhostPathPoints.Count);
         }
     }
 
@@ -31,10 +31,9 @@ public class NewPathScript : MonoBehaviour
 
     public static Vector3 GetPathPoint()
     {
-        Vector3 pathPoint = PathPoints[0];
-        PathPoints.RemoveAt(0);
+        Vector3 pathPoint = GhostPathPoints[0];
+        GhostPathPoints.RemoveAt(0);
         return pathPoint;
     }
 
-    
 }

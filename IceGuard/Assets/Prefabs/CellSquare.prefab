@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1918011617}
   - component: {fileID: 1918011620}
   - component: {fileID: 1168347311893757052}
+  - component: {fileID: 2044548406496501644}
   m_Layer: 0
   m_Name: CellSquare
   m_TagString: EmptyField
@@ -108,8 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c534a51e1629d14d80024756ea7b213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControllerDrawPath: {fileID: 7081802875581705854, guid: 86fcf1586f0c2a94cb967a3e5e0fc76e,
-    type: 3}
 --- !u!114 &1918011620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,5 +132,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09c9e47c4cc29434c88a840a486fa698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2044548406496501644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914188712556546903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7843c0ea8d234f64fab66df6f6231ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

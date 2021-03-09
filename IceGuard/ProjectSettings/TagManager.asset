@@ -10,6 +10,7 @@ TagManager:
   - Meteorite
   - MeteoriteIsComming
   - Path
+  - PlayerGhost
   layers:
   - Default
   - TransparentFX

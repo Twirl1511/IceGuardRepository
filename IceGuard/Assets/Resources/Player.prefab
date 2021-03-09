@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7081802875581705849}
   - component: {fileID: 7081802875581705848}
-  - component: {fileID: 7081802875581705854}
   - component: {fileID: 7081802875581705853}
   - component: {fileID: 7081802875581705852}
   - component: {fileID: 530315906781606121}
@@ -49,47 +48,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.59159946, y: 1, z: 0.7033921}
   m_Center: {x: 0.057114124, y: -0.53, z: 0.017881185}
---- !u!114 &7081802875581705854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7081802875581705850}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08d38c3078a97749ab0f3e2c7911a22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Easing:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  PublicTimeToReachNextTile: 1.36
-  ForceFied: {fileID: 4027459705511446841, guid: af8517aab9c5e0241b81209b6d44b9c0,
-    type: 3}
-  ForceField_ON: 0
-  FPS: 33
 --- !u!54 &7081802875581705853
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,7 +71,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7081802875581705850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959adb877c37cb4dbf345b69a9a85ef, type: 3}
   m_Name: 

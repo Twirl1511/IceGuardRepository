@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CellState : MonoBehaviour
 {
-    public PlayerControllerDrawPath playerControllerDrawPath;
+    //public PlayerControllerDrawPath playerControllerDrawPath;
     private bool isStartedFromAdjacentPosition = false;
     public static Vector3 previousCell;
     public static Vector3[] adjacentPositionsForCell = new Vector3[4];

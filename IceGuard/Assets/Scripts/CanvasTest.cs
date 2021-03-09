@@ -14,7 +14,7 @@ public class CanvasTest : MonoBehaviour
     {
         ForceFieldLifeTime.text = NewForceField.lifeTime.ToString();
         NewMeteoriteTimer.text = MeteoritScriptNEW.DelayBtwNewMeteorites.ToString();
-        PlayerSpeed.text = PlayerControllerDrawPath.TimeToReachNextTile.ToString();
+        PlayerSpeed.text = NewPlayerController.TimeToReachNextTile.ToString();
         ForceFieldLifeTimeCommon.text = NewForceField.NewLifeTime.ToString();
     }
 
@@ -46,14 +46,14 @@ public class CanvasTest : MonoBehaviour
 
     public void MinusPlayerSpeed()
     {
-        
-        PlayerControllerDrawPath.TimeToReachNextTile -= 0.1f;
+
+        NewPlayerController.TimeToReachNextTile -= 0.1f;
         
     }
 
     public void PlusPlayerSpeed()
     {
-        PlayerControllerDrawPath.TimeToReachNextTile += 0.1f;
+        NewPlayerController.TimeToReachNextTile += 0.1f;
         
     }
 }
