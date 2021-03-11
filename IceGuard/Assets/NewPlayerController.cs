@@ -11,6 +11,7 @@ public class NewPlayerController : MonoBehaviour
     public static float TimeToReachNextTile = 0.5f;
     [Range(0.1f, 3f)]
     public float PublicTimeToReachNextTile = 0.5f; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
+    
     public enum States
     {
         ReadyToMove,
@@ -74,7 +75,13 @@ public class NewPlayerController : MonoBehaviour
             NewForceFieldScript.allForceFields.Add(NewForceField);
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Path"))
+        {
+            GameObject.Destroy(other.gameObject);
+        }
+    }
 
 
 

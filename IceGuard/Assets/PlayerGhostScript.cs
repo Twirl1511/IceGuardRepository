@@ -10,6 +10,7 @@ public class PlayerGhostScript : MonoBehaviour
     public static float TimeToReachNextTile = 0.5f;
     [Range(0.1f, 1f)]
     public float PublicTimeToReachNextTile = 0.5f; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
+    [SerializeField] private GameObject PathPoint;
     public enum States
     {
         ReadyToMove,
@@ -63,7 +64,7 @@ public class PlayerGhostScript : MonoBehaviour
         if (other.CompareTag("EmptyField"))
         {
             GameObject NewPathPoingObject;
-            NewPathPoingObject = GameObject.Instantiate(Resources.Load("Sphere"), other.transform.position, Quaternion.identity) as GameObject;
+            NewPathPoingObject = GameObject.Instantiate(Resources.Load(PathPoint.name), other.transform.position, Quaternion.identity) as GameObject;
 
         }
     }
