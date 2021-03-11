@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewForceFieldScript : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class NewForceFieldScript : MonoBehaviour
     public static float lifeTime = 60f;
     public static float NewLifeTime;
     public float SecondsToDestroy;
-    [SerializeField] private Collider collider;
-
+    [SerializeField] private Collider Collider;
+    [SerializeField] private Image Health;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class NewForceFieldScript : MonoBehaviour
     public void LifeTimer()
     {
         SecondsToDestroy += Time.deltaTime;
+        Health.fillAmount = 1 - (SecondsToDestroy / NewLifeTime);
         if (SecondsToDestroy >= NewLifeTime)
         {
             Debug.Log(allForceFields.Count);
@@ -48,7 +50,6 @@ public class NewForceFieldScript : MonoBehaviour
 
     IEnumerator LaterDestroy(float seconds = 40)
     {
-
         yield return new WaitForSeconds(seconds);
         Debug.Log(allForceFields.Count);
         Destroy(this.gameObject);
@@ -57,7 +58,7 @@ public class NewForceFieldScript : MonoBehaviour
     IEnumerator LaterColliderActivate()
     {
         yield return new WaitForSeconds(NewPlayerController.TimeToReachNextTile + 0.5f);
-        collider.enabled = true;
+        Collider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,4 +79,7 @@ public class NewForceFieldScript : MonoBehaviour
     {
         allForceFields.Remove(gameObject);
     }
+
+    
+
 }
