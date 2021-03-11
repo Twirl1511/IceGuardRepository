@@ -15,6 +15,7 @@ public class MeteoritScriptNEW : MonoBehaviour
     [SerializeField] private float Delay = 8f;
     [SerializeField] public static float DelayBtwNewMeteorites = 13f;
     private bool _areMeteoritesReady = true;
+    [SerializeField] private GameObject MeteoriteTarget;
 
     private void Start()
     {
@@ -161,15 +162,15 @@ public class MeteoritScriptNEW : MonoBehaviour
     {
         float x = CellController.CellDouble[meteoriteOne.rowPosition, meteoriteOne.columnPosition].transform.position.x;
         float z = CellController.CellDouble[meteoriteOne.rowPosition, meteoriteOne.columnPosition].transform.position.z;
-        Vector3 position = new Vector3(x, 0.08f, z);
-        GameObject meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
+        Vector3 position = new Vector3(x, 0, z);
+        GameObject meteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = meteoriteOne.timer;
 
         
         x = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.x;
         z = CellController.CellDouble[meteoriteTwo.rowPosition, meteoriteTwo.columnPosition].transform.position.z;
-        position = new Vector3(x, 0.08f, z);
-        meteorite = GameObject.Instantiate(Resources.Load("TargetTest"), position, Quaternion.Euler(90f, 0f, 0f)) as GameObject;
+        position = new Vector3(x, 0, z);
+        meteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = meteoriteTwo.timer;
     }
     

@@ -12,6 +12,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     public float timetoFall;
     public TextMesh timer;
     private bool IsTimerActive;
+    [SerializeField] private Collider collider;
 
     void Start()
     {
@@ -80,7 +81,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(currentTime -1f);
-        gameObject.GetComponent<Collider>().enabled = true;
+        collider.enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
     {
