@@ -9,6 +9,19 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject GameOverPanel;
     [SerializeField] private Text Days;
     [SerializeField] private GameObject DayCounter;
+    private static int _firstGame = 0;
+    [SerializeField] private GameObject StartTipsPanel;
+
+    private void Start()
+    {   
+        /// сделать логику паузы !!!!!!!!!!
+        StartTipsPanel.SetActive(false);
+        if (_firstGame == 0)
+        {
+            StartTipsPanel.SetActive(true);
+        }
+        _firstGame++;
+    }
     private void Update()
     {
         if(PlayerHitPoints.HitPoints <= 0)
@@ -31,4 +44,7 @@ public class MenuController : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+   
 }

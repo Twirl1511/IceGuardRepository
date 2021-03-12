@@ -13,7 +13,8 @@ public class MeteoritScriptNEW : MonoBehaviour
     [SerializeField] private int minTimeToCrash = 8;
     [SerializeField] private int maxTimeToCrash = 16;
     [SerializeField] private float Delay = 8f;
-    [SerializeField] public static float DelayBtwNewMeteorites = 13f;
+    [SerializeField] private float DelayRangeMin = 8f;
+    [SerializeField] private float DelayRangeMax = 14f;
     private bool _areMeteoritesReady = true;
     [SerializeField] private GameObject MeteoriteTarget;
 
@@ -30,7 +31,7 @@ public class MeteoritScriptNEW : MonoBehaviour
     public IEnumerator DelayBtwMeteorites()
     {
         _areMeteoritesReady = false;
-        yield return new WaitForSeconds(DelayBtwNewMeteorites);
+        yield return new WaitForSeconds(Random.Range(DelayRangeMin, DelayRangeMax));
         TestBUTTON();
         _areMeteoritesReady = true;
     }
