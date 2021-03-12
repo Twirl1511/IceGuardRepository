@@ -13,9 +13,11 @@ public class DestroyMeteoritTimer : MonoBehaviour
     public TextMesh timer;
     private bool IsTimerActive;
     [SerializeField] private Collider collider;
+    [SerializeField] private GameObject Explosion;
 
     void Start()
     {
+        Explosion.SetActive(false);
         IsTimerActive = false;
         /// включаем объект текс меша через 1 секунду после создания метеорита
         StartCoroutine(WaitToCreateTimer());
@@ -55,7 +57,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
         timetoFall -= 1f;  
         if(timetoFall <= 0f)
         {
-            timer.text = "Boom!";
+            timer.text = " ";
+            
         }
         else
         {
@@ -99,13 +102,18 @@ public class DestroyMeteoritTimer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Explosion.SetActive(true);
             _isMeteoriteKillEarth = false;
             PlayerHitPoints.HitPoints = 0;
             Debug.Log("ударило по плееру " + PlayerHitPoints.HitPoints);
         }
         if (other.CompareTag("ForceField"))
         {
-            if (_isMeteoriteDestroed) return;
+            if (_isMeteoriteDestroed)
+            {
+                return;
+            }
+            Explosion.SetActive(true);
             _isMeteoriteKillEarth = false;
             _isMeteoriteDestroed = true;
             Vibrator.Vibrate();

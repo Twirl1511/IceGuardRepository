@@ -23,8 +23,9 @@ public class PlayerGhostScript : MonoBehaviour
 
     private void Start()
     {
+        
         PathObjectsArray.Clear();
-        NewPathScript.PathPoints.Clear();
+        NewPathGhostScript.GhostPathPoints.Clear();
         gameObject.GetComponent<PlayerGhostScript>().enabled = true;
         PlayerState = States.ReadyToMove;
         _startPosition = transform.position;
