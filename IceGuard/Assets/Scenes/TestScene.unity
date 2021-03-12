@@ -1460,14 +1460,14 @@ MonoBehaviour:
     mixerGroup: {fileID: 24300002, guid: b1af4b8fc8123ca44a131352fd5f7d99, type: 2}
   - elementName: MeteoriteCrashEarth
     name: 9
-    audioClip: {fileID: 8300000, guid: 14fd6e3c32a87c34297d15b560abce66, type: 3}
+    audioClip: {fileID: 8300000, guid: b930d28c67eb543129955ae16de7b239, type: 3}
     volume: 0.6
     source: {fileID: 0}
     loop: 0
     mixerGroup: {fileID: 24300002, guid: b1af4b8fc8123ca44a131352fd5f7d99, type: 2}
   - elementName: MinusHP
     name: 12
-    audioClip: {fileID: 8300000, guid: c116f0d25d809bc4a9c56accacf4f26a, type: 3}
+    audioClip: {fileID: 8300000, guid: b930d28c67eb543129955ae16de7b239, type: 3}
     volume: 0.6
     source: {fileID: 0}
     loop: 0
@@ -3349,10 +3349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c7132d63d067a499f69e7e291a1fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFieldLifeTime: {fileID: 36335915}
-  ForceFieldLifeTimeCommon: {fileID: 162839627}
-  NewMeteoriteTimer: {fileID: 5234373}
-  PlayerSpeed: {fileID: 1099491056}
 --- !u!114 &491469411 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1918011620, guid: c87ab5417cd88ee4ea87d68e2a915dca,
@@ -8963,7 +8959,7 @@ PrefabInstance:
     - target: {fileID: 5983246663774067459, guid: 9b7377770f3b3ad44a7d5c82247a2836,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5983246663774067462, guid: 9b7377770f3b3ad44a7d5c82247a2836,
         type: 3}
@@ -10737,6 +10733,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1766577680}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1776992030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: d918e1286969e1740b2daa8c7eb5bcac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1639865556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1776992031
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776992030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52a7f8ee219ea4c289d8fde78bfbc340, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1790151501
 GameObject:
   m_ObjectHideFlags: 0
