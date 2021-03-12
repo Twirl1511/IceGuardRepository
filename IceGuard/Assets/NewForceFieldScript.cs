@@ -7,49 +7,33 @@ public class NewForceFieldScript : MonoBehaviour
 {
     public static List<GameObject> allForceFields = new List<GameObject>(36);
     public static float lifeTime = 60f;
-    public static float NewLifeTime;
-    public static float NewTime;
+    public static float TimeMultiplier;
     public float SecondsToDestroy;
     [SerializeField] private Collider Collider;
     [SerializeField] private Image Health;
 
     void Start()
     {
-        NewTime = 1f;
+        TimeMultiplier = 1f;
         StartCoroutine(LaterColliderActivate());
-        NewLifeTime = lifeTime;
         SecondsToDestroy = 0.00001f;
     }
     private void Update()
     {
-        //AdjustedLifeTimer();
         AdjustedLifeTimerNew();
         LifeTimer();
     }
 
     public void LifeTimer()
     {
-        //SecondsToDestroy += Time.deltaTime;
-        Health.fillAmount = 1 - (SecondsToDestroy / NewLifeTime);
-        if (SecondsToDestroy >= NewLifeTime)
+        Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
+        if (SecondsToDestroy >= lifeTime)
         {
             Debug.Log(allForceFields.Count);
             Destroy(this.gameObject);
         }
     }
 
-    //public void AdjustedLifeTimer()
-    //{
-    //    if (allForceFields.Count == 1
-    //        || allForceFields.Count == 0)
-    //    {
-    //        NewLifeTime = lifeTime;
-    //    }
-    //    else
-    //    {
-    //        NewLifeTime = Mathf.Pow(0.9f, allForceFields.Count - 1) * lifeTime;
-    //    }
-    //}
 
     public void AdjustedLifeTimerNew()
     {
@@ -60,8 +44,8 @@ public class NewForceFieldScript : MonoBehaviour
         }
         else
         {
-            NewTime = Mathf.Pow(1.1f, allForceFields.Count - 1);
-            SecondsToDestroy += Time.deltaTime * NewTime;
+            TimeMultiplier = Mathf.Pow(1.1f, allForceFields.Count - 1);
+            SecondsToDestroy += Time.deltaTime * TimeMultiplier;
         }
     }
 
