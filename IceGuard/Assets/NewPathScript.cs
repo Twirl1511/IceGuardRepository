@@ -11,6 +11,7 @@ public class NewPathScript : MonoBehaviour
     {
         if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))
         {
+            Debug.Log("ставим точку пути");
             PathPoints.Add(gameObject.transform.position);
             PreviousPoint = gameObject.transform.position;
             Debug.Log(PathPoints.Count);
@@ -35,6 +36,8 @@ public class NewPathScript : MonoBehaviour
         PathPoints.RemoveAt(0);
         return pathPoint;
     }
+
+  
 
     
 }

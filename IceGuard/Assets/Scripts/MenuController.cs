@@ -23,8 +23,8 @@ public class MenuController : MonoBehaviour
     {
         PlayerHitPoints.HitPoints = 3;
         Time.timeScale = 1;
-        SceneManager.LoadScene("TestScene");
         GameOverPanel.SetActive(false);
+        SceneManager.LoadScene("TestScene");
         DayCounter.GetComponent<DayCounter>().timer = 0;
     }
     public void OnClickExit()

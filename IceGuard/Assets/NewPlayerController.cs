@@ -25,6 +25,8 @@ public class NewPlayerController : MonoBehaviour
 
     private void Start()
     {
+        NewPathScript.PathPoints.Clear();
+        gameObject.GetComponent<NewPlayerController>().enabled = true;
         PlayerState = States.ReadyToMove;
         _startPosition = transform.position;
         NewPathScript.PreviousPoint = transform.position;
@@ -33,6 +35,16 @@ public class NewPlayerController : MonoBehaviour
     {
         TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
         Move();
+        Death();
+    }
+
+    public void Death()
+    {
+        if(PlayerHitPoints.HitPoints <= 0)
+        {
+            gameObject.GetComponent<NewPlayerController>().enabled = false;
+            Debug.Log("Death");
+        }
     }
 
     public void Move()

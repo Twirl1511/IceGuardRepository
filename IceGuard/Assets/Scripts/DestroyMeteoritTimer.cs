@@ -53,7 +53,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     private void ShowTimer()
     {
         timetoFall -= 1f;  
-        if(timetoFall <= 0.5f)
+        if(timetoFall <= 0f)
         {
             timer.text = "Boom!";
         }

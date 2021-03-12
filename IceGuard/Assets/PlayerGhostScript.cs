@@ -11,6 +11,7 @@ public class PlayerGhostScript : MonoBehaviour
     [Range(0.1f, 1f)]
     public float PublicTimeToReachNextTile = 0.5f; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
     [SerializeField] private GameObject PathPoint;
+    private List<GameObject> PathObjectsArray = new List<GameObject>(50);
     public enum States
     {
         ReadyToMove,
@@ -22,6 +23,9 @@ public class PlayerGhostScript : MonoBehaviour
 
     private void Start()
     {
+        PathObjectsArray.Clear();
+        NewPathScript.PathPoints.Clear();
+        gameObject.GetComponent<PlayerGhostScript>().enabled = true;
         PlayerState = States.ReadyToMove;
         _startPosition = transform.position;
         NewPathGhostScript.GhostPreviousPoint = transform.position;
@@ -30,8 +34,15 @@ public class PlayerGhostScript : MonoBehaviour
     {
         TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
         Move();
+        Death();
     }
-
+    public void Death()
+    {
+        if (PlayerHitPoints.HitPoints <= 0)
+        {
+            gameObject.GetComponent<PlayerGhostScript>().enabled = false;
+        }
+    }
     public void Move()
     {
         if (NewPathGhostScript.GhostPathPoints.Count > 0 && PlayerState == States.ReadyToMove)
@@ -65,6 +76,7 @@ public class PlayerGhostScript : MonoBehaviour
         {
             GameObject NewPathPoingObject;
             NewPathPoingObject = GameObject.Instantiate(Resources.Load(PathPoint.name), other.transform.position, Quaternion.identity) as GameObject;
+            PathObjectsArray.Add(NewPathPoingObject);
 
         }
     }

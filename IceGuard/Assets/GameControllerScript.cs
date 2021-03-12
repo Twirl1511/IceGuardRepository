@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameControllerScript : MonoBehaviour
 {
     
-    void Awake()
+    void Start()
     {
         int x = Random.Range(-2, 3);
         int z = Random.Range(-3, 3);
