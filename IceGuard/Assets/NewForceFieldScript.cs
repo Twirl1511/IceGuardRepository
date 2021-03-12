@@ -58,7 +58,7 @@ public class NewForceFieldScript : MonoBehaviour
 
     IEnumerator LaterColliderActivate()
     {
-        yield return new WaitForSeconds(NewPlayerController.TimeToReachNextTile + 0.5f);
+        yield return new WaitForSeconds(NewPlayerController.TimeToReachNextTile);
         Collider.enabled = true;
     }
 
@@ -72,7 +72,7 @@ public class NewForceFieldScript : MonoBehaviour
         }
         if (other.CompareTag("Meteorite"))
         {
-            StartCoroutine(LaterDestroy(1));
+            StartCoroutine(LaterDestroy(0));
         }
     }
 

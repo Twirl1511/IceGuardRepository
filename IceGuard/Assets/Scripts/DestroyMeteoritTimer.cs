@@ -80,12 +80,12 @@ public class DestroyMeteoritTimer : MonoBehaviour
     /// <returns></returns>
     IEnumerator ActivateCollider()
     {
-        yield return new WaitForSeconds(currentTime -1f);
+        yield return new WaitForSeconds(currentTime - 0.5f);
         collider.enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
     {
-        yield return new WaitForSeconds(currentTime - 0.5f);
+        yield return new WaitForSeconds(currentTime);
         if (_isMeteoriteKillEarth)
         {
             PlayerHitPoints.HitPoints = 0;
