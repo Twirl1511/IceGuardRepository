@@ -100,6 +100,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   PublicTimeToReachNextTile: 0.5
+  OutterRim: {fileID: 5260344663420886918}
+  InnerRim: {fileID: 4225504902675806077}
+  RotationSpeed: 0.5
   PlayerState: 0
 --- !u!1 &8752768071803214665
 GameObject:
@@ -294,6 +297,18 @@ PrefabInstance:
 --- !u!4 &2708129782194931009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1585809966436768391, guid: a847d86238b6dd54bbc470b9790952cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3716833582998511558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5260344663420886918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8832869395472351296, guid: a847d86238b6dd54bbc470b9790952cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3716833582998511558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4225504902675806077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 662268981489952955, guid: a847d86238b6dd54bbc470b9790952cc,
     type: 3}
   m_PrefabInstance: {fileID: 3716833582998511558}
   m_PrefabAsset: {fileID: 0}

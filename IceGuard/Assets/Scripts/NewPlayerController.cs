@@ -11,7 +11,12 @@ public class NewPlayerController : MonoBehaviour
     public static float TimeToReachNextTile = 0.5f;
     [Range(0.1f, 3f)]
     public float PublicTimeToReachNextTile = 0.5f; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
-    
+    [SerializeField] private GameObject OutterRim;
+    [SerializeField] private GameObject InnerRim;
+    [SerializeField] private float RotationSpeed;
+    private float _outerY;
+    private float _innerY;
+
     public enum States
     {
         ReadyToMove,
@@ -37,7 +42,13 @@ public class NewPlayerController : MonoBehaviour
         Move();
     }
 
-    
+    private void RingsRotation(float speed)
+    {
+        _outerY +=  speed;
+        OutterRim.transform.rotation = Quaternion.Euler(0, _outerY, 0);
+        _innerY -=  speed;
+        InnerRim.transform.rotation = Quaternion.Euler(0, _innerY, 0);
+    }
 
     public void Move()
     {
@@ -55,8 +66,9 @@ public class NewPlayerController : MonoBehaviour
 
         if(PlayerState == States.Moving)
         {
-            transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile * _lengthBtwPoints);
             _time += Time.deltaTime;
+            transform.position = LerpMoveTo(_startPosition, _endPosition, TimeToReachNextTile * _lengthBtwPoints);
+            RingsRotation(RotationSpeed);
 
             if (_time >= TimeToReachNextTile * _lengthBtwPoints)
             {
