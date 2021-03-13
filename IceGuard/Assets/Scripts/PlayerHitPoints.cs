@@ -35,6 +35,7 @@ public class PlayerHitPoints : MonoBehaviour
             }
         }
         HPArray[HitPoints].SetActive(false);
+
         if (HitPoints == 3)
         {
             foreach (var e in HPArray)
