@@ -24,7 +24,7 @@ public class MenuController : MonoBehaviour
     }
     private void Update()
     {
-        if(PlayerHitPoints.HitPoints <= 0)
+        if(PlayerHitPoints.GetHitPoints() <= 0)
         {
             GameOverPanel.SetActive(true);
             Days.text = DayCounter.GetComponent<DayCounter>().Counter.text;
@@ -34,7 +34,7 @@ public class MenuController : MonoBehaviour
 
     public void OnClickRestart()
     {
-        PlayerHitPoints.HitPoints = 3;
+        PlayerHitPoints.RestartHP();
         Time.timeScale = 1;
         GameOverPanel.SetActive(false);
         SceneManager.LoadScene("TestScene");

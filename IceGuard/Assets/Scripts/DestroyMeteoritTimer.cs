@@ -91,7 +91,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
         yield return new WaitForSeconds(currentTime);
         if (_isMeteoriteKillEarth)
         {
-            PlayerHitPoints.HitPoints = 0;
+            PlayerHitPoints.MinusAllHP();
             Debug.Log("ударилось в Землю");
         }
     }
@@ -104,8 +104,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
         {
             Explosion.SetActive(true);
             _isMeteoriteKillEarth = false;
-            PlayerHitPoints.HitPoints = 0;
-            Debug.Log("ударило по плееру " + PlayerHitPoints.HitPoints);
+            PlayerHitPoints.MinusAllHP();
         }
         if (other.CompareTag("ForceField"))
         {
