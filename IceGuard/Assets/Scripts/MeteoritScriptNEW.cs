@@ -25,14 +25,14 @@ public class MeteoritScriptNEW : MonoBehaviour
         meteoriteTwo = new MeteoritePlace();
         rows = CellController.CellDouble.GetUpperBound(0) + 1;
         columns = CellController.CellDouble.Length / rows;
-        TestBUTTON();
+        CreateMeteorites();
     }
     
     public IEnumerator DelayBtwMeteorites()
     {
         _areMeteoritesReady = false;
         yield return new WaitForSeconds(Random.Range(DelayRangeMin, DelayRangeMax));
-        TestBUTTON();
+        CreateMeteorites();
         _areMeteoritesReady = true;
     }
     private void Update()
@@ -42,7 +42,7 @@ public class MeteoritScriptNEW : MonoBehaviour
             StartCoroutine(DelayBtwMeteorites());
         }
     }
-    public void TestBUTTON()
+    public void CreateMeteorites()
     {
         
         for (int i = 0; i < rows; i++)
