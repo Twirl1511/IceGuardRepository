@@ -6266,7 +6266,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 18
+  field of view: 19
   orthographic: 0
   orthographic size: 2.4
   m_Depth: -1
@@ -9007,10 +9007,10 @@ RectTransform:
   m_Father: {fileID: 918907541}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -29.889755, y: 0.5909085}
-  m_SizeDelta: {x: -57.17951, y: -22.581818}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -44.8, y: -44.78}
+  m_SizeDelta: {x: 230.10052, y: 71.41818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1420663123
 MonoBehaviour:
@@ -9033,7 +9033,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6206223cd1c4e4025bfb23ab40b73f45, type: 3}
-    m_FontSize: 20
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -9591,10 +9591,10 @@ RectTransform:
   m_Father: {fileID: 918907541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 23.22, y: 0}
-  m_SizeDelta: {x: -75.533585, y: -23.763634}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 22.9, y: -44.78}
+  m_SizeDelta: {x: 184.5, y: 69.75818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507712591
 MonoBehaviour:
@@ -9617,11 +9617,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6206223cd1c4e4025bfb23ab40b73f45, type: 3}
-    m_FontSize: 20
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 84
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
