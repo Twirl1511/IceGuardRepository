@@ -83,7 +83,6 @@ public class DestroyMeteoritTimer : MonoBehaviour
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(currentTime - 0.5f);
-        Debug.Log("ActivateCollider()");
         collider.enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
