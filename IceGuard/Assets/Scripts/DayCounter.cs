@@ -10,11 +10,11 @@ public class DayCounter : MonoBehaviour
     public float timer;
     void Start()
     {
-        timer = 0f;
+        timer = 30f;
     }
     void Update()
     {
         timer += Time.deltaTime;
-        Counter.text = (timer / SecondsInDay).ToString("0");
+        Counter.text = (timer / SecondsInDay).ToString("#");
     }
 }

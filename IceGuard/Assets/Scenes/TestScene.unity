@@ -1446,9 +1446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1139779689}
+  - {fileID: 754457319}
+  - {fileID: 1364516548}
 --- !u!1 &421729662 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5914188712556546903, guid: c87ab5417cd88ee4ea87d68e2a915dca,
@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf60ac4e78799541b8d90bf45cb5b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Counter: {fileID: 0}
+  Counter: {fileID: 990421141}
   SecondsInDay: 30
   timer: 0
 --- !u!1 &1359754800
@@ -7720,7 +7720,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Move your Space Station and place mines.  Safe the Earth form a meteor
+  m_Text: 'Move your Space Station and place mines.  Safe the Earth from a meteor
     shower.
 
 '

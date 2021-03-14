@@ -44,9 +44,9 @@ public class NewPlayerController : MonoBehaviour
 
     private void RingsRotation(float speed)
     {
-        _outerY +=  speed;
+        _outerY +=  speed * Time.deltaTime;
         OutterRim.transform.rotation = Quaternion.Euler(0, _outerY, 0);
-        _innerY -=  speed;
+        _innerY -= speed * Time.deltaTime;
         InnerRim.transform.rotation = Quaternion.Euler(0, _innerY, 0);
     }
 

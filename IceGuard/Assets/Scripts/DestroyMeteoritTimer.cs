@@ -33,7 +33,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
         if (timer.gameObject.activeSelf && IsTimerActive == false)
         {
             
-            StartCoroutine(CerrentTimeMinusOne());
+            StartCoroutine(CurrentTimeMinusOne());
         }
         
     }
@@ -45,7 +45,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
         timer.text = timetoFall.ToString();
     }
 
-    private IEnumerator CerrentTimeMinusOne()
+    private IEnumerator CurrentTimeMinusOne()
     {
         IsTimerActive = true;
         yield return new WaitForSeconds(1f);

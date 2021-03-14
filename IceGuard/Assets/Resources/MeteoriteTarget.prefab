@@ -392,6 +392,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosion
       objectReference: {fileID: 0}
+    - target: {fileID: 741473247532392889, guid: 4337f994e8219724ea2103e425824f84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205208182071731556, guid: 4337f994e8219724ea2103e425824f84,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205208182071731556, guid: 4337f994e8219724ea2103e425824f84,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205208182071731556, guid: 4337f994e8219724ea2103e425824f84,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.28
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4337f994e8219724ea2103e425824f84, type: 3}
 --- !u!1 &4584119119514226857 stripped

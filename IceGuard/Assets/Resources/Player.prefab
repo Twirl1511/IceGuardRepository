@@ -102,7 +102,7 @@ MonoBehaviour:
   PublicTimeToReachNextTile: 0.5
   OutterRim: {fileID: 5260344663420886918}
   InnerRim: {fileID: 4225504902675806077}
-  RotationSpeed: 0.5
+  RotationSpeed: 70
   PlayerState: 0
 --- !u!1 &8752768071803214665
 GameObject:
