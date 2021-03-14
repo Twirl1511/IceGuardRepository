@@ -32,10 +32,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
     {
         if (timer.gameObject.activeSelf && IsTimerActive == false)
         {
-            
             StartCoroutine(CurrentTimeMinusOne());
-        }
-        
+        } 
     }
 
     private IEnumerator WaitToCreateTimer()
