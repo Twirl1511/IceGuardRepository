@@ -51,7 +51,7 @@ public class NewForceFieldScript : MonoBehaviour
 
     IEnumerator LaterDestroy(float seconds = 40)
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSecondsRealtime(seconds);
         Debug.Log(allForceFields.Count);
         Destroy(this.gameObject);
     }
@@ -59,7 +59,7 @@ public class NewForceFieldScript : MonoBehaviour
     IEnumerator LaterColliderActivate()
     {
         //yield return new WaitForSeconds(NewPlayerController.TimeToReachNextTile);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         Collider.enabled = true;
     }
 
