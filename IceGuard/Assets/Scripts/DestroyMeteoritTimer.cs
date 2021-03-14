@@ -33,7 +33,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
         if (timer.gameObject.activeSelf && IsTimerActive == false)
         {
             StartCoroutine(CurrentTimeMinusOne());
-        } 
+        }
+
     }
 
     private IEnumerator WaitToCreateTimer()
@@ -82,6 +83,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(currentTime - 0.5f);
+        Debug.Log("ActivateCollider()");
         collider.enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
@@ -95,7 +97,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     }
 
     private bool _isMeteoriteKillEarth = true;
-    private bool _isMeteoriteDestroed = false;
+    private bool _isMeteoriteDestroyed = false;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -106,14 +108,13 @@ public class DestroyMeteoritTimer : MonoBehaviour
         }
         if (other.CompareTag("ForceField"))
         {
-            if (_isMeteoriteDestroed)
+            if (_isMeteoriteDestroyed)
             {
                 return;
             }
             Explosion.SetActive(true);
             _isMeteoriteKillEarth = false;
-            _isMeteoriteDestroed = true;
-            Vibrator.Vibrate();
+            _isMeteoriteDestroyed = true;
             Debug.Log("ударилось в поле");
             
         }
