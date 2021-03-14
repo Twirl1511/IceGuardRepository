@@ -15,7 +15,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject GameUI;
     [SerializeField] private GameObject Cells;
     private void Start()
-    {   
+    {
+        Debug.Log(_firstGame);
         /// сделать логику паузы !!!!!!!!!!
         StartTipsPanel.SetActive(false);
         if (_firstGame)
@@ -30,6 +31,8 @@ public class MenuController : MonoBehaviour
             MeteoriteController.SetActive(true);
             GameUI.SetActive(true);
             Cells.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
         }
     }
     private void Update()
