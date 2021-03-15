@@ -16,6 +16,9 @@ public class NewPlayerController : MonoBehaviour
     [SerializeField] private float RotationSpeed;
     private float _outerY;
     private float _innerY;
+    public GameObject ExplosionName;
+    private GameObject ExplosionObject;
+    private bool _isExplosionExist = false;
 
     public enum States
     {
@@ -41,6 +44,9 @@ public class NewPlayerController : MonoBehaviour
         TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
         Move();
     }
+
+    
+
 
     private void RingsRotation(float speed)
     {
@@ -80,7 +86,27 @@ public class NewPlayerController : MonoBehaviour
         }
     }
 
+    private void CreateExplosion(Vector3 position)
+    {
+        if (!_isExplosionExist)
+        {
+            _isExplosionExist = true;
+            ExplosionObject = GameObject.Instantiate(Resources.Load(ExplosionName.name), position, Quaternion.identity) as GameObject;
+            StartCoroutine(LaterTurnOff(ExplosionObject));
+        }
+        else
+        {
+            ExplosionObject.transform.position = position;
+            StartCoroutine(LaterTurnOff(ExplosionObject));
+        }
+    }
 
+    IEnumerator LaterTurnOff(GameObject gameObject)
+    {
+        gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -90,12 +116,17 @@ public class NewPlayerController : MonoBehaviour
             NewForceField = GameObject.Instantiate(Resources.Load("NewForceField 1"), other.transform.position, Quaternion.identity) as GameObject;
             NewForceFieldScript.allForceFields.Add(NewForceField);
         }
+        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Path"))
         {
             GameObject.Destroy(other.gameObject);
+        }
+        if (other.CompareTag("ForceField"))
+        {
+            CreateExplosion(other.transform.position);
         }
     }
 
