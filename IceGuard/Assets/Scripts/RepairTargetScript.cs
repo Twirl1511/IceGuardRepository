@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class RepairTargetScript : MonoBehaviour
 {
-    [SerializeField] private float timeToLive;
+    [SerializeField] private float timeToLiveMin;
+    [SerializeField] private float timeToLiveMax;
+    private float timeToLive;
     private bool IsTimerActive = false;
     [SerializeField] TextMesh timerText;
     [SerializeField] private Collider collider;
 
     void Start()
     {
+        timeToLive = Random.Range(timeToLiveMin, timeToLiveMax);
         timeToLive += 1;
         timerText.text = timeToLive.ToString();
         StartCoroutine(LaterDestroy());
