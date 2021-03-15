@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class RepairTargetScript : MonoBehaviour
 {
-    [SerializeField] private float timeToLiveMin;
-    [SerializeField] private float timeToLiveMax;
+    [SerializeField] private int timeToLiveMin;
+    [SerializeField] private int timeToLiveMax;
     private float timeToLive;
     private bool IsTimerActive = false;
     [SerializeField] TextMesh timerText;
