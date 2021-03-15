@@ -14,7 +14,7 @@ public class RepairTargetScript : MonoBehaviour
 
     void Start()
     {
-        timeToLive = Random.Range(timeToLiveMin, timeToLiveMax);
+        timeToLive = Random.Range(timeToLiveMin, timeToLiveMax+1);
         timeToLive += 1;
         timerText.text = timeToLive.ToString();
         StartCoroutine(LaterDestroy());
