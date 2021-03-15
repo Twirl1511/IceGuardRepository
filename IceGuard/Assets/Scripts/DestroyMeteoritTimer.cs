@@ -28,7 +28,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
         StartCoroutine(CheckMeteoriteKillEarth());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (timer.gameObject.activeSelf && IsTimerActive == false)
         {
