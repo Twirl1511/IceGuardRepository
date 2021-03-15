@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7451592f676e064587159634ccf2a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToLiveMin: 0
-  timeToLiveMax: 0
+  timeToLiveMin: 10
+  timeToLiveMax: 15
   timerText: {fileID: 691612054497285238}
   collider: {fileID: 1240545715969507204}
 --- !u!54 &4614948249984478193
