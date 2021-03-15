@@ -808,14 +808,14 @@ MonoBehaviour:
     mixerGroup: {fileID: 24300002, guid: b1af4b8fc8123ca44a131352fd5f7d99, type: 2}
   - elementName: MeteoriteCrashEarth
     name: 9
-    audioClip: {fileID: 8300000, guid: b930d28c67eb543129955ae16de7b239, type: 3}
+    audioClip: {fileID: 0}
     volume: 0.393
     source: {fileID: 0}
     loop: 0
     mixerGroup: {fileID: 24300002, guid: b1af4b8fc8123ca44a131352fd5f7d99, type: 2}
   - elementName: MinusHP
     name: 12
-    audioClip: {fileID: 8300000, guid: b930d28c67eb543129955ae16de7b239, type: 3}
+    audioClip: {fileID: 0}
     volume: 0.355
     source: {fileID: 0}
     loop: 0
@@ -7585,7 +7585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059584996}
   m_LocalRotation: {x: -0.004962057, y: -0.68411034, z: 0.7177678, w: -0.1295293}
-  m_LocalPosition: {x: -64.43, y: 13.67, z: 0.5}
+  m_LocalPosition: {x: -59.3, y: 49.2, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 72848048}
@@ -7603,9 +7603,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.81995493, b: 0.5829477, a: 1}
-  m_Intensity: 2.27
-  m_Range: 263.1
-  m_SpotAngle: 52
+  m_Intensity: 1.4
+  m_Range: 263.77
+  m_SpotAngle: 82
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
