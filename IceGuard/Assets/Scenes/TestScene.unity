@@ -3350,7 +3350,7 @@ RectTransform:
   - {fileID: 538232390}
   - {fileID: 479113914}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4347,7 +4347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1006150930
 PrefabInstance:
@@ -5656,6 +5656,10 @@ MonoBehaviour:
   MeteoriteController: {fileID: 1040829446}
   GameUI: {fileID: 538232389}
   Cells: {fileID: 894713948}
+  timeBeforeRepairMin: 40
+  timeBeforeRepairMax: 70
+  RepairDrone: {fileID: 1240545715969507202, guid: 7eddb0e43b1aa0c40b4640a77ce7d6d1,
+    type: 3}
 --- !u!4 &1346017746
 Transform:
   m_ObjectHideFlags: 0

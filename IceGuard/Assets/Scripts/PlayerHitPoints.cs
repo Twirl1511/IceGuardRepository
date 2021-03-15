@@ -34,7 +34,6 @@ public class PlayerHitPoints : MonoBehaviour
                 e.SetActive(false);
             }
         }
-        HPArray[HitPoints].SetActive(false);
 
         if (HitPoints == 3)
         {
@@ -42,6 +41,10 @@ public class PlayerHitPoints : MonoBehaviour
             {
                 e.SetActive(true);
             }
+        }
+        else
+        {
+            HPArray[HitPoints].SetActive(false);
         }
     }
     public static void MinusHP()

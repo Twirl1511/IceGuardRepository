@@ -14,8 +14,21 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject MeteoriteController;
     [SerializeField] private GameObject GameUI;
     [SerializeField] private GameObject Cells;
+    [Header("Repair Drone")]
+    [SerializeField] private float timeBeforeRepairMin;
+    [SerializeField] private float timeBeforeRepairMax;
+    [SerializeField] private GameObject RepairDrone;
+
+    private enum DroneStates
+    {
+        Ready,
+        NotReady
+    }
+    private DroneStates DroneState;
+    
     private void Start()
     {
+        DroneState = DroneStates.NotReady;
         Debug.Log(_firstGame);
         /// сделать логику паузы !!!!!!!!!!
         StartTipsPanel.SetActive(false);
@@ -27,6 +40,7 @@ public class MenuController : MonoBehaviour
         }
         else
         {
+            DroneState = DroneStates.Ready;
             CreatePlayer();
             MeteoriteController.SetActive(true);
             GameUI.SetActive(true);
@@ -34,6 +48,7 @@ public class MenuController : MonoBehaviour
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
         }
+        
     }
     private void Update()
     {
@@ -43,8 +58,14 @@ public class MenuController : MonoBehaviour
             Days.text = DayCounter.GetComponent<DayCounter>().Counter.text;
             Time.timeScale = 0;
         }
+        /// запускаем лечащего дрона
+        if(DroneState == DroneStates.Ready)
+        {
+            StartCoroutine(DroneAppearDelay());
+        }
     }
 
+    
     private void CreatePlayer()
     {
         int x = Random.Range(-2, 3);
@@ -52,6 +73,33 @@ public class MenuController : MonoBehaviour
 
         GameObject.Instantiate(Resources.Load("Player"), new Vector3(x, 0, z), Quaternion.identity);
         GameObject.Instantiate(Resources.Load("PlayerGhost"), new Vector3(x, 0, z), Quaternion.identity);
+    }
+
+    IEnumerator DroneAppearDelay()
+    {
+        DroneState = DroneStates.NotReady;
+        yield return new WaitForSeconds(Random.Range(timeBeforeRepairMin, timeBeforeRepairMax));
+        CreateRepairTarget();
+        DroneState = DroneStates.Ready;
+    }
+
+    private void CreateRepairTarget()
+    {
+
+        List<Cell> PropperCellsArray = new List<Cell>();
+        foreach(var e in CellController.CellDouble)
+        {
+            if(e.currentState == Cell.State.Clear)
+            {
+                PropperCellsArray.Add(e);
+            }
+        }
+        int randomCell = Random.Range(0, PropperCellsArray.Count);
+
+        float x = PropperCellsArray[randomCell].transform.position.x;
+        float z = PropperCellsArray[randomCell].transform.position.z;
+
+        GameObject.Instantiate(Resources.Load(RepairDrone.name), new Vector3(x, 0, z), Quaternion.identity);
     }
 
     public void OnClickRestart()
