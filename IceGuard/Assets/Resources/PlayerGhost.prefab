@@ -82,7 +82,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  PublicTimeToReachNextTile: 0.2
+  PublicTimeToReachNextTile: 0.3
   PathPoint: {fileID: 4394652307483663407, guid: 932d34017b071c84286bff1c8eaee28e,
     type: 3}
   PlayerState: 0
