@@ -2158,7 +2158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &538232390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4844,7 +4844,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9010908, b: 0.7122642, a: 1}
+  m_Color: {r: 0.9056604, g: 0.89472914, b: 0.7817729, a: 1}
   m_Intensity: 2.1
   m_Range: 10
   m_SpotAngle: 30
@@ -5115,7 +5115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1156291083}
   m_Layer: 0
-  m_Name: Target
+  m_Name: TargetTEst2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
