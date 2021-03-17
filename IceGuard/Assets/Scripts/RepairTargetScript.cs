@@ -55,7 +55,6 @@ public class RepairTargetScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerHitPoints.RestartHP();
-            Debug.Log("PlayerHitPoints.RestartHP();");
         }
     }
 

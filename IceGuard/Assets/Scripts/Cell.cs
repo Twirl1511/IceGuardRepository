@@ -10,6 +10,7 @@ public class Cell : MonoBehaviour
         PlayerOcupied,
         MeteoriteIsComming,
         ForceField,
+        RepairBeam,
         Clear
     }
     private int number;
@@ -40,6 +41,9 @@ public class Cell : MonoBehaviour
                 break;
             case "MeteoriteIsComming":
                 currentState = State.MeteoriteIsComming;
+                break;
+            case "RepairBeam":
+                currentState = State.RepairBeam;
                 break;
             default:
                 currentState = State.Clear;

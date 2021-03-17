@@ -29,7 +29,6 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         DroneState = DroneStates.NotReady;
-        Debug.Log(_firstGame);
         /// сделать логику паузы !!!!!!!!!!
         StartTipsPanel.SetActive(false);
         if (_firstGame)

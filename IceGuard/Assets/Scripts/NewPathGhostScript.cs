@@ -13,7 +13,6 @@ public class NewPathGhostScript : MonoBehaviour
         {
             GhostPathPoints.Add(gameObject.transform.position);
             GhostPreviousPoint = gameObject.transform.position;
-            Debug.Log(GhostPathPoints.Count);
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyMeteoritTimer : MonoBehaviour
 {
     
-    public float currentTime;
+    private float currentTime;
     /// <summary>
     /// рандомное время падения которое мы получаем при генерации метеоритов
     /// </summary>
@@ -14,9 +14,12 @@ public class DestroyMeteoritTimer : MonoBehaviour
     private bool IsTimerActive;
     [SerializeField] private Collider collider;
     [SerializeField] private GameObject Explosion;
+    [SerializeField] private GameObject MeteoriteIsComming;
+    private GameObject MeteoriteIsCommingObject;
 
     void Start()
     {
+        MeteoriteIsCommingObject = Instantiate(Resources.Load(MeteoriteIsComming.name), transform.position, Quaternion.identity) as GameObject;
         Explosion.SetActive(false);
         IsTimerActive = false;
         /// включаем объект текс меша через 1 секунду после создания метеорита
@@ -64,8 +67,14 @@ public class DestroyMeteoritTimer : MonoBehaviour
             timer.text = timetoFall.ToString("#");
         }
     }
-    
-    
+
+    private void OnDestroy()
+    {
+        Destroy(MeteoriteIsCommingObject);
+        MeteoriteController.meteoriteCounter--;
+        Debug.Log($"метеорит уничтожен, осталось {MeteoriteController.meteoriteCounter}");
+    }
+
     /// <summary>
     /// если метеорит врежется в Землю
     /// </summary>
@@ -73,6 +82,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     IEnumerator LaterDestroy()
     {
         yield return new WaitForSeconds(currentTime);
+        
         FindObjectOfType<SoundManager>().PlaySoundOneShot(Sound.SoundName.MeteoriteCrashEarth);
         Destroy(this.gameObject);
     }

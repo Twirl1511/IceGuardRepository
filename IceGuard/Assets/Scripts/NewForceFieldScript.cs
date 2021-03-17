@@ -29,7 +29,6 @@ public class NewForceFieldScript : MonoBehaviour
         Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
         if (SecondsToDestroy >= lifeTime)
         {
-            Debug.Log(allForceFields.Count);
             Destroy(this.gameObject);
         }
     }
@@ -52,7 +51,6 @@ public class NewForceFieldScript : MonoBehaviour
     IEnumerator LaterDestroy(float seconds = 40)
     {
         yield return new WaitForSecondsRealtime(seconds);
-        Debug.Log(allForceFields.Count);
         Destroy(this.gameObject);
     }
 

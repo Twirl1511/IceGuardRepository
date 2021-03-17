@@ -11,6 +11,7 @@ TagManager:
   - MeteoriteIsComming
   - Path
   - PlayerGhost
+  - RepairBeam
   layers:
   - Default
   - TransparentFX
