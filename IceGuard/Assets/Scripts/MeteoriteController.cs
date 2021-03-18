@@ -40,6 +40,11 @@ public class MeteoriteController : MonoBehaviour
 
     void Update()
     {
+        if(meteoriteCounter < 0)
+        {
+            meteoriteCounter = 0;
+        }
+
         if(meteoriteCounter < 3)
         {
             CheckMeteorites();
@@ -136,6 +141,7 @@ public class MeteoriteController : MonoBehaviour
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
                 addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
+                Debug.Log("addSecondsToBoom = " + addSecondsToBoom);
                 break;
             }
         }

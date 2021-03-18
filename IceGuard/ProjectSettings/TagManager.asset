@@ -12,6 +12,7 @@ TagManager:
   - Path
   - PlayerGhost
   - RepairBeam
+  - PlyaerOcupied
   layers:
   - Default
   - TransparentFX

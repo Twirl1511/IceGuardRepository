@@ -29,26 +29,54 @@ public class Cell : MonoBehaviour
         return number;
     }
 
+
+    
     private void OnTriggerStay(Collider other)
     {
-        switch (other.tag)
+
+        if (other.CompareTag("PlyaerOcupied"))
         {
-            case "Player":
-                currentState = State.PlayerOcupied;
-                break;
-            case "ForceField":
-                currentState = State.ForceField;
-                break;
-            case "MeteoriteIsComming":
-                currentState = State.MeteoriteIsComming;
-                break;
-            case "RepairBeam":
-                currentState = State.RepairBeam;
-                break;
-            default:
-                currentState = State.Clear;
-                break;
+            currentState = State.PlayerOcupied;
+        } else
+        if (other.CompareTag("ForceField"))
+        {
+            currentState = State.ForceField;
+        }else
+        if (other.CompareTag("MeteoriteIsComming"))
+        {
+            currentState = State.MeteoriteIsComming;
         }
+        else
+        if (other.CompareTag("RepairBeam"))
+        {
+            currentState = State.RepairBeam;
+        }
+        else
+        {
+            currentState = State.Clear;
+        }
+
+
+
+
+        //    switch (other.tag)
+        //{
+        //    case "PlyaerOcupied":
+        //        currentState = State.PlayerOcupied;
+        //        break;
+        //    case "ForceField":
+        //        currentState = State.ForceField;
+        //        break;
+        //    case "MeteoriteIsComming":
+        //        currentState = State.MeteoriteIsComming;
+        //        break;
+        //    case "RepairBeam":
+        //        currentState = State.RepairBeam;
+        //        break;
+        //    default:
+        //        currentState = State.Clear;
+        //        break;
+        //}
     }
 
 }
