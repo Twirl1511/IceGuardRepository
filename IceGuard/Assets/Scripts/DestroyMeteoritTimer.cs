@@ -12,7 +12,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     public float timetoFall;
     public TextMesh timer;
     private bool IsTimerActive;
-    [SerializeField] private Collider collider;
+    public Collider Collider;
     [SerializeField] private GameObject Explosion;
     [SerializeField] private GameObject MeteoriteIsComming;
     private GameObject MeteoriteIsCommingObject;
@@ -93,7 +93,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(currentTime - 0.5f);
-        collider.enabled = true;
+        Collider.enabled = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
     {

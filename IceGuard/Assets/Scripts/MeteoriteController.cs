@@ -70,19 +70,19 @@ public class MeteoriteController : MonoBehaviour
                 randomAppearTime = CalculateRandomAppearTime(meteoriteCounter);
                 StartCoroutine(LaterMeteoriteStart(randomAppearTime, meteoriteCounter));
                 meteoriteCounter++;
-                Debug.Log($"Через {randomAppearTime} спавним {meteoriteCounter} метеорит!");
+                //Debug.Log($"Через {randomAppearTime} спавним {meteoriteCounter} метеорит!");
                 break;
             case 1:
                 randomAppearTime = CalculateRandomAppearTime(meteoriteCounter);
                 StartCoroutine(LaterMeteoriteStart(randomAppearTime, meteoriteCounter));
                 meteoriteCounter++;
-                Debug.Log($"Через {randomAppearTime} спавним {meteoriteCounter} метеорит!");
+                //Debug.Log($"Через {randomAppearTime} спавним {meteoriteCounter} метеорит!");
                 break;
             case 2:
                 randomAppearTime = CalculateRandomAppearTime(meteoriteCounter);
                 StartCoroutine(LaterMeteoriteStart(randomAppearTime, meteoriteCounter));
                 meteoriteCounter++;
-                Debug.Log($"Через {randomAppearTime} спавним {meteoriteCounter} метеорит!");
+                //Debug.Log($"Через {randomAppearTime} спавним {meteoriteCounter} метеорит!");
                 break;
             default:
                 break;
@@ -142,20 +142,21 @@ public class MeteoriteController : MonoBehaviour
         float timeToFall = Random.Range(meteorite.BoomTimeMin, meteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
         int addSecondsToBoom = 0;
 
-        //foreach (var e in CellController.CellDouble)
-        //{
-        //    if (e.currentState == Cell.State.PlayerOcupied)
-        //    {
-        //        float x = Mathf.Abs(e.transform.position.x - position.x);
-        //        float z = Mathf.Abs(e.transform.position.z - position.z);
-        //        addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
-        //        Debug.Log("addSecondsToBoom = " + addSecondsToBoom);
+        foreach (var e in CellController.CellDouble)
+        {
+            if (e.currentState == Cell.State.PlayerOcupied)
+            {
+                float x = Mathf.Abs(e.transform.position.x - position.x);
+                float z = Mathf.Abs(e.transform.position.z - position.z);
+                addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
+                Debug.Log("addSecondsToBoom = " + addSecondsToBoom);
 
-        //    }
-        //}
+            }
+        }
         State = States.Ready;
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
+        Debug.Log("спавним метеорит");
         
     }
 

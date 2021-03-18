@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timetoFall: 0
   timer: {fileID: 4986927726595269374}
-  collider: {fileID: 6745113399066036492}
+  Collider: {fileID: 6745113399066036492}
   Explosion: {fileID: 4584119119514226857}
   MeteoriteIsComming: {fileID: 1840169202675429244, guid: eeefdaff36747434c941b641bfc38009,
     type: 3}
