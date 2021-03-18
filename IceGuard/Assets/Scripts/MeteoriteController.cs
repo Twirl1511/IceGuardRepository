@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Meteorite
 {
-    [Range(0, 20)]
+    [Range(1, 20)]
     public int AppearTimeMin;
-    [Range(0, 20)]
+    [Range(1, 20)]
     public int AppearTimeMax;
     [Range(0, 20)]
     public int BoomTimeMin;
@@ -25,12 +25,13 @@ public class MeteoriteController : MonoBehaviour
     [SerializeField] private Meteorite[] MeteoriteArray;
     [SerializeField] private float timerForAnglePositions;
     private float _timer;
+    private bool _angleTimer = false;
     private Vector3[] AngelPositions = new Vector3[4] {
         new Vector3(3,0,2), 
         new Vector3(-2, 0, 2),
         new Vector3(-2, 0, -3),
         new Vector3(3, 0, -3)};
- 
+    private Vector3 _currentAnglePosition;
     private enum States
     {
         Ready,
@@ -57,7 +58,11 @@ public class MeteoriteController : MonoBehaviour
             State = States.Stop;
             CheckMeteorites();
         }
-        _timer += Time.deltaTime;
+        if (_angleTimer)
+        {
+            _timer += Time.deltaTime;
+        }
+        
     }
 
   
@@ -123,13 +128,22 @@ public class MeteoriteController : MonoBehaviour
 
         Vector3 position = new Vector3(x, 0, z);
 
+        if(_timer >= 30)
+        {
+            _timer = 0;
+            _angleTimer = false;
+        }
+
         foreach(var e in AngelPositions)
         {
             if(position == e)
             {
-                // запускаем таймер
+                _angleTimer = true;
             }
         }
+
+
+
 
         return position;
     }
@@ -141,19 +155,18 @@ public class MeteoriteController : MonoBehaviour
     {
         float timeToFall = Random.Range(meteorite.BoomTimeMin, meteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
         int addSecondsToBoom = 0;
-
         foreach (var e in CellController.CellDouble)
         {
             if (e.currentState == Cell.State.PlayerOcupied)
             {
+                Debug.Log(e.name);
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
                 addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
                 Debug.Log("спавним метеорит");
-
             }
         }
-        
+
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
         State = States.Ready;
