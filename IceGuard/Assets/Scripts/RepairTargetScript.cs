@@ -11,6 +11,7 @@ public class RepairTargetScript : MonoBehaviour
     private bool IsTimerActive = false;
     [SerializeField] TextMesh timerText;
     [SerializeField] private Collider collider;
+    private bool readyToRepair = false;
 
     void Start()
     {
@@ -47,15 +48,17 @@ public class RepairTargetScript : MonoBehaviour
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(timeToLive);
-        collider.enabled = true;
+        readyToRepair = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (readyToRepair)
         {
-            PlayerHitPoints.RestartHP();
+            if (other.CompareTag("Player"))
+            {
+                PlayerHitPoints.RestartHP();
+            }
         }
     }
-
 }

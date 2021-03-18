@@ -149,15 +149,16 @@ public class MeteoriteController : MonoBehaviour
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
                 addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
-                Debug.Log("addSecondsToBoom = " + addSecondsToBoom);
+                Debug.Log("спавним метеорит");
 
             }
         }
-        State = States.Ready;
+        
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
-        Debug.Log("спавним метеорит");
+        State = States.Ready;
         
+        Debug.Log($"addSecondsToBoom = {timeToFall} + {addSecondsToBoom}" );
     }
 
 }

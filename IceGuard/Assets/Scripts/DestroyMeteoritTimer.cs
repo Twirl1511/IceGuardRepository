@@ -16,11 +16,13 @@ public class DestroyMeteoritTimer : MonoBehaviour
     [SerializeField] private GameObject Explosion;
     [SerializeField] private GameObject MeteoriteIsComming;
     [SerializeField] private GameObject Mine;
-    private GameObject MeteoriteIsCommingObject;
+    //private GameObject MeteoriteIsCommingObject;
+
+    private bool readyToStrike = false;
 
     void Start()
     {
-        MeteoriteIsCommingObject = Instantiate(Resources.Load(MeteoriteIsComming.name), transform.position, Quaternion.identity) as GameObject;
+        //MeteoriteIsCommingObject = Instantiate(Resources.Load(MeteoriteIsComming.name), transform.position, Quaternion.identity) as GameObject;
         Explosion.SetActive(false);
         IsTimerActive = false;
         /// включаем объект текс меша через 1 секунду после создания метеорита
@@ -71,7 +73,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(MeteoriteIsCommingObject);
+        //Destroy(MeteoriteIsCommingObject);
         MeteoriteController.meteoriteCounter--;
         Debug.Log($"метеорит уничтожен, осталось {MeteoriteController.meteoriteCounter}");
     }
@@ -94,7 +96,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     IEnumerator ActivateCollider()
     {
         yield return new WaitForSeconds(currentTime - 0.5f);
-        Collider.enabled = true;
+        readyToStrike = true;
     }
     IEnumerator CheckMeteoriteKillEarth()
     {
@@ -110,24 +112,32 @@ public class DestroyMeteoritTimer : MonoBehaviour
     private bool _isMeteoriteDestroyed = false;
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (readyToStrike)
         {
-            Explosion.SetActive(true);
-            _isMeteoriteKillEarth = false;
-            PlayerHitPoints.MinusAllHP();
-        }
-        if (other.CompareTag(Mine.tag))
-        {
-            if (_isMeteoriteDestroyed)
+            if (other.CompareTag("Player"))
             {
-                return;
+                Explosion.SetActive(true);
+                _isMeteoriteKillEarth = false;
+                PlayerHitPoints.MinusAllHP();
             }
-            Explosion.SetActive(true);
-            _isMeteoriteKillEarth = false;
-            _isMeteoriteDestroyed = true;
-            Debug.Log("ударилось в поле");
-            
+
+            if (other.CompareTag(Mine.tag))
+            {
+                if (_isMeteoriteDestroyed)
+                {
+                    return;
+                }
+                Explosion.SetActive(true);
+                _isMeteoriteKillEarth = false;
+                _isMeteoriteDestroyed = true;
+                Destroy(other.gameObject);
+                /// ударилось в поле
+            }
+
         }
+
+        
+        
     }
     
  

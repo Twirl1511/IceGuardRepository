@@ -33,8 +33,6 @@ public class Cell : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(gameObject.name + " касается " + other.gameObject.name);
-        
 
         if (other.CompareTag("MeteoriteIsComming"))
         {
