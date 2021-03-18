@@ -31,9 +31,16 @@ public class MeteoriteController : MonoBehaviour
         new Vector3(-2, 0, -3),
         new Vector3(3, 0, -3)};
  
+    private enum States
+    {
+        Ready,
+        Stop
+    }
+    private States State;
 
     void Start()
     {
+        State = States.Ready;
         meteoriteCounter = 0;
     }
 
@@ -45,8 +52,9 @@ public class MeteoriteController : MonoBehaviour
             meteoriteCounter = 0;
         }
 
-        if(meteoriteCounter < 3)
+        if(meteoriteCounter < 3 && State == States.Ready)
         {
+            State = States.Stop;
             CheckMeteorites();
         }
         _timer += Time.deltaTime;
@@ -134,18 +142,18 @@ public class MeteoriteController : MonoBehaviour
         float timeToFall = Random.Range(meteorite.BoomTimeMin, meteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
         int addSecondsToBoom = 0;
 
-        foreach (var e in CellController.CellDouble)
-        {
-            if (e.currentState == Cell.State.PlayerOcupied)
-            {
-                float x = Mathf.Abs(e.transform.position.x - position.x);
-                float z = Mathf.Abs(e.transform.position.z - position.z);
-                addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
-                Debug.Log("addSecondsToBoom = " + addSecondsToBoom);
-                break;
-            }
-        }
+        //foreach (var e in CellController.CellDouble)
+        //{
+        //    if (e.currentState == Cell.State.PlayerOcupied)
+        //    {
+        //        float x = Mathf.Abs(e.transform.position.x - position.x);
+        //        float z = Mathf.Abs(e.transform.position.z - position.z);
+        //        addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
+        //        Debug.Log("addSecondsToBoom = " + addSecondsToBoom);
 
+        //    }
+        //}
+        State = States.Ready;
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
         

@@ -6,7 +6,7 @@ public class CellController : MonoBehaviour
 {
     public Cell[] Cells;
     public static Cell[,] CellDouble = new Cell[6,6];
-    private void Awake()
+    private void Start()
     {
         int j = 0;
         int k = 0;

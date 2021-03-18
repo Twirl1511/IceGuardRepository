@@ -34,19 +34,22 @@ public class Cell : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (other.CompareTag("PlyaerOcupied"))
-        {
-            currentState = State.PlayerOcupied;
-        } else
-        if (other.CompareTag("ForceField"))
-        {
-            currentState = State.ForceField;
-        }else
         if (other.CompareTag("MeteoriteIsComming"))
         {
             currentState = State.MeteoriteIsComming;
         }
         else
+        if (other.CompareTag("Player"))
+        {
+            currentState = State.PlayerOcupied;
+        }
+        else
+        if (other.CompareTag("ForceField"))
+        {
+            currentState = State.ForceField;
+        }
+        else
+
         if (other.CompareTag("RepairBeam"))
         {
             currentState = State.RepairBeam;
