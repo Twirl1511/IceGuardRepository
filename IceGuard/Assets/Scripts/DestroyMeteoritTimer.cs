@@ -15,6 +15,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
     public Collider Collider;
     [SerializeField] private GameObject Explosion;
     [SerializeField] private GameObject MeteoriteIsComming;
+    [SerializeField] private GameObject Mine;
     private GameObject MeteoriteIsCommingObject;
 
     void Start()
@@ -115,7 +116,7 @@ public class DestroyMeteoritTimer : MonoBehaviour
             _isMeteoriteKillEarth = false;
             PlayerHitPoints.MinusAllHP();
         }
-        if (other.CompareTag("ForceField"))
+        if (other.CompareTag(Mine.tag))
         {
             if (_isMeteoriteDestroyed)
             {

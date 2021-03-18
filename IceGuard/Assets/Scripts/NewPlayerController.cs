@@ -113,7 +113,7 @@ public class NewPlayerController : MonoBehaviour
         if (other.CompareTag("EmptyField"))
         {
             GameObject NewForceField;
-            NewForceField = GameObject.Instantiate(Resources.Load("NewForceField 1"), other.transform.position, Quaternion.identity) as GameObject;
+            NewForceField = GameObject.Instantiate(Resources.Load("Mine"), other.transform.position, Quaternion.identity) as GameObject;
             NewForceFieldScript.allForceFields.Add(NewForceField);
         }
         
@@ -124,7 +124,7 @@ public class NewPlayerController : MonoBehaviour
         {
             GameObject.Destroy(other.gameObject);
         }
-        if (other.CompareTag("ForceField"))
+        if (other.CompareTag("Mine"))
         {
             CreateExplosion(other.transform.position);
         }

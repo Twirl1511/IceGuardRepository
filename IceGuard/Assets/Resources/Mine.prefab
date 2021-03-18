@@ -198,8 +198,8 @@ GameObject:
   - component: {fileID: 2668027300418355199}
   - component: {fileID: 8673946256960825963}
   m_Layer: 0
-  m_Name: NewForceField 1
-  m_TagString: ForceField
+  m_Name: Mine
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4

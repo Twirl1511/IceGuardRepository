@@ -9,7 +9,7 @@ public class Cell : MonoBehaviour
     {
         PlayerOcupied,
         MeteoriteIsComming,
-        ForceField,
+        Mine,
         RepairBeam,
         Clear
     }
@@ -33,6 +33,8 @@ public class Cell : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(gameObject.name + " касается " + other.gameObject.name);
+        
 
         if (other.CompareTag("MeteoriteIsComming"))
         {
@@ -44,9 +46,9 @@ public class Cell : MonoBehaviour
             currentState = State.PlayerOcupied;
         }
         else
-        if (other.CompareTag("ForceField"))
+        if (other.CompareTag("Mine"))
         {
-            currentState = State.ForceField;
+            currentState = State.Mine;
         }
         else
 

@@ -13,6 +13,7 @@ TagManager:
   - PlayerGhost
   - RepairBeam
   - PlyaerOcupied
+  - Mine
   layers:
   - Default
   - TransparentFX

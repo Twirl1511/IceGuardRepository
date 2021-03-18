@@ -248,6 +248,7 @@ MonoBehaviour:
   Explosion: {fileID: 4584119119514226857}
   MeteoriteIsComming: {fileID: 1840169202675429244, guid: eeefdaff36747434c941b641bfc38009,
     type: 3}
+  Mine: {fileID: 2668027300418355198, guid: 4722d77fcc8ee404c9ace681739adda5, type: 3}
 --- !u!65 &6745113399066036492
 BoxCollider:
   m_ObjectHideFlags: 0

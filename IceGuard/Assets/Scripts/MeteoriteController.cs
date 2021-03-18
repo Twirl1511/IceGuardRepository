@@ -105,7 +105,7 @@ public class MeteoriteController : MonoBehaviour
         List<Cell> PropperCellsArray = new List<Cell>();
         foreach (var e in CellController.CellDouble)
         {
-            if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.ForceField)
+            if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.Mine)
             {
                 PropperCellsArray.Add(e);
             }
