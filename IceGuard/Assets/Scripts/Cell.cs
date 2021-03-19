@@ -40,25 +40,62 @@ public class Cell : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         isCollisioned = true;
+
+
+
+
+
         if (other.CompareTag("Player"))
         {
             currentState = State.PlayerOcupied;
         }
         else
-        if (other.CompareTag("Meteorite"))
         {
-            currentState = State.MeteoriteIsComming;
+            if (other.CompareTag("Meteorite"))
+            {
+                currentState = State.MeteoriteIsComming;
+                Debug.Log("if (other.CompareTag(Meteorite))");
+            }
+            else
+            {
+                if (other.CompareTag("Mine"))
+                {
+                    currentState = State.Mine;
+                }
+                else
+                {
+                    if (other.CompareTag("RepairBeam"))
+                    {
+                        currentState = State.RepairBeam;
+                    }
+                }
+            }
         }
-        else
-        if (other.CompareTag("Mine"))
-        {
-            currentState = State.Mine;
-        }
-        else
-        if (other.CompareTag("RepairBeam"))
-        {
-            currentState = State.RepairBeam;
-        }
+        
+
+
+        //if (other.CompareTag("Player"))
+        //{
+        //    currentState = State.PlayerOcupied;
+        //}
+        //else
+        //if (other.CompareTag("Meteorite"))
+        //{
+        //    currentState = State.MeteoriteIsComming;
+        //}
+        //else
+        //if (other.CompareTag("Mine"))
+        //{
+        //    currentState = State.Mine;
+        //}
+        //else
+        //if (other.CompareTag("RepairBeam"))
+        //{
+        //    currentState = State.RepairBeam;
+        //}
+
+
+
     }
 
     private void OnTriggerExit(Collider other)
