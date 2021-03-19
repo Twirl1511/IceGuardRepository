@@ -9033,8 +9033,8 @@ MonoBehaviour:
   MeteoriteController: {fileID: 1040829446}
   GameUI: {fileID: 538232389}
   Cells: {fileID: 894713948}
-  timeBeforeRepairMin: 50
-  timeBeforeRepairMax: 70
+  timeBeforeRepairMin: 5
+  timeBeforeRepairMax: 7
   RepairDrone: {fileID: 1240545715969507202, guid: 7eddb0e43b1aa0c40b4640a77ce7d6d1,
     type: 3}
 --- !u!4 &1346017746
@@ -10961,7 +10961,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1639865556}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1652178538
+--- !u!21 &1661645727
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0

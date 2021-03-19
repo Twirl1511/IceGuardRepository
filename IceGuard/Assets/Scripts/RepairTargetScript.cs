@@ -51,12 +51,14 @@ public class RepairTargetScript : MonoBehaviour
         readyToRepair = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (readyToRepair)
         {
+            Debug.Log("readyToRepair = true");
             if (other.CompareTag("Player"))
             {
+                Debug.Log(" коснулось плеера, чиним");
                 PlayerHitPoints.RestartHP();
             }
         }
