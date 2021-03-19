@@ -119,9 +119,14 @@ public class MeteoriteController : MonoBehaviour
             {
                 PropperCellsArray.Add(e);
             }
+            else
+            {
+                Debug.LogError($"{e.name}  {e.currentState}");
+                
+            }
         }
 
-
+        
 
         if (_timer >= timerForAnglePositions)
         {
