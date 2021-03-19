@@ -12,7 +12,6 @@ public class NewPathScript : MonoBehaviour
     {
         if(UIManager.GameState == UIManager.GameStates.Play)
         {
-            Debug.LogError("if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))");
             if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))
             {
                 PathPoints.Add(gameObject.transform.position);

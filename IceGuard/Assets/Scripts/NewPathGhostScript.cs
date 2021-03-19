@@ -16,10 +16,7 @@ public class NewPathGhostScript : MonoBehaviour
                 GhostPathPoints.Add(gameObject.transform.position);
                 GhostPreviousPoint = gameObject.transform.position;
             }
-        }
-
-
-            
+        }   
     }
 
     public bool CorrectNextPathPoint(Vector3 previousPosition, Vector3 newPoint)

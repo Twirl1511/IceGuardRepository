@@ -113,7 +113,7 @@ public class MeteoriteController : MonoBehaviour
     private Vector3 RandomPosition()
     {
         List<Cell> PropperCellsArray = new List<Cell>();
-        //Debug.LogError($"Клетки которые исключаем");
+        Debug.LogError($"Клетки которые исключаем");
         foreach (var e in CellController.CellDouble)
         {
             if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.Mine)
@@ -122,7 +122,7 @@ public class MeteoriteController : MonoBehaviour
             }
             else
             {
-                //Debug.LogError($"{e.name}  {e.currentState}");
+                Debug.LogError($"{e.name}  {e.currentState}");
             }
         }
 
@@ -148,7 +148,7 @@ public class MeteoriteController : MonoBehaviour
         float z = PropperCellsArray[randomCell].transform.position.z;
 
         Vector3 position = new Vector3(x, 0, z);
-        //Debug.LogError($"Метеорит спавнится на {PropperCellsArray[randomCell].name}  {PropperCellsArray[randomCell].currentState}");
+        Debug.LogError($"Метеорит спавнится на {PropperCellsArray[randomCell].name}  {PropperCellsArray[randomCell].currentState}");
 
 
         if (!_angleTimer)
