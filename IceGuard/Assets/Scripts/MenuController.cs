@@ -18,6 +18,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private float timeBeforeRepairMin;
     [SerializeField] private float timeBeforeRepairMax;
     [SerializeField] private GameObject RepairDrone;
+    [SerializeField] private float ProgressionTime;
 
     private enum DroneStates
     {
@@ -78,6 +79,8 @@ public class MenuController : MonoBehaviour
     {
         DroneState = DroneStates.NotReady;
         yield return new WaitForSeconds(Random.Range(timeBeforeRepairMin, timeBeforeRepairMax));
+        timeBeforeRepairMin += ProgressionTime;
+        timeBeforeRepairMax += ProgressionTime;
         CreateRepairTarget();
         DroneState = DroneStates.Ready;
     }

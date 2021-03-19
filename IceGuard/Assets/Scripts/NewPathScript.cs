@@ -6,13 +6,18 @@ public class NewPathScript : MonoBehaviour
 {
     public static List<Vector3> PathPoints = new List<Vector3>();
     public static Vector3 PreviousPoint;
+    
 
     private void OnMouseDown()
     {
-        if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))
+        if(UIManager.GameState == UIManager.GameStates.Play)
         {
-            PathPoints.Add(gameObject.transform.position);
-            PreviousPoint = gameObject.transform.position;
+            Debug.LogError("if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))");
+            if (CorrectNextPathPoint(PreviousPoint, gameObject.transform.position))
+            {
+                PathPoints.Add(gameObject.transform.position);
+                PreviousPoint = gameObject.transform.position;
+            }
         }
     }
 

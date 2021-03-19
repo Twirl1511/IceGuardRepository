@@ -41,12 +41,12 @@ public class NewPlayerController : MonoBehaviour
     }
     private void Update()
     {
-        TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
-        Move();
+        if (UIManager.GameState == UIManager.GameStates.Play)
+        {
+            TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
+            Move();
+        }
     }
-
-    
-
 
     private void RingsRotation(float speed)
     {

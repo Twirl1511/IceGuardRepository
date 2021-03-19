@@ -24,9 +24,12 @@ public class RepairTargetScript : MonoBehaviour
 
     private void Update()
     {
-        if (!IsTimerActive)
+        if (UIManager.GameState == UIManager.GameStates.Play)
         {
-            StartCoroutine(CurrentTimeMinusOne());
+            if (!IsTimerActive)
+            {
+                StartCoroutine(CurrentTimeMinusOne());
+            }
         }
     }
 

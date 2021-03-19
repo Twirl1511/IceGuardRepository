@@ -9,11 +9,17 @@ public class NewPathGhostScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (CorrectNextPathPoint(GhostPreviousPoint, gameObject.transform.position))
+        if (UIManager.GameState == UIManager.GameStates.Play)
         {
-            GhostPathPoints.Add(gameObject.transform.position);
-            GhostPreviousPoint = gameObject.transform.position;
+            if (CorrectNextPathPoint(GhostPreviousPoint, gameObject.transform.position))
+            {
+                GhostPathPoints.Add(gameObject.transform.position);
+                GhostPreviousPoint = gameObject.transform.position;
+            }
         }
+
+
+            
     }
 
     public bool CorrectNextPathPoint(Vector3 previousPosition, Vector3 newPoint)
