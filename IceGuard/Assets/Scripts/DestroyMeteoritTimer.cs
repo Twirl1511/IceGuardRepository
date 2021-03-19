@@ -14,15 +14,12 @@ public class DestroyMeteoritTimer : MonoBehaviour
     private bool IsTimerActive;
     public Collider Collider;
     [SerializeField] private GameObject Explosion;
-    [SerializeField] private GameObject MeteoriteIsComming;
     [SerializeField] private GameObject Mine;
-    //private GameObject MeteoriteIsCommingObject;
 
     private bool readyToStrike = false;
 
     void Start()
     {
-        //MeteoriteIsCommingObject = Instantiate(Resources.Load(MeteoriteIsComming.name), transform.position, Quaternion.identity) as GameObject;
         Explosion.SetActive(false);
         IsTimerActive = false;
         /// включаем объект текс меша через 1 секунду после создания метеорита
@@ -73,7 +70,6 @@ public class DestroyMeteoritTimer : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Destroy(MeteoriteIsCommingObject);
         MeteoriteController.meteoriteCounter--;
         Debug.Log($"метеорит уничтожен, осталось {MeteoriteController.meteoriteCounter}");
     }

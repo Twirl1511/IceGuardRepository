@@ -26,11 +26,14 @@ public class MeteoriteController : MonoBehaviour
     [SerializeField] private float timerForAnglePositions;
     private float _timer;
     private bool _angleTimer = false;
-    private Vector3[] AngelPositions = new Vector3[4] {
-        new Vector3(3,0,2), 
-        new Vector3(-2, 0, 2),
-        new Vector3(-2, 0, -3),
-        new Vector3(3, 0, -3)};
+    [SerializeField] private Cell[] AngelPositions;
+    
+    
+    //= new Vector3[4] {
+    //    new Vector3(3,0,2), 
+    //    new Vector3(-2, 0, 2),
+    //    new Vector3(-2, 0, -3),
+    //    new Vector3(3, 0, -3)};
     private Vector3 _currentAnglePosition;
     private enum States
     {
@@ -58,6 +61,8 @@ public class MeteoriteController : MonoBehaviour
             State = States.Stop;
             CheckMeteorites();
         }
+
+
         if (_angleTimer)
         {
             _timer += Time.deltaTime;
@@ -115,11 +120,22 @@ public class MeteoriteController : MonoBehaviour
                 PropperCellsArray.Add(e);
             }
         }
-        if(_timer >= timerForAnglePositions)
+
+
+
+        if (_timer >= timerForAnglePositions)
         {
             _timer = 0;
-
+            _angleTimer = false;
         }
+        else
+        {
+            foreach(var e in AngelPositions)
+            {
+                PropperCellsArray.Remove(e);
+            }
+        }
+
 
         int randomCell = Random.Range(0, PropperCellsArray.Count);
 
@@ -128,19 +144,19 @@ public class MeteoriteController : MonoBehaviour
 
         Vector3 position = new Vector3(x, 0, z);
 
-        if(_timer >= 30)
-        {
-            _timer = 0;
-            _angleTimer = false;
-        }
 
-        foreach(var e in AngelPositions)
+
+        if (!_angleTimer)
         {
-            if(position == e)
+            foreach (var e in AngelPositions)
             {
-                _angleTimer = true;
+                if (position.x == e.transform.position.x && position.z == e.transform.position.z)
+                {
+                    _angleTimer = true;
+                }
             }
         }
+
 
 
 
