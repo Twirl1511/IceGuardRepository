@@ -5,6 +5,8 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     public State currentState;
+
+    private bool isCollisioned = false;
     public enum State
     {
         PlayerOcupied,
@@ -20,28 +22,31 @@ public class Cell : MonoBehaviour
         currentState = State.Clear;
     }
 
-    public void SetNumber(int num)
+    private void FixedUpdate()
     {
-        number = num;
-    }
-    public int GetNumber()
-    {
-        return number;
+        if (!isCollisioned)
+        {
+            currentState = State.Clear;
+        }
+        if (currentState != State.Clear)
+        {
+            isCollisioned = false;
+        }
+
     }
 
 
-    
     private void OnTriggerStay(Collider other)
     {
-
-        if (other.CompareTag("MeteoriteIsComming"))
-        {
-            currentState = State.MeteoriteIsComming;
-        }
-        else
+        isCollisioned = true;
         if (other.CompareTag("Player"))
         {
             currentState = State.PlayerOcupied;
+        }
+        else
+        if (other.CompareTag("Meteorite"))
+        {
+            currentState = State.MeteoriteIsComming;
         }
         else
         if (other.CompareTag("Mine"))
@@ -49,37 +54,15 @@ public class Cell : MonoBehaviour
             currentState = State.Mine;
         }
         else
-
         if (other.CompareTag("RepairBeam"))
         {
             currentState = State.RepairBeam;
         }
-        else
-        {
-            currentState = State.Clear;
-        }
-
-
-
-
-        //    switch (other.tag)
-        //{
-        //    case "PlyaerOcupied":
-        //        currentState = State.PlayerOcupied;
-        //        break;
-        //    case "ForceField":
-        //        currentState = State.ForceField;
-        //        break;
-        //    case "MeteoriteIsComming":
-        //        currentState = State.MeteoriteIsComming;
-        //        break;
-        //    case "RepairBeam":
-        //        currentState = State.RepairBeam;
-        //        break;
-        //    default:
-        //        currentState = State.Clear;
-        //        break;
-        //}
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        currentState = State.Clear;
+    }
+    
 }
