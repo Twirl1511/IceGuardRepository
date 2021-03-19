@@ -70,10 +70,10 @@ public class NewForceFieldScript : MonoBehaviour
             PlayerHitPoints.MinusHP();
             Destroy(this.gameObject);
         }
-        if (other.CompareTag("Meteorite"))
-        {
-            StartCoroutine(LaterDestroy(0));
-        }
+        //if (other.CompareTag("Meteorite"))
+        //{
+        //    StartCoroutine(LaterDestroy(0));
+        //}
     }
 
     private void OnDestroy()
