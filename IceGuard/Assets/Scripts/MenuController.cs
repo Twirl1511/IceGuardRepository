@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject StartTipsPanel;
     [SerializeField] private GameObject MeteoriteController;
     [SerializeField] private GameObject GameUI;
-    [SerializeField] private GameObject Cells;
+    //[SerializeField] private GameObject Cells;
     [Header("Repair Drone")]
     [SerializeField] private float timeBeforeRepairMin;
     [SerializeField] private float timeBeforeRepairMax;
@@ -35,7 +35,7 @@ public class MenuController : MonoBehaviour
         if (_firstGame)
         {
             StartTipsPanel.SetActive(true);
-            Time.timeScale = 0;
+            UIManager.GameState = UIManager.GameStates.Pause;
             _firstGame = false;
         }
         else
@@ -44,7 +44,7 @@ public class MenuController : MonoBehaviour
             CreatePlayer();
             MeteoriteController.SetActive(true);
             GameUI.SetActive(true);
-            Cells.SetActive(true);
+            //Cells.SetActive(true);
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
         }
@@ -54,6 +54,7 @@ public class MenuController : MonoBehaviour
     {
         if(PlayerHitPoints.GetHitPoints() <= 0)
         {
+            
             GameOverPanel.SetActive(true);
             Days.text = DayCounter.GetComponent<DayCounter>().Counter.text;
             Time.timeScale = 0;
@@ -112,6 +113,19 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("TestScene");
         DayCounter.GetComponent<DayCounter>().timer = 0;
     }
+
+    public void OnClickGO()
+    {
+        UIManager.GameState = UIManager.GameStates.Play;
+        DroneState = DroneStates.Ready;
+        CreatePlayer();
+        MeteoriteController.SetActive(true);
+        GameUI.SetActive(true);
+        //Cells.SetActive(true);
+        StartTipsPanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void OnClickExit()
     {
         Application.Quit();
