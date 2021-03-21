@@ -13,12 +13,14 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject StartTipsPanel;
     [SerializeField] private GameObject MeteoriteController;
     [SerializeField] private GameObject GameUI;
-    //[SerializeField] private GameObject Cells;
     [Header("Repair Drone")]
     [SerializeField] private float timeBeforeRepairMin;
     [SerializeField] private float timeBeforeRepairMax;
     [SerializeField] private GameObject RepairDrone;
     [SerializeField] private float ProgressionTime;
+    [Header("Tutorial")]
+    [SerializeField] private TutorialScript tutorialScript;
+
 
     private enum DroneStates
     {
@@ -30,9 +32,8 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         DroneState = DroneStates.NotReady;
-        /// сделать логику паузы !!!!!!!!!!
         StartTipsPanel.SetActive(false);
-        if (_firstGame)
+        if (_firstGame || !TutorialScript.isTutorialFinished)
         {
             StartTipsPanel.SetActive(true);
             UIManager.GameState = UIManager.GameStates.Pause;
@@ -44,7 +45,6 @@ public class MenuController : MonoBehaviour
             CreatePlayer();
             MeteoriteController.SetActive(true);
             GameUI.SetActive(true);
-            //Cells.SetActive(true);
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
         }
@@ -107,23 +107,43 @@ public class MenuController : MonoBehaviour
 
     public void OnClickRestart()
     {
-        PlayerHitPoints.RestartHP();
-        Time.timeScale = 1;
-        GameOverPanel.SetActive(false);
-        SceneManager.LoadScene("TestScene");
-        DayCounter.GetComponent<DayCounter>().timer = 0;
+        if (TutorialScript.isTutorialFinished)
+        {
+            PlayerHitPoints.RestartHP();
+            Time.timeScale = 1;
+            GameOverPanel.SetActive(false);
+            SceneManager.LoadScene("TestScene");
+            DayCounter.GetComponent<DayCounter>().timer = 0;
+        }
+        else
+        {
+            SceneManager.LoadScene("TestScene");
+        }
+
+
+            
     }
 
     public void OnClickGO()
     {
-        UIManager.GameState = UIManager.GameStates.Play;
-        DroneState = DroneStates.Ready;
-        CreatePlayer();
-        MeteoriteController.SetActive(true);
-        GameUI.SetActive(true);
-        //Cells.SetActive(true);
-        StartTipsPanel.SetActive(false);
-        Time.timeScale = 1;
+        if (TutorialScript.isTutorialFinished)
+        {
+            UIManager.GameState = UIManager.GameStates.Play;
+            DroneState = DroneStates.Ready;
+            CreatePlayer();
+            MeteoriteController.SetActive(true);
+            GameUI.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            UIManager.GameState = UIManager.GameStates.Play;
+            GameUI.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
+            tutorialScript.FirstStep();
+        }
     }
 
     public void OnClickExit()

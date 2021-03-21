@@ -7,7 +7,10 @@ using System.IO;
 public class TutorialScript : MonoBehaviour
 {
     public static bool isTutorialFinished;
-    [SerializeField] private GameObject Player; 
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject PlayerGhost;
+    [SerializeField] private GameObject MeteoriteTarget;
+    [SerializeField] private float FirstMeteoriteTimer;
 
     void Start()
     {
@@ -18,8 +21,8 @@ public class TutorialScript : MonoBehaviour
 
 
         StreamReader reader = new StreamReader(Application.dataPath + "/saveFile.json");
-        string s = reader.ReadToEnd();
-        isTutorialFinished = bool.TryParse(s, out isTutorialFinished);
+        isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
+        Debug.Log(isTutorialFinished);
         reader.Close();
 
 
@@ -30,6 +33,7 @@ public class TutorialScript : MonoBehaviour
         else
         {
             /// запускаем туторку
+            
         }
     }
 
@@ -40,7 +44,13 @@ public class TutorialScript : MonoBehaviour
 
     public void FirstStep()
     {
-        Player.transform.position = new Vector3(0, 0, -2);
+        Vector3 position = new Vector3(0, 0, -2);
+        Instantiate(Resources.Load(Player.name), position, Quaternion.identity);
+        Instantiate(Resources.Load(PlayerGhost.name), position, Quaternion.identity);
+        position = new Vector3(0, 0, 1);
+        GameObject meteorite = Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.identity) as GameObject;
+        meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = FirstMeteoriteTimer;
+
     }
 
 

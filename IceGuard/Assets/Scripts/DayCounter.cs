@@ -14,7 +14,10 @@ public class DayCounter : MonoBehaviour
     }
     void Update()
     {
-        timer += Time.deltaTime;
-        Counter.text = (timer / SecondsInDay).ToString("#");
+        if(UIManager.GameState == UIManager.GameStates.Play)
+        {
+            timer += Time.deltaTime;
+            Counter.text = (timer / SecondsInDay).ToString("#");
+        }
     }
 }
