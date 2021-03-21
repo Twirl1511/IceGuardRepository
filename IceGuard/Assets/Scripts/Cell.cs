@@ -54,6 +54,7 @@ public class Cell : MonoBehaviour
             if (other.CompareTag("Meteorite"))
             {
                 currentState = State.MeteoriteIsComming;
+                return;
             }
             else
             {

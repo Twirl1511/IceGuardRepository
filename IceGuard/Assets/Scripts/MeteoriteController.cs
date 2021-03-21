@@ -101,15 +101,13 @@ public class MeteoriteController : MonoBehaviour
     IEnumerator LaterMeteoriteStart(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        CreateMeteorite(MeteoriteArray[meteoriteCounter], RandomPosition());
-        //Debug.Log($"Метеорит № {counter + 1}");
-        
+        CreateMeteorite(MeteoriteArray[meteoriteCounter], RandomPosition());  
     }
 
     private Vector3 RandomPosition()
     {
         List<Cell> PropperCellsArray = new List<Cell>();
-        Debug.LogError($"Клетки которые исключаем");
+        Debug.LogError($"Клетки которые исключаем"); /// после else
         foreach (var e in CellController.CellDouble)
         {
             if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.Mine)

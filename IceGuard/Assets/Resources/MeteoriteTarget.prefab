@@ -246,8 +246,6 @@ MonoBehaviour:
   timer: {fileID: 4986927726595269374}
   Collider: {fileID: 6745113399066036492}
   Explosion: {fileID: 4584119119514226857}
-  MeteoriteIsComming: {fileID: 1840169202675429244, guid: eeefdaff36747434c941b641bfc38009,
-    type: 3}
   Mine: {fileID: 2668027300418355198, guid: 4722d77fcc8ee404c9ace681739adda5, type: 3}
 --- !u!65 &6745113399066036492
 BoxCollider:
@@ -260,7 +258,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.13, z: 0.4}
+  m_Size: {x: 0.3, y: 0.82, z: 0.3}
   m_Center: {x: 0, y: -3, z: 0}
 --- !u!54 &-5807009609561467310
 Rigidbody:
