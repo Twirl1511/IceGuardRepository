@@ -171,7 +171,7 @@ public class MeteoriteController : MonoBehaviour
     private void CreateMeteorite(Meteorite meteorite, Vector3 position)
     {
         float timeToFall = Random.Range(meteorite.BoomTimeMin, meteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
-        int addSecondsToBoom = Random.Range(5,11); /// перестраховка от бага, что иногда не определяется положения игрока
+        int addSecondsToBoom = 6; /// перестраховка от бага, что иногда не определяется положения игрока
         foreach (var e in CellController.CellDouble)
         {
             if (e.currentState == Cell.State.PlayerOcupied)
