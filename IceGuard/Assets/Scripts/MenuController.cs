@@ -20,6 +20,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private float ProgressionTime;
     [Header("Tutorial")]
     [SerializeField] private TutorialScript tutorialScript;
+    [SerializeField] private GameObject TipsPanel;
+    [SerializeField] private Text TipsText;
 
 
     private enum DroneStates
@@ -33,6 +35,7 @@ public class MenuController : MonoBehaviour
     {
         DroneState = DroneStates.NotReady;
         StartTipsPanel.SetActive(false);
+        TipsPanel.SetActive(false);
         if (_firstGame || !TutorialScript.isTutorialFinished)
         {
             StartTipsPanel.SetActive(true);
@@ -58,6 +61,12 @@ public class MenuController : MonoBehaviour
             GameOverPanel.SetActive(true);
             Days.text = DayCounter.GetComponent<DayCounter>().Counter.text;
             Time.timeScale = 0;
+            if (!TutorialScript.isTutorialFinished)
+            {
+                TipsPanel.SetActive(true);
+                TipsText.text = tutorialScript.FirstPositionFaile();
+
+            }
         }
         /// запускаем лечащего дрона
         if(DroneState == DroneStates.Ready)
@@ -138,6 +147,7 @@ public class MenuController : MonoBehaviour
         }
         else
         {
+            PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
             GameUI.SetActive(true);
             StartTipsPanel.SetActive(false);

@@ -11,6 +11,9 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private GameObject PlayerGhost;
     [SerializeField] private GameObject MeteoriteTarget;
     [SerializeField] private float FirstMeteoriteTimer;
+    public string[] TutorTipsArray;
+    GameObject player;
+    GameObject meteorite;
 
     void Start()
     {
@@ -41,16 +44,34 @@ public class TutorialScript : MonoBehaviour
     {
         
     }
-
+    
     public void FirstStep()
     {
+        
         Vector3 position = new Vector3(0, 0, -2);
-        Instantiate(Resources.Load(Player.name), position, Quaternion.identity);
+        player = Instantiate(Resources.Load(Player.name), position, Quaternion.identity) as GameObject;
         Instantiate(Resources.Load(PlayerGhost.name), position, Quaternion.identity);
         position = new Vector3(0, 0, 1);
-        GameObject meteorite = Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.identity) as GameObject;
+        meteorite = Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.identity) as GameObject;
         meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = FirstMeteoriteTimer;
+    }
 
+    public string FirstPositionFaile()
+    {
+        string s = TutorTipsArray[0];
+        if (player.transform.position == new Vector3(0, 0, -2))
+        {
+            return TutorTipsArray[0];
+        }
+        if (player.transform.position == new Vector3(0, 0, 1))
+        {
+            return TutorTipsArray[1];
+        }
+        if (player.transform.position != new Vector3(0, 0, -2) && PlayerHitPoints.HitPoints == 0)
+        {
+            return TutorTipsArray[2];
+        }
+        return s;
     }
 
 
