@@ -15,7 +15,23 @@ public class Meteorite
     public int BoomTimeMax;
 
 }
+[System.Serializable]
+public class AdditionalMeteorite
+{
+    [Range(1, 50)]
+    public int BoomTimeMin;
+    [Range(1, 50)]
+    public int BoomTimeMax;
 
+    [Range(1, 200)]
+    public int FirstAppearTime;
+    [Range(1, 100)]
+    public int NotAppearTImeZone;
+    [Range(1, 50)]
+    public int AppearTimeMinus;
+    [Range(1, 100)]
+    public int AppearTimeMinimum;
+}
 
 public class MeteoriteController : MonoBehaviour
 {
@@ -34,6 +50,10 @@ public class MeteoriteController : MonoBehaviour
         Stop
     }
     public static States State;
+    [SerializeField] private AdditionalMeteorite additionalMeteorite;
+    private float additionalMeteoriteTimer = 0;
+    private bool addMeteorReady = false;
+    
 
     void Start()
     {
@@ -44,6 +64,8 @@ public class MeteoriteController : MonoBehaviour
 
     void Update()
     {
+        additionalMeteoriteTimer += Time.deltaTime;
+
 
         if (meteoriteCounter < 0)
         {
@@ -61,10 +83,36 @@ public class MeteoriteController : MonoBehaviour
             _timer += Time.deltaTime;
         }
 
-        
+        AdditionalMeteoriteCheck();
     }
 
-  
+
+    private void AdditionalMeteoriteCheck()
+    {
+        if(additionalMeteoriteTimer >= additionalMeteorite.FirstAppearTime)
+        {
+            addMeteorReady = false;
+            additionalMeteoriteTimer = 0;
+            additionalMeteorite.FirstAppearTime -= additionalMeteorite.AppearTimeMinus;
+            if(additionalMeteorite.FirstAppearTime < additionalMeteorite.AppearTimeMinimum)
+            {
+                additionalMeteorite.FirstAppearTime = additionalMeteorite.AppearTimeMinimum;
+            }
+        }
+
+        if(additionalMeteoriteTimer >= additionalMeteorite.NotAppearTImeZone && !addMeteorReady)
+        {
+            int randomTime = Random.Range(0, additionalMeteorite.FirstAppearTime - additionalMeteorite.NotAppearTImeZone - 1);
+            addMeteorReady = true;
+            StartCoroutine(LaterStartAddMeteorite(randomTime));
+        }
+
+    }
+    IEnumerator LaterStartAddMeteorite(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        CreateAdditionalMeteorite(additionalMeteorite, RandomPosition());
+    }
     private void CheckMeteorites()
     {
         float randomAppearTime;
@@ -107,7 +155,7 @@ public class MeteoriteController : MonoBehaviour
     private Vector3 RandomPosition()
     {
         List<Cell> PropperCellsArray = new List<Cell>();
-        Debug.LogError($"Клетки которые исключаем"); /// после else
+        /*Debug.LogError($"Клетки которые исключаем");*/ /// после else
         foreach (var e in CellController.CellDouble)
         {
             if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.Mine)
@@ -116,6 +164,7 @@ public class MeteoriteController : MonoBehaviour
             }
             else
             {
+                Debug.LogError($"Клетки которые исключаем");
                 Debug.LogError($"{e.name}  {e.currentState}");
             }
         }
@@ -192,6 +241,30 @@ public class MeteoriteController : MonoBehaviour
         State = States.Ready;
 
         Debug.Log($"addSecondsToBoom = {timeToFall} + {addSecondsToBoom}" );
+    }
+    private void CreateAdditionalMeteorite(AdditionalMeteorite addMeteorite, Vector3 position)
+    {
+        float timeToFall = Random.Range(addMeteorite.BoomTimeMin, addMeteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
+        int addSecondsToBoom = 6; /// перестраховка от бага, что иногда не определяется положения игрока
+        foreach (var e in CellController.CellDouble)
+        {
+            if (e.currentState == Cell.State.PlayerOcupied)
+            {
+                Debug.Log(e.name);
+                float x = Mathf.Abs(e.transform.position.x - position.x);
+                float z = Mathf.Abs(e.transform.position.z - position.z);
+                addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
+                Debug.Log($"спавним метеорит № {meteoriteCounter + 1}");
+            }
+            else
+            {
+
+            }
+        }
+
+        GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
+        newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
+
     }
 
 }
