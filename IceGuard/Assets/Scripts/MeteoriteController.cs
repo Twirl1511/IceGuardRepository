@@ -179,7 +179,7 @@ public class MeteoriteController : MonoBehaviour
                 Debug.Log(e.name);
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
-                addSecondsToBoom = Mathf.RoundToInt((x + z + 1) * NewPlayerController.TimeToReachNextTile);
+                addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
                 Debug.Log($"спавним метеорит № {meteoriteCounter + 1}");
             }
             else
