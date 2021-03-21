@@ -11,6 +11,7 @@ public class NewForceFieldScript : MonoBehaviour
     public float SecondsToDestroy;
     [SerializeField] private Collider Collider;
     [SerializeField] private Image Health;
+    [SerializeField] private float speedAppearMine;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class NewForceFieldScript : MonoBehaviour
         }
         else
         {
-            TimeMultiplier = Mathf.Pow(1.1f, allForceFields.Count - 1);
+            TimeMultiplier = Mathf.Pow(speedAppearMine, allForceFields.Count - 1);
             SecondsToDestroy += Time.deltaTime * TimeMultiplier;
         }
     }
