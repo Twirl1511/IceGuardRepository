@@ -71,7 +71,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
     private void OnDestroy()
     {
         MeteoriteController.meteoriteCounter--;
-        Debug.Log($"метеорит уничтожен, осталось {MeteoriteController.meteoriteCounter}");
+        //MeteoriteController.State = MeteoriteController.States.Ready;
+        //Debug.Log($"метеорит уничтожен, осталось {MeteoriteController.meteoriteCounter}");
     }
 
     /// <summary>
