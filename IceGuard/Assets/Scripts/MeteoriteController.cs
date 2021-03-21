@@ -245,25 +245,25 @@ public class MeteoriteController : MonoBehaviour
     private void CreateAdditionalMeteorite(AdditionalMeteorite addMeteorite, Vector3 position)
     {
         float timeToFall = Random.Range(addMeteorite.BoomTimeMin, addMeteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
-        int addSecondsToBoom = 6; /// перестраховка от бага, что иногда не определяется положения игрока
-        foreach (var e in CellController.CellDouble)
-        {
-            if (e.currentState == Cell.State.PlayerOcupied)
-            {
-                Debug.Log(e.name);
-                float x = Mathf.Abs(e.transform.position.x - position.x);
-                float z = Mathf.Abs(e.transform.position.z - position.z);
-                addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
-                Debug.Log($"спавним метеорит № {meteoriteCounter + 1}");
-            }
-            else
-            {
+        //int addSecondsToBoom = 6; /// перестраховка от бага, что иногда не определяется положения игрока
+        //foreach (var e in CellController.CellDouble)
+        //{
+        //    if (e.currentState == Cell.State.PlayerOcupied)
+        //    {
+        //        Debug.Log(e.name);
+        //        float x = Mathf.Abs(e.transform.position.x - position.x);
+        //        float z = Mathf.Abs(e.transform.position.z - position.z);
+        //        addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
+        //        Debug.Log($"спавним метеорит № {meteoriteCounter + 1}");
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
-        newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
+        newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall;
 
     }
 
