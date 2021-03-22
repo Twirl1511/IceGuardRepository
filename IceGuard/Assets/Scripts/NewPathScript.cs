@@ -39,6 +39,10 @@ public class NewPathScript : MonoBehaviour
         return pathPoint;
     }
 
+    public static void ClearPathPoints()
+    {
+        PathPoints.Clear();
+    }
   
 
     

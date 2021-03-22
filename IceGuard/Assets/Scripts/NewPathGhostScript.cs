@@ -38,4 +38,9 @@ public class NewPathGhostScript : MonoBehaviour
         return pathPoint;
     }
 
+    public static void ClearPathPoints()
+    {
+        GhostPathPoints.Clear();
+    }
+
 }

@@ -13,7 +13,20 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private float FirstMeteoriteTimer;
     public string[] TutorTipsArray;
     GameObject player;
+    GameObject playerGhost;
     GameObject meteorite;
+    public Cell FirstMeteoriteCell;
+    [SerializeField] private GameObject GameOverPanel;
+
+    //public enum TutorLevels
+    //{
+    //    First,
+    //    Second,
+    //    Third,
+    //    Finished
+    //}
+
+    //public TutorLevels Level;
 
     void Start()
     {
@@ -42,18 +55,54 @@ public class TutorialScript : MonoBehaviour
 
     void Update()
     {
+
+        
         
     }
     
     public void FirstStep()
     {
-        
+        StaticTutorialStage.Stage = StaticTutorialStage.TutorStages.First;
         Vector3 position = new Vector3(0, 0, -2);
         player = Instantiate(Resources.Load(Player.name), position, Quaternion.identity) as GameObject;
-        Instantiate(Resources.Load(PlayerGhost.name), position, Quaternion.identity);
+        playerGhost = Instantiate(Resources.Load(PlayerGhost.name), position, Quaternion.identity) as GameObject;
         position = new Vector3(0, 0, 1);
         meteorite = Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.identity) as GameObject;
         meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = FirstMeteoriteTimer;
+
+        StartCoroutine(GoToSecondStep());
+    }
+
+    IEnumerator GoToSecondStep()
+    {
+        yield return new WaitForSeconds(8);
+        if(PlayerHitPoints.HitPoints != 0)
+        {
+            SecondStep();
+        }
+        
+    }
+
+
+    public void SecondStep()
+    {
+        StaticTutorialStage.Stage = StaticTutorialStage.TutorStages.Second;
+        Vector3 position = new Vector3(1, 0, 1);
+
+        try
+        {
+            player.SetActive(true);
+        }
+        catch
+        {
+            player = Instantiate(Resources.Load(Player.name), position, Quaternion.identity) as GameObject;
+            playerGhost = Instantiate(Resources.Load(PlayerGhost.name), position, Quaternion.identity) as GameObject;
+        }
+
+
+        position = new Vector3(2, 0, -2);
+        meteorite = Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.identity) as GameObject;
+        meteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = 6;
     }
 
     public string FirstPositionFaile()

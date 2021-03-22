@@ -33,6 +33,9 @@ public class MenuController : MonoBehaviour
     
     private void Start()
     {
+        Debug.Log(StaticTutorialStage.Stage);
+
+
         DroneState = DroneStates.NotReady;
         StartTipsPanel.SetActive(false);
         TipsPanel.SetActive(false);
@@ -126,7 +129,30 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("TestScene");
+            //if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
+            {
+                SceneManager.LoadScene("TestScene");
+                //PlayerHitPoints.HitPoints = 2;
+                //UIManager.GameState = UIManager.GameStates.Play;
+
+                //GameUI.SetActive(true);
+                //StartTipsPanel.SetActive(false);
+                //Time.timeScale = 1;
+                
+                //tutorialScript.FirstStep();
+            }
+
+            //if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
+            //{
+            //    SceneManager.LoadScene("TestScene");
+            //    PlayerHitPoints.HitPoints = 2;
+            //    UIManager.GameState = UIManager.GameStates.Play;
+            //    GameUI.SetActive(true);
+            //    StartTipsPanel.SetActive(false);
+            //    Time.timeScale = 1;
+                
+            //    tutorialScript.SecondStep();
+            //}
         }
 
 
@@ -145,7 +171,7 @@ public class MenuController : MonoBehaviour
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
         }
-        else
+        else if(StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
         {
             PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
@@ -153,7 +179,17 @@ public class MenuController : MonoBehaviour
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
             tutorialScript.FirstStep();
+        }else if(StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
+        {
+            PlayerHitPoints.HitPoints = 2;
+            UIManager.GameState = UIManager.GameStates.Play;
+            GameUI.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
+            tutorialScript.SecondStep();
         }
+        
+
     }
 
     public void OnClickExit()
