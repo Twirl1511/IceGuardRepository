@@ -19,6 +19,7 @@ public class NewPlayerController : MonoBehaviour
     public GameObject ExplosionName;
     private GameObject ExplosionObject;
     private bool _isExplosionExist = false;
+    public static int TutorialMinesCounter;
 
     public enum States
     {
@@ -33,6 +34,7 @@ public class NewPlayerController : MonoBehaviour
 
     private void Start()
     {
+        TutorialMinesCounter = 0;
         NewPathScript.PathPoints.Clear();
         gameObject.GetComponent<NewPlayerController>().enabled = true;
         PlayerState = States.ReadyToMove;
@@ -127,6 +129,8 @@ public class NewPlayerController : MonoBehaviour
         if (other.CompareTag("Mine"))
         {
             CreateExplosion(other.transform.position);
+            TutorialMinesCounter++;
+            Debug.Log("Mine: " + TutorialMinesCounter);
         }
     }
 

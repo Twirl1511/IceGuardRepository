@@ -110,15 +110,57 @@ public class TutorialScript : MonoBehaviour
         string s = TutorTipsArray[0];
         if (player.transform.position == new Vector3(0, 0, -2))
         {
+            /// не сдвинулся с места
             return TutorTipsArray[0];
         }
         if (player.transform.position == new Vector3(0, 0, 1))
         {
+            /// встал под метеорит
             return TutorTipsArray[1];
         }
         if (player.transform.position != new Vector3(0, 0, -2) && PlayerHitPoints.HitPoints == 0)
         {
+            /// не перекрыл мишень, но сдвинулся с места
             return TutorTipsArray[2];
+        }
+        return s;
+    }
+
+    public string SecondPositionFaile()
+    {
+        string s = TutorTipsArray[0];
+        if (PlayerHitPoints.HitPoints == 0 && NewPlayerController.TutorialMinesCounter <= 1 && player.transform.position != new Vector3(2, 0, -2))
+        {
+            /// не загородил миной
+            return TutorTipsArray[3];
+        }
+        if (player.transform.position == new Vector3(2, 0, -2) && PlayerHitPoints.HitPoints == 0)
+        {
+            /// встал под метеорит
+            return TutorTipsArray[1];
+        }
+        if (PlayerHitPoints.HitPoints == 0 && NewPlayerController.TutorialMinesCounter > 1)
+        {
+            /// подорвался на минах
+            return TutorTipsArray[4];
+        }
+        return s;
+    }
+
+    public string ThirdPositionFaile()
+    {
+        string s = TutorTipsArray[0];
+        if (player.transform.position == new Vector3(0, 0, -2))
+        {
+            return TutorTipsArray[3];
+        }
+        if (player.transform.position == new Vector3(0, 0, 1))
+        {
+            return TutorTipsArray[4];
+        }
+        if (player.transform.position != new Vector3(0, 0, -2) && PlayerHitPoints.HitPoints == 0)
+        {
+            return TutorTipsArray[5];
         }
         return s;
     }

@@ -67,7 +67,20 @@ public class MenuController : MonoBehaviour
             if (!TutorialScript.isTutorialFinished)
             {
                 TipsPanel.SetActive(true);
-                TipsText.text = tutorialScript.FirstPositionFaile();
+
+                if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
+                {
+                    TipsText.text = tutorialScript.FirstPositionFaile();
+                }
+                if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
+                {
+                    TipsText.text = tutorialScript.SecondPositionFaile();
+                }
+                if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
+                {
+                    TipsText.text = tutorialScript.ThirdPositionFaile();
+                }
+
 
             }
         }
