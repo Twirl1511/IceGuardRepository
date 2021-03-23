@@ -103,7 +103,7 @@ public class TutorialScript : MonoBehaviour
     }
     IEnumerator GoToThirdStep()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(9);
         if (PlayerHitPoints.HitPoints != 0)
         {
             ThirdStep();
