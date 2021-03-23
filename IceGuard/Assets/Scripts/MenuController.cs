@@ -78,6 +78,8 @@ public class MenuController : MonoBehaviour
                 }
                 if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
                 {
+                    tutorialScript.pushTimer = true;
+                    tutorialScript.timer = 0;
                     TipsText.text = tutorialScript.ThirdPositionFaile();
                 }
 
@@ -172,6 +174,13 @@ public class MenuController : MonoBehaviour
             
     }
 
+
+    public void StartRealGame()
+    {
+        DroneState = DroneStates.Ready;
+        MeteoriteController.SetActive(true);
+    }
+
     public void OnClickGO()
     {
         if (TutorialScript.isTutorialFinished)
@@ -200,6 +209,15 @@ public class MenuController : MonoBehaviour
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
             tutorialScript.SecondStep();
+        }
+        else if(StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
+        {
+            PlayerHitPoints.HitPoints = 2;
+            UIManager.GameState = UIManager.GameStates.Play;
+            GameUI.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
+            tutorialScript.ThirdStep();
         }
         
 
