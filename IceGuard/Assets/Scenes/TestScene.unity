@@ -1183,7 +1183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 177.8, y: -34.7}
+  m_AnchoredPosition: {x: 177.8, y: 11.8}
   m_SizeDelta: {x: 92, y: 39.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163003334
@@ -2348,7 +2348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.4, y: -14.75}
+  m_AnchoredPosition: {x: -8.4, y: 31.45}
   m_SizeDelta: {x: 500, y: 78.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &317359980
@@ -3613,6 +3613,81 @@ RectTransform:
   m_AnchoredPosition: {x: 311.82178, y: 180}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &517632091
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SingleLine-LightSaber(Clone)
+  m_Shader: {fileID: 4800000, guid: 2d9a4ca4b2730b64e8aade7030f8caeb, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Glossiness: 0.5
+    - _LightSaberFactor: 1
+    - _LineScale: 0.040000007
+    - _LineWidth: 0.84
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _UvBasedLightSaberFactor: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 0, g: 1, b: 0.10866976, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &538232389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,8 +4265,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.6, y: -52.4}
-  m_SizeDelta: {x: 169, y: 80}
+  m_AnchoredPosition: {x: -7.2, y: -150.5}
+  m_SizeDelta: {x: 221, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &667118694
 MonoBehaviour:
@@ -4438,8 +4513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -0.5}
-  m_SizeDelta: {x: 360.74292, y: 115.49356}
+  m_AnchoredPosition: {x: -12.1, y: 100.2}
+  m_SizeDelta: {x: 494.7, y: 408.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694778217
 MonoBehaviour:
@@ -4461,8 +4536,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6206223cd1c4e4025bfb23ab40b73f45, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 094239ecc3dd24bf2b2c4b15999764a9, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -4473,12 +4548,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0427\u0442\u043E\u0431\u044B \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F,
-    \u0434\u043E\u0442\u0440\u043E\u043D\u044C\u0442\u0435\u0441\u044C \u0434\u043E
-    \u043B\u044E\u0431\u043E\u0439 \u0442\u043E\u0447\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0435,
-    \u043D\u0430\u0445\u043E\u0434\u044F\u0449\u0435\u0439\u0441\u044F \u043D\u0430
-    \u043E\u0434\u043D\u043E\u0439 \u043B\u0438\u043D\u0438\u0438 \u0441 \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u043E\u0439
-    \u0441\u0442\u0430\u043D\u0446\u0438\u0435\u0439."
+  m_Text: "\u0427\u0442\u043E\u0431\u044B \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C
+    \u0437\u0430\u043F\u0430\u0441 \u0436\u0438\u0437\u043D\u0435\u0439, \u043F\u043E\u0434\u043B\u0435\u0442\u0438\u0442\u0435
+    \u043A \u043A\u043B\u0435\u0442\u043A\u0435 \u0441 \u0437\u0435\u043B\u0435\u043D\u044B\u043C
+    \u0442\u0430\u0439\u043C\u0435\u0440\u043E\u043C \u0438 \u0434\u043E\u0436\u0434\u0435\u0442\u0435\u0441\u044C
+    \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u044F \u043E\u0431\u0440\u0430\u0442\u043D\u043E\u0433\u043E
+    \u043E\u0442\u0441\u0447\u0435\u0442\u0430"
 --- !u!222 &694778218
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5159,8 +5234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 151.47, y: -53.1}
-  m_SizeDelta: {x: 188, y: 82}
+  m_AnchoredPosition: {x: 177, y: -150.5}
+  m_SizeDelta: {x: 235, y: 102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &814352248
 MonoBehaviour:
@@ -7492,8 +7567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -138.6, y: -35.6}
-  m_SizeDelta: {x: 180, y: 77}
+  m_AnchoredPosition: {x: -174.4, y: -132.32}
+  m_SizeDelta: {x: 200, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085279980
 MonoBehaviour:
@@ -10308,8 +10383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 118.6}
+  m_AnchoredPosition: {x: 8.3, y: 52.6}
+  m_SizeDelta: {x: 541.8, y: 130.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1479938884
 MonoBehaviour:
@@ -10332,7 +10407,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6206223cd1c4e4025bfb23ab40b73f45, type: 3}
-    m_FontSize: 18
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 1
@@ -11241,8 +11316,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -164}
-  m_SizeDelta: {x: 406.45905, y: 153.69945}
+  m_AnchoredPosition: {x: 19.1, y: -171.6}
+  m_SizeDelta: {x: 1057, y: 160.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1658508743
 MonoBehaviour:
@@ -11257,13 +11332,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22574759, g: 0.37356886, b: 0.5377358, a: 0.9019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8b96d107f3ec4ce9b1c0de2582f12a9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12287,81 +12362,6 @@ Transform:
   m_Father: {fileID: 152896723}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 16.17, y: -90, z: 0}
---- !u!21 &1824572525
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SingleLine-LightSaber(Clone)
-  m_Shader: {fileID: 4800000, guid: 2d9a4ca4b2730b64e8aade7030f8caeb, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _Glossiness: 0.5
-    - _LightSaberFactor: 1
-    - _LineScale: 0.040000007
-    - _LineWidth: 0.84
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _UvBasedLightSaberFactor: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 0, g: 1, b: 0.10866976, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &1832810565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13411,37 +13411,34 @@ MonoBehaviour:
     type: 3}
   FirstMeteoriteTimer: 5
   TutorTipsArray:
-  - "\u0427\u0442\u043E\u0431\u044B \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F,
-    \u0434\u043E\u0442\u0440\u043E\u043D\u044C\u0442\u0435\u0441\u044C \u0434\u043E
-    \u043B\u044E\u0431\u043E\u0439 \u0442\u043E\u0447\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0435,
-    \u043D\u0430\u0445\u043E\u0434\u044F\u0449\u0435\u0439\u0441\u044F \u043D\u0430
-    \u043E\u0434\u043D\u043E\u0439 \u043B\u0438\u043D\u0438\u0438 \u0441 \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u043E\u0439
-    \u0441\u0442\u0430\u043D\u0446\u0438\u0435\u0439."
-  - "\u041A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0441\u0442\u0430\u043D\u0446\u0438\u044F
-    \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0432\u044B\u0434\u0435\u0440\u0436\u0430\u0442\u044C
-    \u0443\u0434\u0430\u0440 \u043C\u0435\u0442\u0435\u043E\u0440\u0438\u0442\u0430,
-    \u0437\u0430\u0442\u043E \u0441 \u044D\u0442\u0438\u043C \u043F\u0440\u0435\u043A\u0440\u0430\u0441\u043D\u043E
-    \u0441\u043F\u0440\u0430\u0432\u044F\u0442\u0441\u044F \u043C\u0438\u043D\u044B."
-  - "\u0421\u0442\u0430\u0432\u044C\u0442\u0435 \u043C\u0438\u043D\u044B \u043D\u0430
-    \u0442\u0435 \u043A\u043B\u0435\u0442\u043A\u0438, \u0432 \u043A\u043E\u0442\u043E\u0440\u044B\u0435
-    \u043B\u0435\u0442\u0438\u0442 \u043C\u0435\u0442\u0435\u043E\u0440\u0438\u0442,
-    \u0442\u0430\u043A \u0432\u044B \u0441\u043F\u0430\u0441\u0435\u0442\u0435 \u0437\u0435\u043C\u043B\u044E
-    \u043E\u0442 \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0435\u043D\u0438\u044F."
-  - "\u041A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0441\u0442\u0430\u043D\u0446\u0438\u044F
-    \u043C\u043E\u0436\u0435\u0442 \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F
-    \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u043E \u043F\u0440\u044F\u043C\u043E\u0439."
-  - "\u041D\u0430\u0435\u0437\u0436\u0430\u044F \u043D\u0430 \u043C\u0438\u043D\u044B,
-    \u0443 \u0432\u0430\u0441 \u0442\u0440\u0430\u0442\u044F\u0442\u0441\u044F \u0436\u0438\u0437\u043D\u0438.
-    \u0415\u0441\u043B\u0438 \u0436\u0438\u0437\u043D\u0435\u0439 \u0441\u043E\u0432\u0441\u0435\u043C
-    \u043D\u0435 \u043E\u0441\u0442\u0430\u043D\u0435\u0442\u0441\u044F - \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u0430\u044F
-    \u0441\u0442\u0430\u043D\u0446\u0438\u044F \u0432\u044B\u0439\u0434\u0435\u0442
-    \u0438\u0437 \u0441\u0442\u0440\u043E\u044F."
-  - "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C
-    \u0437\u0430\u043F\u0430\u0441 \u0436\u0438\u0437\u043D\u0435\u0439, \u0435\u0441\u043B\u0438
-    \u0432\u0441\u0442\u0430\u043D\u0435\u0442\u0435 \u043D\u0430 \u043A\u043B\u0435\u0442\u043A\u0443
-    \u0441 \u0437\u0435\u043B\u0435\u043D\u044B\u043C \u0442\u0430\u0439\u043C\u0435\u0440\u043E\u043C
-    \u0438 \u0434\u043E\u0436\u0434\u0435\u0442\u0435\u0441\u044C \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u044F
-    \u043E\u0431\u0440\u0430\u0442\u043D\u043E\u0433\u043E \u043E\u0442\u0441\u0447\u0435\u0442\u0430."
+  - "\u0427\u0442\u043E\u0431\u044B \u0441\u0434\u0432\u0438\u043D\u0443\u0442\u044C\u0441\u044F
+    \u0441 \u043C\u0435\u0441\u0442\u0430, \u0434\u043E\u0442\u0440\u043E\u043D\u044C\u0442\u0435\u0441\u044C
+    \u0434\u043E \u043B\u044E\u0431\u043E\u0439 \u043A\u043B\u0435\u0442\u043A\u0438
+    \u043D\u0430\u043F\u0440\u043E\u0442\u0438\u0432 \u043A\u043E\u0440\u0430\u0431\u043B\u044F"
+  - "\u041A\u043E\u0440\u0430\u0431\u043B\u044C \u043D\u0435 \u043C\u043E\u0436\u0435\u0442
+    \u0432\u044B\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0443\u0434\u0430\u0440
+    \u043C\u0435\u0442\u0435\u043E\u0440\u0438\u0442\u0430, \u0437\u0430\u0442\u043E
+    \u0441 \u044D\u0442\u0438\u043C \u043F\u0440\u0435\u043A\u0440\u0430\u0441\u043D\u043E
+    \u0441\u043F\u0440\u0430\u0432\u044F\u0442\u0441\u044F \u043C\u0438\u043D\u044B"
+  - "\u0427\u0442\u043E\u0431\u044B \u0441\u043F\u0430\u0441\u0442\u0438 \u0437\u0435\u043C\u043B\u044E
+    \u043E\u0442 \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0435\u043D\u0438\u044F,
+    \u043F\u0435\u0440\u0435\u043A\u0440\u044B\u0432\u0430\u0439\u0442\u0435 \u043C\u0438\u043D\u0430\u043C\u0438
+    \u043A\u043B\u0435\u0442\u043A\u0438, \u0432 \u043A\u043E\u0442\u043E\u0440\u044B\u0435
+    \u043B\u0435\u0442\u0438\u0442 \u043C\u0435\u0442\u0435\u043E\u0440\u0438\u0442"
+  - "\u041A\u043E\u0440\u0430\u0431\u043B\u044C \u043C\u043E\u0436\u0435\u0442 \u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F
+    \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u043E \u043F\u0440\u044F\u043C\u043E\u0439"
+  - "\u041C\u0438\u043D\u0430 \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u0430 \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u0442\u044C
+    \u043D\u0435 \u0442\u043E\u043B\u044C\u043A\u043E \u043C\u0435\u0442\u0435\u043E\u0440\u0438\u0442,
+    \u043D\u043E \u0438 \u0432\u0430\u0448 \u043A\u043E\u0440\u0430\u0431\u043B\u044C.
+    \u0421\u043B\u0435\u0434\u0438\u0442\u0435 \u0437\u0430 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E\u043C
+    \u0436\u0438\u0437\u043D\u0435\u0439 \u0432 \u043B\u0435\u0432\u043E\u043C \u0432\u0435\u0440\u0445\u043D\u0435\u043C
+    \u0443\u0433\u043B\u0443"
+  - "\u0427\u0442\u043E\u0431\u044B \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C
+    \u0437\u0430\u043F\u0430\u0441 \u0436\u0438\u0437\u043D\u0435\u0439, \u043F\u043E\u0434\u043B\u0435\u0442\u0438\u0442\u0435
+    \u043A \u043A\u043B\u0435\u0442\u043A\u0435 \u0441 \u0437\u0435\u043B\u0435\u043D\u044B\u043C
+    \u0442\u0430\u0439\u043C\u0435\u0440\u043E\u043C \u0438 \u0434\u043E\u0436\u0434\u0438\u0442\u0435\u0441\u044C
+    \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u044F \u043E\u0431\u0440\u0430\u0442\u043D\u043E\u0433\u043E
+    \u043E\u0442\u0441\u0447\u0435\u0442\u0430"
   FirstMeteoriteCell: {fileID: 1240795153}
   GameOverPanel: {fileID: 479113913}
   timer: 0
@@ -13730,8 +13727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 72.5}
-  m_SizeDelta: {x: 486.7, y: 201.3}
+  m_AnchoredPosition: {x: 0, y: 6.7}
+  m_SizeDelta: {x: 632, y: 274.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130387684
 MonoBehaviour:

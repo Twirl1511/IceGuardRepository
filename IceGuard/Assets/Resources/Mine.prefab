@@ -247,7 +247,7 @@ MonoBehaviour:
   SecondsToDestroy: 0
   Collider: {fileID: 3934621651110095606}
   Health: {fileID: 2948676459962384129}
-  speedAppearMine: 1.09
+  speedAppearMine: 1.087
 --- !u!54 &8673946256960825963
 Rigidbody:
   m_ObjectHideFlags: 0
