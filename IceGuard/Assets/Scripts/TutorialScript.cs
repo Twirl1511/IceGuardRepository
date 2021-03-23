@@ -45,7 +45,6 @@ public class TutorialScript : MonoBehaviour
             Debug.Log(isTutorialFinished);
             reader.Close();
         }
-
     }
 
     void Update()
@@ -135,7 +134,7 @@ public class TutorialScript : MonoBehaviour
 
     public void ThirdStep()
     {
-        pushTimer = true;
+        
         StaticTutorialStage.Stage = StaticTutorialStage.TutorStages.Third;
         Vector3 position = new Vector3(2, 0, -3);
 
@@ -165,8 +164,7 @@ public class TutorialScript : MonoBehaviour
         position = new Vector3(PropperCells[randomCell].transform.position.x, 0, PropperCells[randomCell].transform.position.z);
 
         repairDrone = Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity) as GameObject;
-        
-        
+        pushTimer = true;
     }
 
 
