@@ -52,7 +52,7 @@ public class MeteoriteController : MonoBehaviour
     public static States State;
     [SerializeField] private AdditionalMeteorite additionalMeteorite;
     private float additionalMeteoriteTimer = 0;
-    private bool addMeteorReady = false;
+    private bool addMeteorReady = true;
     
 
     void Start()
@@ -91,7 +91,7 @@ public class MeteoriteController : MonoBehaviour
     {
         if(additionalMeteoriteTimer >= additionalMeteorite.FirstAppearTime)
         {
-            addMeteorReady = false;
+            addMeteorReady = true;
             additionalMeteoriteTimer = 0;
             additionalMeteorite.FirstAppearTime -= additionalMeteorite.AppearTimeMinus;
             if(additionalMeteorite.FirstAppearTime < additionalMeteorite.AppearTimeMinimum)
@@ -100,11 +100,12 @@ public class MeteoriteController : MonoBehaviour
             }
         }
 
-        if(additionalMeteoriteTimer >= additionalMeteorite.NotAppearTImeZone && !addMeteorReady)
+        if(additionalMeteoriteTimer >= additionalMeteorite.NotAppearTImeZone && addMeteorReady)
         {
+            addMeteorReady = false;
             int randomTime = Random.Range(0, additionalMeteorite.FirstAppearTime - additionalMeteorite.NotAppearTImeZone - 1);
-            addMeteorReady = true;
             StartCoroutine(LaterStartAddMeteorite(randomTime));
+            Debug.LogError("Дали разрешение на запуск доп метеорита через: " + randomTime);
         }
 
     }
@@ -164,8 +165,8 @@ public class MeteoriteController : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"Клетки которые исключаем");
-                Debug.LogError($"{e.name}  {e.currentState}");
+                //Debug.LogError($"Клетки которые исключаем");
+                //Debug.LogError($"{e.name}  {e.currentState}");
             }
         }
 
@@ -227,7 +228,7 @@ public class MeteoriteController : MonoBehaviour
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
                 addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
-                Debug.Log($"спавним метеорит № {meteoriteCounter + 1}");
+                Debug.LogError($"спавним метеорит № {meteoriteCounter + 1}");
             }
             else
             {
@@ -245,26 +246,23 @@ public class MeteoriteController : MonoBehaviour
     private void CreateAdditionalMeteorite(AdditionalMeteorite addMeteorite, Vector3 position)
     {
         float timeToFall = Random.Range(addMeteorite.BoomTimeMin, addMeteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
-        //int addSecondsToBoom = 6; /// перестраховка от бага, что иногда не определяется положения игрока
-        //foreach (var e in CellController.CellDouble)
-        //{
-        //    if (e.currentState == Cell.State.PlayerOcupied)
-        //    {
-        //        Debug.Log(e.name);
-        //        float x = Mathf.Abs(e.transform.position.x - position.x);
-        //        float z = Mathf.Abs(e.transform.position.z - position.z);
-        //        addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
-        //        Debug.Log($"спавним метеорит № {meteoriteCounter + 1}");
-        //    }
-        //    else
-        //    {
 
-        //    }
-        //}
-
+        Debug.LogError($"спавним ДOOOOOOOOOOOOOП метеорит № {meteoriteCounter + 1}");
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall;
+        /// костыль, дабы общее количество метеоритов не менялось после смерти дополнительного
+        StartCoroutine(AdjactMeteoritesNumber(timeToFall + 2));
+    }
 
+    /// <summary>
+    /// костыль, дабы общее количество метеоритов не менялось после смерти дополнительного
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    IEnumerator AdjactMeteoritesNumber(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        meteoriteCounter++;
     }
 
 }
