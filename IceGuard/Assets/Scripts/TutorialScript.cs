@@ -23,7 +23,7 @@ public class TutorialScript : MonoBehaviour
     public bool pushTimer = false;
     [SerializeField] private MenuController menuController;
 
-    void Awake()
+    void Start()
     {
         StreamReader reader;
         try

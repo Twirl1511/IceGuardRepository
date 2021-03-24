@@ -6,6 +6,7 @@ public static class StaticTutorialStage
 {
     public enum TutorStages
     {
+        NotStarted,
         First,
         Second,
         Third,

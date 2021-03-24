@@ -33,17 +33,16 @@ public class MenuController : MonoBehaviour
     
     private void Start()
     {
-        Debug.Log(StaticTutorialStage.Stage);
-
-
         DroneState = DroneStates.NotReady;
         StartTipsPanel.SetActive(false);
         TipsPanel.SetActive(false);
-        if (_firstGame || !TutorialScript.isTutorialFinished)
+        if (!TutorialScript.isTutorialFinished)
         {
+            Debug.Log("проверяем первая ли игра при старте скрипта меню контрол");
             StartTipsPanel.SetActive(true);
             UIManager.GameState = UIManager.GameStates.Pause;
             _firstGame = false;
+            PlayStages();
         }
         else
         {
@@ -56,6 +55,42 @@ public class MenuController : MonoBehaviour
         }
         
     }
+
+    public void PlayStages()
+    {
+        if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
+        {
+
+            PlayerHitPoints.HitPoints = 2;
+            UIManager.GameState = UIManager.GameStates.Play;
+            GameUI.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
+            tutorialScript.FirstStep();
+        }
+        else if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
+        {
+
+            StartTipsPanel.SetActive(false);
+            Debug.Log("StartTipsPanel = " + StartTipsPanel.activeSelf);
+            PlayerHitPoints.HitPoints = 2;
+            UIManager.GameState = UIManager.GameStates.Play;
+            GameUI.SetActive(true);
+
+            Time.timeScale = 1;
+            tutorialScript.SecondStep();
+        }
+        else if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
+        {
+            PlayerHitPoints.HitPoints = 2;
+            UIManager.GameState = UIManager.GameStates.Play;
+            GameUI.SetActive(true);
+            StartTipsPanel.SetActive(false);
+            Time.timeScale = 1;
+            tutorialScript.ThirdStep();
+        }
+    }
+
     private void Update()
     {
         if(PlayerHitPoints.GetHitPoints() <= 0)
@@ -132,6 +167,12 @@ public class MenuController : MonoBehaviour
         GameObject.Instantiate(Resources.Load(RepairDrone.name), new Vector3(x, 0, z), Quaternion.identity);
     }
 
+    public void StartRealGame()
+    {
+        DroneState = DroneStates.Ready;
+        MeteoriteController.SetActive(true);
+    }
+
     public void OnClickRestart()
     {
         if (TutorialScript.isTutorialFinished)
@@ -144,42 +185,12 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            //if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
-            {
-                SceneManager.LoadScene("TestScene");
-                //PlayerHitPoints.HitPoints = 2;
-                //UIManager.GameState = UIManager.GameStates.Play;
-
-                //GameUI.SetActive(true);
-                //StartTipsPanel.SetActive(false);
-                //Time.timeScale = 1;
-                
-                //tutorialScript.FirstStep();
-            }
-
-            //if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
-            //{
-            //    SceneManager.LoadScene("TestScene");
-            //    PlayerHitPoints.HitPoints = 2;
-            //    UIManager.GameState = UIManager.GameStates.Play;
-            //    GameUI.SetActive(true);
-            //    StartTipsPanel.SetActive(false);
-            //    Time.timeScale = 1;
-                
-            //    tutorialScript.SecondStep();
-            //}
+            SceneManager.LoadScene("TestScene");
         }
-
-
-            
     }
 
 
-    public void StartRealGame()
-    {
-        DroneState = DroneStates.Ready;
-        MeteoriteController.SetActive(true);
-    }
+    
 
     public void OnClickGO()
     {
@@ -193,7 +204,7 @@ public class MenuController : MonoBehaviour
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
         }
-        else if(StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
+        else
         {
             PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
@@ -201,25 +212,7 @@ public class MenuController : MonoBehaviour
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
             tutorialScript.FirstStep();
-        }else if(StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
-        {
-            PlayerHitPoints.HitPoints = 2;
-            UIManager.GameState = UIManager.GameStates.Play;
-            GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
-            Time.timeScale = 1;
-            tutorialScript.SecondStep();
         }
-        else if(StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
-        {
-            PlayerHitPoints.HitPoints = 2;
-            UIManager.GameState = UIManager.GameStates.Play;
-            GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
-            Time.timeScale = 1;
-            tutorialScript.ThirdStep();
-        }
-        
 
     }
 

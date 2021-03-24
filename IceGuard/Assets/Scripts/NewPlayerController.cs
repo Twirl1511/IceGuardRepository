@@ -130,7 +130,6 @@ public class NewPlayerController : MonoBehaviour
         {
             CreateExplosion(other.transform.position);
             TutorialMinesCounter++;
-            Debug.Log("Mine: " + TutorialMinesCounter);
         }
     }
 
