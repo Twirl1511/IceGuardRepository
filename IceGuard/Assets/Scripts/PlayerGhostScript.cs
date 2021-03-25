@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerGhostScript : MonoBehaviour
 {
-    private Vector3 _startPosition;
-    private Vector3 _endPosition;
+    public Vector3 _startPosition;
+    public Vector3 _endPosition;
     public AnimationCurve Easing;
     public static float TimeToReachNextTile = 0.5f;
     [Range(0.1f, 1f)]

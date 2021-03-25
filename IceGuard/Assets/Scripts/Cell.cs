@@ -41,13 +41,10 @@ public class Cell : MonoBehaviour
     {
         isCollisioned = true;
 
-
-
-
-
         if (other.CompareTag("Player"))
         {
             currentState = State.PlayerOcupied;
+            return;
         }
         else
         {
@@ -61,6 +58,7 @@ public class Cell : MonoBehaviour
                 if (other.CompareTag("Mine"))
                 {
                     currentState = State.Mine;
+                    return;
                 }
                 else
                 {
