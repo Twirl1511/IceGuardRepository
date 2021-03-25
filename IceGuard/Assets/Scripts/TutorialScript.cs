@@ -20,7 +20,8 @@ public class TutorialScript : MonoBehaviour
     public Cell FirstMeteoriteCell;
     [SerializeField] private GameObject GameOverPanel;
     public float timer;
-    public bool pushTimer = false;
+    public bool isRepairDroneReleased = false;
+    private float RepairDroneTimer;
     [SerializeField] private MenuController menuController;
 
     void Start()
@@ -49,12 +50,12 @@ public class TutorialScript : MonoBehaviour
 
     void Update()
     {
-        if(pushTimer)
+        if(isRepairDroneReleased)
         {
             timer += Time.deltaTime;
-            if(timer >= 16)
+            if(timer >= RepairDroneTimer)
             {
-                pushTimer = false;
+                isRepairDroneReleased = false;
                 if (PlayerHitPoints.HitPoints < 3)
                 {
                     PlayerHitPoints.HitPoints = 0;
@@ -164,9 +165,18 @@ public class TutorialScript : MonoBehaviour
         position = new Vector3(PropperCells[randomCell].transform.position.x, 0, PropperCells[randomCell].transform.position.z);
 
         repairDrone = Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity) as GameObject;
-        pushTimer = true;
+        //Debug.LogError("TutorialTime = " + repairDrone.GetComponent<RepairTargetScript>().TutorialTime);
+        //isRepairDroneReleased = true;
+        StartCoroutine(TestWait(1));
     }
 
+    IEnumerator TestWait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        RepairDroneTimer = repairDrone.GetComponent<RepairTargetScript>().TutorialTime;
+        Debug.LogError("TutorialTime = " + RepairDroneTimer);
+        isRepairDroneReleased = true;
+    }
 
     public string FirstPositionFaile()
     {

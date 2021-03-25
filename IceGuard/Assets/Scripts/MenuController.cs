@@ -113,7 +113,7 @@ public class MenuController : MonoBehaviour
                 }
                 if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
                 {
-                    tutorialScript.pushTimer = true;
+                    tutorialScript.isRepairDroneReleased = true;
                     tutorialScript.timer = 0;
                     TipsText.text = tutorialScript.ThirdPositionFaile();
                 }
