@@ -9,23 +9,17 @@ public class AbortMoveScript : MonoBehaviour
     private Vector3 oldPosition;
     private Vector3 newPosition;
 
-    private void Start()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
         if (UIManager.GameState == UIManager.GameStates.Play)
         {
             
-
-            Player = GameObject.FindGameObjectWithTag(Player.tag);
-            PlayerGhost = GameObject.FindGameObjectWithTag(PlayerGhost.tag);
+                Player = GameObject.FindGameObjectWithTag(Player.tag);
+                PlayerGhost = GameObject.FindGameObjectWithTag(PlayerGhost.tag);
+            
 
             oldPosition = Player.transform.position;
             StartCoroutine(NewPositionDelay());
-
         }
 
 
@@ -40,8 +34,9 @@ public class AbortMoveScript : MonoBehaviour
 
             if(oldPosition == newPosition)
             {
-             ///do nothing   
-            }else if(oldPosition.x == newPosition.x)
+                yield break;
+            }
+            else if(oldPosition.x == newPosition.x)
             {
                 if((oldPosition.z - newPosition.z) > 0)
                 {
