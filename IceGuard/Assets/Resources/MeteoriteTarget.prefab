@@ -247,6 +247,9 @@ MonoBehaviour:
   Collider: {fileID: 6745113399066036492}
   Explosion: {fileID: 4584119119514226857}
   Mine: {fileID: 2668027300418355198, guid: 4722d77fcc8ee404c9ace681739adda5, type: 3}
+  Meteorite: {fileID: 5393850030145232752, guid: 1405ecbab8a50ef459688da677b1844a,
+    type: 3}
+  test: 0.5
 --- !u!65 &6745113399066036492
 BoxCollider:
   m_ObjectHideFlags: 0

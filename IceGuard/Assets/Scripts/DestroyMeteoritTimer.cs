@@ -15,6 +15,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
     public Collider Collider;
     [SerializeField] private GameObject Explosion;
     [SerializeField] private GameObject Mine;
+    [SerializeField] private GameObject Meteorite;
+    public float test;
 
     private bool readyToStrike = false;
 
@@ -29,7 +31,18 @@ public class DestroyMeteoritTimer : MonoBehaviour
         StartCoroutine(LaterDestroy());
         StartCoroutine(ActivateCollider());
         StartCoroutine(CheckMeteoriteKillEarth());
+        StartCoroutine(CreateMeteorite(timetoFall+ test));
     }
+
+
+    IEnumerator CreateMeteorite(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        float x = transform.position.x;
+        float z = transform.position.z;
+        GameObject.Instantiate(Resources.Load(Meteorite.name), new Vector3(x, 5, z), Quaternion.identity);
+    }
+
 
     private void FixedUpdate()
     {
@@ -67,6 +80,8 @@ public class DestroyMeteoritTimer : MonoBehaviour
             timer.text = timetoFall.ToString("#");
         }
     }
+
+
 
     private void OnDestroy()
     {
