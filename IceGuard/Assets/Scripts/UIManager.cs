@@ -35,4 +35,9 @@ public class UIManager : MonoBehaviour
         
         PausePanel.SetActive(false);
     }
+
+    public void ResetTutorial()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

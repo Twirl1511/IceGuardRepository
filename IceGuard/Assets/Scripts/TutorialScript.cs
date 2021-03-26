@@ -26,25 +26,30 @@ public class TutorialScript : MonoBehaviour
 
     void Start()
     {
-        StreamReader reader;
+        isTutorialFinished = System.Convert.ToBoolean(PlayerPrefs.GetString("save", "false"));
+        //StreamReader reader;
         try
         {
-            reader = new StreamReader(Application.dataPath + "/saveFile.json");
-            isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
-            Debug.Log(isTutorialFinished);
-            reader.Close();
+            
+
+
+            //reader = new StreamReader(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
+            //isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
+            //Debug.Log(isTutorialFinished);
+            //reader.Close();
         }
         catch
         {
-            isTutorialFinished = false;
-            StreamWriter writer = new StreamWriter(Application.dataPath + "/saveFile.json");
-            writer.WriteLine(isTutorialFinished);
-            writer.Close();
+            //PlayerPrefs.SetString("save", isTutorialFinished.ToString());
+            //isTutorialFinished = false;
+            //StreamWriter writer = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
+            //writer.WriteLine(isTutorialFinished);
+            //writer.Close();
 
-            reader = new StreamReader(Application.dataPath + "/saveFile.json");
-            isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
-            Debug.Log(isTutorialFinished);
-            reader.Close();
+            //reader = new StreamReader(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
+            //isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
+            //Debug.Log(isTutorialFinished);
+            //reader.Close();
         }
     }
 
@@ -63,9 +68,10 @@ public class TutorialScript : MonoBehaviour
                 else
                 {
                     isTutorialFinished = true;
-                    StreamWriter writer = new StreamWriter(Application.dataPath + "/saveFile.json");
-                    writer.WriteLine(isTutorialFinished);
-                    writer.Close();
+                    PlayerPrefs.SetString("save", isTutorialFinished.ToString());
+                    //StreamWriter writer = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
+                    //writer.WriteLine(isTutorialFinished);
+                    //writer.Close();
 
                     menuController.StartRealGame();
 
@@ -165,8 +171,6 @@ public class TutorialScript : MonoBehaviour
         position = new Vector3(PropperCells[randomCell].transform.position.x, 0, PropperCells[randomCell].transform.position.z);
 
         repairDrone = Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity) as GameObject;
-        //Debug.LogError("TutorialTime = " + repairDrone.GetComponent<RepairTargetScript>().TutorialTime);
-        //isRepairDroneReleased = true;
         StartCoroutine(TestWait(1));
     }
 
