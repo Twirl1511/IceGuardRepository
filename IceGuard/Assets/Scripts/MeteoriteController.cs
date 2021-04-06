@@ -165,17 +165,24 @@ public class MeteoriteController : MonoBehaviour
         {
 
             PropperCellsArray.Add(e.transform.position);
+            
 
         }
-        for(int i = 0; i< MeteoriteOcupiedPositions.Length; i++)
+        print("Before = " + PropperCellsArray.Count);
+
+        for (int i = 0; i< MeteoriteOcupiedPositions.Length; i++)
         {
+            
             if(MeteoriteOcupiedPositions[i] != null)
             {
-                PropperCellsArray.Remove(MeteoriteOcupiedPositions[i]);
+
+                Vector3 positionToRemove = new Vector3(MeteoriteOcupiedPositions[i].x, PropperCellsArray[0].y, MeteoriteOcupiedPositions[i].z);
+                PropperCellsArray.Remove(positionToRemove);
+                //PropperCellsArray.Remove(PropperCellsArray[1]);
             }
         }
 
-
+        print("After = " + PropperCellsArray.Count);
 
 
 
@@ -197,7 +204,7 @@ public class MeteoriteController : MonoBehaviour
         //    }
         //}
 
-        
+
 
         //if (_timer >= timerForAnglePositions)
         //{
@@ -254,7 +261,7 @@ public class MeteoriteController : MonoBehaviour
         {
             if (e.currentState == Cell.State.PlayerOcupied)
             {
-                Debug.Log(e.name);
+                //Debug.Log(e.name);
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
                 addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
@@ -274,7 +281,7 @@ public class MeteoriteController : MonoBehaviour
         meteoriteCounter++;
         State = States.Ready;
 
-        Debug.Log($"addSecondsToBoom = {timeToFall} + {addSecondsToBoom}" );
+        //Debug.Log($"addSecondsToBoom = {timeToFall} + {addSecondsToBoom}" );
     }
 
 
@@ -282,7 +289,7 @@ public class MeteoriteController : MonoBehaviour
     {
         float timeToFall = Random.Range(addMeteorite.BoomTimeMin, addMeteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
 
-        Debug.LogError($"спавним ДOOOOOOOOOOOOOП метеорит № {meteoriteCounter + 1}");
+        //Debug.LogError($"спавним ДOOOOOOOOOOOOOП метеорит № {meteoriteCounter + 1}");
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall;
 

@@ -60,10 +60,10 @@ public class RepairTargetScript : MonoBehaviour
     {
         if (readyToRepair)
         {
-            Debug.Log("readyToRepair = true");
+            //Debug.Log("readyToRepair = true");
             if (other.CompareTag("Player"))
             {
-                Debug.Log(" коснулось плеера, чиним");
+                //Debug.Log(" коснулось плеера, чиним");
                 PlayerHitPoints.RestartHP();
             }
         }
