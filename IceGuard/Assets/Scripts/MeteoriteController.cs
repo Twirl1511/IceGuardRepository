@@ -44,6 +44,9 @@ public class MeteoriteController : MonoBehaviour
     private bool _angleTimer = false;
     [SerializeField] private Cell[] AngelPositions;
     private Vector3 _currentAnglePosition;
+
+    private Vector3[] _meteoriteOcupiedPositions = new Vector3[5];
+    private int _meteoriteCounter = 0;
     public enum States
     {
         Ready,
@@ -155,56 +158,80 @@ public class MeteoriteController : MonoBehaviour
 
     private Vector3 RandomPosition()
     {
-        List<Cell> PropperCellsArray = new List<Cell>();
-        /*Debug.LogError($"Клетки которые исключаем");*/ /// после else
+
+        List<Vector3> PropperCellsArray = new List<Vector3>();
+
         foreach (var e in CellController.CellDouble)
         {
-            if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.Mine)
+
+            PropperCellsArray.Add(e.transform.position);
+
+        }
+        for(int i = 0; i< _meteoriteOcupiedPositions.Length; i++)
+        {
+            if(_meteoriteOcupiedPositions[i] != null)
             {
-                PropperCellsArray.Add(e);
-            }
-            else
-            {
-                //Debug.LogError($"Клетки которые исключаем");
-                //Debug.LogError($"{e.name}  {e.currentState}");
+                PropperCellsArray.Remove(_meteoriteOcupiedPositions[i]);
             }
         }
+
+
+
+
+
+
+
+
+        //    List<Cell> PropperCellsArray = new List<Cell>();
+        ///*Debug.LogError($"Клетки которые исключаем");*/ /// после else
+        //foreach (var e in CellController.CellDouble)
+        //{
+        //    if (e.currentState == Cell.State.Clear || e.currentState == Cell.State.Mine)
+        //    {
+        //        PropperCellsArray.Add(e);
+        //    }
+        //    else
+        //    {
+        //        //Debug.LogError($"Клетки которые исключаем");
+        //        //Debug.LogError($"{e.name}  {e.currentState}");
+        //    }
+        //}
 
         
 
-        if (_timer >= timerForAnglePositions)
-        {
-            _timer = 0;
-            _angleTimer = false;
-        }
-        else
-        {
-            foreach(var e in AngelPositions)
-            {
-                PropperCellsArray.Remove(e);
-            }
-        }
+        //if (_timer >= timerForAnglePositions)
+        //{
+        //    _timer = 0;
+        //    _angleTimer = false;
+        //}
+        //else
+        //{
+        //    foreach(var e in AngelPositions)
+        //    {
+        //        PropperCellsArray.Remove(e);
+        //    }
+        //}
 
 
         int randomCell = Random.Range(0, PropperCellsArray.Count);
 
-        float x = PropperCellsArray[randomCell].transform.position.x;
-        float z = PropperCellsArray[randomCell].transform.position.z;
+        float x = PropperCellsArray[randomCell].x;
+        float z = PropperCellsArray[randomCell].z;
 
         Vector3 position = new Vector3(x, 0, z);
         //Debug.LogError($"Метеорит спавнится на {PropperCellsArray[randomCell].name}  {PropperCellsArray[randomCell].currentState}");
 
 
-        if (!_angleTimer)
-        {
-            foreach (var e in AngelPositions)
-            {
-                if (position.x == e.transform.position.x && position.z == e.transform.position.z)
-                {
-                    _angleTimer = true;
-                }
-            }
-        }
+        //if (!_angleTimer)
+        //{
+        //    foreach (var e in AngelPositions)
+        //    {
+        //        if (position.x == e.transform.position.x && position.z == e.transform.position.z)
+        //        {
+        //            _angleTimer = true;
+        //        }
+        //    }
+        //}
 
 
 
@@ -228,21 +255,26 @@ public class MeteoriteController : MonoBehaviour
                 float x = Mathf.Abs(e.transform.position.x - position.x);
                 float z = Mathf.Abs(e.transform.position.z - position.z);
                 addSecondsToBoom = Mathf.RoundToInt((x + z) * NewPlayerController.TimeToReachNextTile) + 1;
+                break;
                 //Debug.LogError($"спавним метеорит № {meteoriteCounter + 1}");
-            }
-            else
-            {
-
             }
         }
 
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
+
+        _meteoriteOcupiedPositions[_meteoriteCounter] = position;
+        _meteoriteCounter++;
+        if (_meteoriteCounter > _meteoriteOcupiedPositions.Length - 1)
+            _meteoriteCounter = 0;
+
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
         meteoriteCounter++;
         State = States.Ready;
 
         Debug.Log($"addSecondsToBoom = {timeToFall} + {addSecondsToBoom}" );
     }
+
+
     private void CreateAdditionalMeteorite(AdditionalMeteorite addMeteorite, Vector3 position)
     {
         float timeToFall = Random.Range(addMeteorite.BoomTimeMin, addMeteorite.BoomTimeMax + 1); /// значения в интах, поэтому +1 чтобы в инспекторе проще было
@@ -250,6 +282,12 @@ public class MeteoriteController : MonoBehaviour
         Debug.LogError($"спавним ДOOOOOOOOOOOOOП метеорит № {meteoriteCounter + 1}");
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall;
+
+        _meteoriteOcupiedPositions[_meteoriteCounter] = position;
+        _meteoriteCounter++;
+        if (_meteoriteCounter > _meteoriteOcupiedPositions.Length - 1)
+            _meteoriteCounter = 0;
+
         /// костыль, дабы общее количество метеоритов не менялось после смерти дополнительного
         StartCoroutine(AdjactMeteoritesNumber(timeToFall + 2));
     }

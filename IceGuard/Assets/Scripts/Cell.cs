@@ -10,11 +10,11 @@ public class Cell : MonoBehaviour
     private bool isCollisioned = false;
     public enum State
     {
+        Clear,
         PlayerOcupied,
         MeteoriteIsComming,
         Mine,
-        RepairBeam,
-        Clear
+        RepairBeam
     }
     private int number;
 
@@ -25,50 +25,49 @@ public class Cell : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isCollisioned)
-        {
-            currentState = State.Clear;
-        }
-        if (currentState != State.Clear)
-        {
-            isCollisioned = false;
-        }
+        //if (!isCollisioned)
+        //{
+        //    currentState = State.Clear;
+        //}
+        //if (currentState != State.Clear)
+        //{
+        //    isCollisioned = false;
+        //}
 
     }
 
 
     private void OnTriggerStay(Collider other)
     {
-        isCollisioned = true;
+        //isCollisioned = true;
 
         if (other.CompareTag("Player"))
         {
             currentState = State.PlayerOcupied;
-            return;
         }
-        else
-        {
-            if (other.CompareTag("Meteorite"))
-            {
-                currentState = State.MeteoriteIsComming;
-                return;
-            }
-            else
-            {
-                if (other.CompareTag("Mine"))
-                {
-                    currentState = State.Mine;
-                    return;
-                }
-                else
-                {
-                    if (other.CompareTag("RepairBeam"))
-                    {
-                        currentState = State.RepairBeam;
-                    }
-                }
-            }
-        }
+        //else
+        //{
+        //    if (other.CompareTag("Meteorite"))
+        //    {
+        //        currentState = State.MeteoriteIsComming;
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        if (other.CompareTag("Mine"))
+        //        {
+        //            currentState = State.Mine;
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            if (other.CompareTag("RepairBeam"))
+        //            {
+        //                currentState = State.RepairBeam;
+        //            }
+        //        }
+        //    }
+        //}
         
 
 
@@ -98,7 +97,8 @@ public class Cell : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        currentState = State.Clear;
+        if (other.CompareTag("Player"))
+            currentState = State.Clear;
     }
     
 }
