@@ -21,84 +21,47 @@ public class Cell : MonoBehaviour
     private void Start()
     {
         currentState = State.Clear;
+        InvokeRepeating(nameof(SetClear), 1, 1);
     }
 
     private void FixedUpdate()
     {
-        //if (!isCollisioned)
-        //{
-        //    currentState = State.Clear;
-        //}
-        //if (currentState != State.Clear)
-        //{
-        //    isCollisioned = false;
-        //}
+        
 
     }
 
+    private void SetClear()
+    {
+        if (!isCollisioned)
+        {
+            currentState = State.Clear;
+        }
+        if (currentState != State.Clear)
+        {
+            isCollisioned = false;
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        //isCollisioned = true;
+        isCollisioned = true;
 
         if (other.CompareTag("Player"))
         {
             currentState = State.PlayerOcupied;
         }
-        //else
-        //{
-        //    if (other.CompareTag("Meteorite"))
-        //    {
-        //        currentState = State.MeteoriteIsComming;
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        if (other.CompareTag("Mine"))
-        //        {
-        //            currentState = State.Mine;
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            if (other.CompareTag("RepairBeam"))
-        //            {
-        //                currentState = State.RepairBeam;
-        //            }
-        //        }
-        //    }
-        //}
-        
-
-
-        //if (other.CompareTag("Player"))
-        //{
-        //    currentState = State.PlayerOcupied;
-        //}
-        //else
-        //if (other.CompareTag("Meteorite"))
-        //{
-        //    currentState = State.MeteoriteIsComming;
-        //}
-        //else
-        //if (other.CompareTag("Mine"))
-        //{
-        //    currentState = State.Mine;
-        //}
-        //else
-        //if (other.CompareTag("RepairBeam"))
-        //{
-        //    currentState = State.RepairBeam;
-        //}
-
-
+        else
+        {
+            if (other.CompareTag("Mine"))
+            {
+                currentState = State.Mine;
+                return;
+            }
+            
+        }
 
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            currentState = State.Clear;
-    }
+  
     
 }

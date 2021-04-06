@@ -23,6 +23,11 @@ public class PlayerHitPoints : MonoBehaviour
     private void Update()
     {
         CheckHP();
+        /// читерская кнопка лечилка
+        if (Input.GetKey(KeyCode.P))
+        {
+            RestartHP();
+        }
     }
     private void CheckHP()
     {

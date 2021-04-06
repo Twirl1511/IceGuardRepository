@@ -11,7 +11,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject DayCounter;
     public static bool _firstGame = true;
     [SerializeField] private GameObject StartTipsPanel;
-    [SerializeField] private GameObject MeteoriteController;
+    [SerializeField] private MeteoriteController _meteoriteController;
     [SerializeField] private GameObject GameUI;
     [Header("Repair Drone")]
     [SerializeField] private float timeBeforeRepairMin;
@@ -48,7 +48,7 @@ public class MenuController : MonoBehaviour
         {
             DroneState = DroneStates.Ready;
             CreatePlayer();
-            MeteoriteController.SetActive(true);
+            _meteoriteController.gameObject.SetActive(true);
             GameUI.SetActive(true);
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;
@@ -150,27 +150,51 @@ public class MenuController : MonoBehaviour
 
     private void CreateRepairTarget()
     {
+        
 
-        List<Cell> PropperCellsArray = new List<Cell>();
+        List<Vector3> PropperCellsArray = new List<Vector3>();
         foreach(var e in CellController.CellDouble)
         {
             if(e.currentState == Cell.State.Clear)
             {
-                PropperCellsArray.Add(e);
+                PropperCellsArray.Add(e.transform.position);
             }
         }
+
+        
+        for(int i = 0; i < _meteoriteController.MeteoriteOcupiedPositions.Length; i++)
+        {
+            if (_meteoriteController.MeteoriteOcupiedPositions[i] != null)
+            {
+                PropperCellsArray.Remove(_meteoriteController.MeteoriteOcupiedPositions[i]);
+            }
+        }
+
+
+
         int randomCell = Random.Range(0, PropperCellsArray.Count);
 
-        float x = PropperCellsArray[randomCell].transform.position.x;
-        float z = PropperCellsArray[randomCell].transform.position.z;
+        float x = PropperCellsArray[randomCell].x;
+        float z = PropperCellsArray[randomCell].z;
+        Vector3 position = new Vector3(x, 0, z);
 
-        GameObject.Instantiate(Resources.Load(RepairDrone.name), new Vector3(x, 0, z), Quaternion.identity);
+
+        _meteoriteController.MeteoriteOcupiedPositions[_meteoriteController.MeteoriteCounter] = position;
+        _meteoriteController.MeteoriteCounter++;
+        if (_meteoriteController.MeteoriteCounter > _meteoriteController.MeteoriteOcupiedPositions.Length - 1)
+            _meteoriteController.MeteoriteCounter = 0;
+
+
+
+
+
+        GameObject.Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity);
     }
 
     public void StartRealGame()
     {
         DroneState = DroneStates.Ready;
-        MeteoriteController.SetActive(true);
+        _meteoriteController.gameObject.SetActive(true);
     }
 
     public void OnClickRestart()
@@ -199,7 +223,7 @@ public class MenuController : MonoBehaviour
             UIManager.GameState = UIManager.GameStates.Play;
             DroneState = DroneStates.Ready;
             CreatePlayer();
-            MeteoriteController.SetActive(true);
+            _meteoriteController.gameObject.SetActive(true);
             GameUI.SetActive(true);
             StartTipsPanel.SetActive(false);
             Time.timeScale = 1;

@@ -45,8 +45,8 @@ public class MeteoriteController : MonoBehaviour
     [SerializeField] private Cell[] AngelPositions;
     private Vector3 _currentAnglePosition;
 
-    private Vector3[] _meteoriteOcupiedPositions = new Vector3[5];
-    private int _meteoriteCounter = 0;
+    [HideInInspector] public Vector3[] MeteoriteOcupiedPositions = new Vector3[8];
+    [HideInInspector] public int MeteoriteCounter = 0;
     public enum States
     {
         Ready,
@@ -167,11 +167,11 @@ public class MeteoriteController : MonoBehaviour
             PropperCellsArray.Add(e.transform.position);
 
         }
-        for(int i = 0; i< _meteoriteOcupiedPositions.Length; i++)
+        for(int i = 0; i< MeteoriteOcupiedPositions.Length; i++)
         {
-            if(_meteoriteOcupiedPositions[i] != null)
+            if(MeteoriteOcupiedPositions[i] != null)
             {
-                PropperCellsArray.Remove(_meteoriteOcupiedPositions[i]);
+                PropperCellsArray.Remove(MeteoriteOcupiedPositions[i]);
             }
         }
 
@@ -233,7 +233,10 @@ public class MeteoriteController : MonoBehaviour
         //    }
         //}
 
-
+        MeteoriteOcupiedPositions[MeteoriteCounter] = position;
+        MeteoriteCounter++;
+        if (MeteoriteCounter > MeteoriteOcupiedPositions.Length - 1)
+            MeteoriteCounter = 0;
 
 
 
@@ -262,10 +265,10 @@ public class MeteoriteController : MonoBehaviour
 
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
 
-        _meteoriteOcupiedPositions[_meteoriteCounter] = position;
-        _meteoriteCounter++;
-        if (_meteoriteCounter > _meteoriteOcupiedPositions.Length - 1)
-            _meteoriteCounter = 0;
+        //_meteoriteOcupiedPositions[_meteoriteCounter] = position;
+        //_meteoriteCounter++;
+        //if (_meteoriteCounter > _meteoriteOcupiedPositions.Length - 1)
+        //    _meteoriteCounter = 0;
 
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall + addSecondsToBoom;
         meteoriteCounter++;
@@ -283,10 +286,7 @@ public class MeteoriteController : MonoBehaviour
         GameObject newMeteorite = GameObject.Instantiate(Resources.Load(MeteoriteTarget.name), position, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
         newMeteorite.GetComponent<DestroyMeteoritTimer>().timetoFall = timeToFall;
 
-        _meteoriteOcupiedPositions[_meteoriteCounter] = position;
-        _meteoriteCounter++;
-        if (_meteoriteCounter > _meteoriteOcupiedPositions.Length - 1)
-            _meteoriteCounter = 0;
+        
 
         /// костыль, дабы общее количество метеоритов не менялось после смерти дополнительного
         StartCoroutine(AdjactMeteoritesNumber(timeToFall + 2));
