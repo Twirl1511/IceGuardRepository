@@ -7,17 +7,15 @@ public class DayCounter : MonoBehaviour
 {
     public Text Counter;
     [SerializeField] private int SecondsInDay;
-    public float timer;
+    [HideInInspector] public int timer;
     void Start()
     {
-        timer = 30f;
+        InvokeRepeating(nameof(DayCount), 1, SecondsInDay);
     }
-    void Update()
+
+    private void DayCount()
     {
-        if(UIManager.GameState == UIManager.GameStates.Play)
-        {
-            timer += Time.deltaTime;
-            Counter.text = (timer / SecondsInDay).ToString("#");
-        }
+        timer++;
+        Counter.text = timer.ToString();
     }
 }

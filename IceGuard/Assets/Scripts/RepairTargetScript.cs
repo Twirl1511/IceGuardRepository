@@ -13,6 +13,7 @@ public class RepairTargetScript : MonoBehaviour
     [SerializeField] private Collider collider;
     private bool readyToRepair = false;
     [HideInInspector] public float TutorialTime;
+    [SerializeField] private GameObject _dotOnEarth;
 
     void Start()
     {
@@ -34,6 +35,19 @@ public class RepairTargetScript : MonoBehaviour
             }
         }
     }
+
+
+
+    private void SpawnDotOnEarth()
+    {
+        Vector3 position = new Vector3(0,0,0);
+        Instantiate(_dotOnEarth, position, Quaternion.identity);
+    }
+
+
+
+
+
 
     IEnumerator LaterDestroy()
     {
