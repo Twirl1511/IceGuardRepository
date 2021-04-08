@@ -177,7 +177,7 @@ public class TutorialScript : MonoBehaviour
     IEnumerator TestWait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        RepairDroneTimer = repairDrone.GetComponent<RepairTargetScript>().TutorialTime;
+        RepairDroneTimer = repairDrone.GetComponent<RepairTargetScript>().TimeThenHeal;
         Debug.LogError("TutorialTime = " + RepairDroneTimer);
         isRepairDroneReleased = true;
     }

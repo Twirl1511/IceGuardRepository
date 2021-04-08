@@ -12,14 +12,14 @@ public class RepairTargetScript : MonoBehaviour
     [SerializeField] TextMesh timerText;
     [SerializeField] private Collider collider;
     private bool readyToRepair = false;
-    [HideInInspector] public float TutorialTime;
+    [HideInInspector] public float TimeThenHeal;
     [SerializeField] private GameObject _dotOnEarth;
 
     void Start()
     {
         timeToLive = Random.Range(timeToLiveMin, timeToLiveMax+1);
         timeToLive += 1;
-        TutorialTime = timeToLive;
+        TimeThenHeal = timeToLive;
         timerText.text = timeToLive.ToString();
         StartCoroutine(LaterDestroy());
         StartCoroutine(ActivateCollider());
