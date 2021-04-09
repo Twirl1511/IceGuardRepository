@@ -107,7 +107,7 @@ public class MenuController : MonoBehaviour
 
                 if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
                 {
-                    TipsText.text = tutorialScript.FirstPositionFaile();
+                    TipsText.text = tutorialScript.FailedStage();
                 }
                 if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
                 {

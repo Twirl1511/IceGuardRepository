@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+using DG.Tweening;
 
 
 public class TutorialScript : MonoBehaviour
@@ -23,36 +23,22 @@ public class TutorialScript : MonoBehaviour
     public bool isRepairDroneReleased = false;
     private float RepairDroneTimer;
     [SerializeField] private MenuController menuController;
+    [Header("LaserTutorial")]
+    [SerializeField] private GameObject _laser;
+    private GameObject _target;
+    private float _timeToRepair;
 
     void Start()
     {
         isTutorialFinished = System.Convert.ToBoolean(PlayerPrefs.GetString("save", "false"));
-        //StreamReader reader;
-        try
+    }
+    private void FixedUpdate()
+    {
+        if (_target != null)
         {
-            
-
-
-            //reader = new StreamReader(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
-            //isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
-            //Debug.Log(isTutorialFinished);
-            //reader.Close();
-        }
-        catch
-        {
-            //PlayerPrefs.SetString("save", isTutorialFinished.ToString());
-            //isTutorialFinished = false;
-            //StreamWriter writer = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
-            //writer.WriteLine(isTutorialFinished);
-            //writer.Close();
-
-            //reader = new StreamReader(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
-            //isTutorialFinished = System.Convert.ToBoolean(reader.ReadToEnd());
-            //Debug.Log(isTutorialFinished);
-            //reader.Close();
+            _laser.transform.LookAt(_target.transform, Vector3.forward);
         }
     }
-
     void Update()
     {
         if(isRepairDroneReleased)
@@ -69,21 +55,10 @@ public class TutorialScript : MonoBehaviour
                 {
                     isTutorialFinished = true;
                     PlayerPrefs.SetString("save", isTutorialFinished.ToString());
-                    //StreamWriter writer = new StreamWriter(System.IO.Directory.GetCurrentDirectory() + "/saveFile.json");
-                    //writer.WriteLine(isTutorialFinished);
-                    //writer.Close();
-
                     menuController.StartRealGame();
-
-
-                }
-                
+                }               
             }
-        }
-        
-
-
-
+        }   
     }
     
     public void FirstStep()
@@ -105,8 +80,7 @@ public class TutorialScript : MonoBehaviour
         if(PlayerHitPoints.HitPoints != 0)
         {
             SecondStep();
-        }
-        
+        }     
     }
     IEnumerator GoToThirdStep()
     {
@@ -115,7 +89,6 @@ public class TutorialScript : MonoBehaviour
         {
             ThirdStep();
         }
-
     }
 
 
@@ -141,7 +114,6 @@ public class TutorialScript : MonoBehaviour
 
     public void ThirdStep()
     {
-        
         StaticTutorialStage.Stage = StaticTutorialStage.TutorStages.Third;
         Vector3 position = new Vector3(2, 0, -3);
 
@@ -167,22 +139,43 @@ public class TutorialScript : MonoBehaviour
 
         int randomCell = Random.Range(0, PropperCells.Count);
 
-
         position = new Vector3(PropperCells[randomCell].transform.position.x, 0, PropperCells[randomCell].transform.position.z);
 
         repairDrone = Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity) as GameObject;
+        repairDrone.GetComponent<RepairTargetScript>().timeToLiveMin = 5;
+        repairDrone.GetComponent<RepairTargetScript>().timeToLiveMax = 10;
+        _target = repairDrone;
         StartCoroutine(TestWait(1));
+
+
+        _laser.SetActive(true);
+        StartCoroutine(LaterLaserAnimation());
     }
+
+
+    IEnumerator LaterLaserAnimation()
+    {
+        yield return new WaitForSeconds(1);
+        _timeToRepair = _target.GetComponent<RepairTargetScript>().TimeThenHeal - 1;
+        yield return new WaitForSeconds(_timeToRepair);
+        _laser.transform.GetChild(0).DOScaleY(1, 1);
+        yield return new WaitForSeconds(1);
+        _laser.transform.GetChild(0).DOScaleY(0.05f, 0.15f);
+        yield return new WaitForSeconds(1.5f);
+        _laser.SetActive(false);
+    }
+
 
     IEnumerator TestWait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         RepairDroneTimer = repairDrone.GetComponent<RepairTargetScript>().TimeThenHeal;
+        _timeToRepair = RepairDroneTimer;
         Debug.LogError("TutorialTime = " + RepairDroneTimer);
         isRepairDroneReleased = true;
     }
 
-    public string FirstPositionFaile()
+    public string FailedStage()
     {
         string s = TutorTipsArray[Random.Range(0, TutorTipsArray.Length)];
         if (player.transform.position == new Vector3(0, 0, -2))
@@ -239,8 +232,5 @@ public class TutorialScript : MonoBehaviour
         }
         return s;
     }
-
-
-
 
 }
