@@ -10,7 +10,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Text Days;
     [SerializeField] private GameObject DayCounter;
     public static bool _firstGame = true;
-    [SerializeField] private GameObject StartTipsPanel;
+    [SerializeField] private GameObject _startPanel;
     [SerializeField] private MeteoriteController _meteoriteController;
     [SerializeField] private GameObject GameUI;
     [Header("Tutorial")]
@@ -23,12 +23,12 @@ public class MenuController : MonoBehaviour
     {
         Time.timeScale = 0;
         RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.NotReady;
-        StartTipsPanel.SetActive(false);
+        _startPanel.SetActive(false);
         TipsPanel.SetActive(false);
         if (!TutorialScript.isTutorialFinished)
         {
             Debug.Log("проверяем первая ли игра при старте скрипта меню контрол");
-            StartTipsPanel.SetActive(true);
+            _startPanel.SetActive(true);
             UIManager.GameState = UIManager.GameStates.Pause;
             _firstGame = false;
             PlayStages();
@@ -39,7 +39,7 @@ public class MenuController : MonoBehaviour
             CreatePlayer();
             _meteoriteController.gameObject.SetActive(true);
             GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
+            _startPanel.SetActive(false);
             Time.timeScale = 1;
         }
         
@@ -53,15 +53,15 @@ public class MenuController : MonoBehaviour
             PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
             GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
+            _startPanel.SetActive(false);
             Time.timeScale = 1;
             tutorialScript.FirstStep();
         }
         else if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Second)
         {
 
-            StartTipsPanel.SetActive(false);
-            Debug.Log("StartTipsPanel = " + StartTipsPanel.activeSelf);
+            _startPanel.SetActive(false);
+            Debug.Log("StartTipsPanel = " + _startPanel.activeSelf);
             PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
             GameUI.SetActive(true);
@@ -74,7 +74,7 @@ public class MenuController : MonoBehaviour
             PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
             GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
+            _startPanel.SetActive(false);
             Time.timeScale = 1;
             tutorialScript.ThirdStep();
         }
@@ -158,7 +158,7 @@ public class MenuController : MonoBehaviour
             CreatePlayer();
             _meteoriteController.gameObject.SetActive(true);
             GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
+            _startPanel.SetActive(false);
             Time.timeScale = 1;
         }
         else
@@ -166,7 +166,7 @@ public class MenuController : MonoBehaviour
             PlayerHitPoints.HitPoints = 2;
             UIManager.GameState = UIManager.GameStates.Play;
             GameUI.SetActive(true);
-            StartTipsPanel.SetActive(false);
+            _startPanel.SetActive(false);
             Time.timeScale = 1;
             tutorialScript.FirstStep();
         }
