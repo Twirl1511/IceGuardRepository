@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        GameUI.SetActive(false);
         Time.timeScale = 0;
         RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.NotReady;
         _startPanel.SetActive(false);
@@ -84,7 +85,7 @@ public class MenuController : MonoBehaviour
     {
         if(PlayerHitPoints.GetHitPoints() <= 0)
         {
-            
+            GameUI.SetActive(false);
             GameOverPanel.SetActive(true);
             Days.text = DayCounter.GetComponent<DayCounter>().Counter.text;
             Time.timeScale = 0;
@@ -134,6 +135,7 @@ public class MenuController : MonoBehaviour
     {
         if (TutorialScript.isTutorialFinished)
         {
+            GameUI.SetActive(true);
             PlayerHitPoints.RestartHP();
             Time.timeScale = 1;
             GameOverPanel.SetActive(false);
