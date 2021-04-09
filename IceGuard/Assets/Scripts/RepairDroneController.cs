@@ -27,7 +27,7 @@ public class RepairDroneController : MonoBehaviour
     }
     public DroneStates DroneState;
 
-    private void Start()
+    private void Awake()
     {
         if (singleton == null)
         {

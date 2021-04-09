@@ -13,29 +13,16 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject StartTipsPanel;
     [SerializeField] private MeteoriteController _meteoriteController;
     [SerializeField] private GameObject GameUI;
-    [Header("Repair Drone")]
-    [SerializeField] private RepairDroneController _repairDroneController;
-    //[SerializeField] private float timeBeforeRepairMin;
-    //[SerializeField] private float timeBeforeRepairMax;
-    //[SerializeField] private GameObject RepairDrone;
-    //[SerializeField] private float ProgressionTime;
     [Header("Tutorial")]
     [SerializeField] private TutorialScript tutorialScript;
     [SerializeField] private GameObject TipsPanel;
     [SerializeField] private Text TipsText;
 
 
-    //private enum DroneStates
-    //{
-    //    Ready,
-    //    NotReady
-    //}
-    //private DroneStates DroneState;
-    
     private void Start()
     {
         Time.timeScale = 0;
-        _repairDroneController.DroneState = RepairDroneController.DroneStates.NotReady;
+        RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.NotReady;
         StartTipsPanel.SetActive(false);
         TipsPanel.SetActive(false);
         if (!TutorialScript.isTutorialFinished)
@@ -48,7 +35,7 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            _repairDroneController.DroneState = RepairDroneController.DroneStates.Ready;
+            RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.Ready;
             CreatePlayer();
             _meteoriteController.gameObject.SetActive(true);
             GameUI.SetActive(true);
@@ -58,7 +45,7 @@ public class MenuController : MonoBehaviour
         
     }
 
-    public void PlayStages()
+    private void PlayStages()
     {
         if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.First)
         {
@@ -123,7 +110,6 @@ public class MenuController : MonoBehaviour
 
             }
         }
-        /// запускаем лечащего дрона
         
     }
 
@@ -137,63 +123,10 @@ public class MenuController : MonoBehaviour
         GameObject.Instantiate(Resources.Load("PlayerGhost"), new Vector3(x, 0, z), Quaternion.identity);
     }
 
-    //IEnumerator DroneAppearDelay()
-    //{
-    //    DroneState = DroneStates.NotReady;
-    //    yield return new WaitForSeconds(Random.Range(timeBeforeRepairMin, timeBeforeRepairMax));
-    //    timeBeforeRepairMin += ProgressionTime;
-    //    timeBeforeRepairMax += ProgressionTime;
-    //    CreateRepairTarget();
-    //    DroneState = DroneStates.Ready;
-    //}
-
-    //private void CreateRepairTarget()
-    //{
-        
-
-    //    List<Vector3> PropperCellsArray = new List<Vector3>();
-    //    foreach(var e in CellController.CellDouble)
-    //    {
-    //        if(e.currentState == Cell.State.Clear)
-    //        {
-    //            PropperCellsArray.Add(e.transform.position);
-    //        }
-    //    }
-
-        
-    //    for(int i = 0; i < _meteoriteController.MeteoriteOcupiedPositions.Length; i++)
-    //    {
-    //        if (_meteoriteController.MeteoriteOcupiedPositions[i] != null)
-    //        {
-    //            PropperCellsArray.Remove(_meteoriteController.MeteoriteOcupiedPositions[i]);
-    //        }
-    //    }
-
-
-
-    //    int randomCell = Random.Range(0, PropperCellsArray.Count);
-
-    //    float x = PropperCellsArray[randomCell].x;
-    //    float z = PropperCellsArray[randomCell].z;
-    //    Vector3 position = new Vector3(x, 0, z);
-
-
-    //    _meteoriteController.MeteoriteOcupiedPositions[_meteoriteController.MeteoriteCounter] = position;
-    //    _meteoriteController.MeteoriteCounter++;
-    //    if (_meteoriteController.MeteoriteCounter > _meteoriteController.MeteoriteOcupiedPositions.Length - 1)
-    //        _meteoriteController.MeteoriteCounter = 0;
-
-
-
-
-
-    //    GameObject.Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity);
-    //}
-
 
     public void StartRealGame()
     {
-        _repairDroneController.DroneState = RepairDroneController.DroneStates.Ready;
+        RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.Ready;
         _meteoriteController.gameObject.SetActive(true);
     }
 
@@ -221,7 +154,7 @@ public class MenuController : MonoBehaviour
         if (TutorialScript.isTutorialFinished)
         {
             UIManager.GameState = UIManager.GameStates.Play;
-            _repairDroneController.DroneState = RepairDroneController.DroneStates.Ready;
+            RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.Ready;
             CreatePlayer();
             _meteoriteController.gameObject.SetActive(true);
             GameUI.SetActive(true);
