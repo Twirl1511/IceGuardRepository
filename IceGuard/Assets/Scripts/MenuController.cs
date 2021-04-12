@@ -153,6 +153,11 @@ public class MenuController : MonoBehaviour
 
     public void OnClickGO()
     {
+        if(NewPlayerController.singleton != null)
+        {
+            OnClickRestart();
+        }
+
         if (TutorialScript.isTutorialFinished)
         {
             UIManager.GameState = UIManager.GameStates.Play;
