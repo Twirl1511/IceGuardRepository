@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NewPlayerController : MonoBehaviour
 {
+    public static NewPlayerController singleton;
     public Vector3 _startPosition;
     public Vector3 _endPosition;
     public AnimationCurve Easing;
@@ -34,6 +35,16 @@ public class NewPlayerController : MonoBehaviour
 
     private void Start()
     {
+        if(singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
+
         TutorialMinesCounter = 0;
         NewPathScript.PathPoints.Clear();
         gameObject.GetComponent<NewPlayerController>().enabled = true;
@@ -43,7 +54,7 @@ public class NewPlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (UIManager.GameState == UIManager.GameStates.Play)
+        if (PauseManager.GameState == PauseManager.GameStates.Play)
         {
             TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
             Move();
