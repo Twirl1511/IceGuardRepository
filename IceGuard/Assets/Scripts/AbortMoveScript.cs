@@ -15,7 +15,7 @@ public class AbortMoveScript : MonoBehaviour
         if (!IsAborting)
         {
 
-            if (UIManager.GameState == UIManager.GameStates.Play)
+            if (PauseManager.GameState == PauseManager.GameStates.Play)
             {
                 IsAborting = true;
                 Player = GameObject.FindGameObjectWithTag(Player.tag);

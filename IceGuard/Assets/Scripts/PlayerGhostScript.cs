@@ -33,7 +33,7 @@ public class PlayerGhostScript : MonoBehaviour
     }
     private void Update()
     {
-        if (UIManager.GameState == UIManager.GameStates.Play)
+        if (PauseManager.GameState == PauseManager.GameStates.Play)
         {
             TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
             Move();

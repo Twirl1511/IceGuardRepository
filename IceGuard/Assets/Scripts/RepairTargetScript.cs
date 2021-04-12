@@ -28,7 +28,7 @@ public class RepairTargetScript : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.GameState == UIManager.GameStates.Play)
+        if (PauseManager.GameState == PauseManager.GameStates.Play)
         {
             if (!IsTimerActive)
             {

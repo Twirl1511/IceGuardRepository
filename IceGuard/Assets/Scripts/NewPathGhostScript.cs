@@ -9,7 +9,7 @@ public class NewPathGhostScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (UIManager.GameState == UIManager.GameStates.Play)
+        if (PauseManager.GameState == PauseManager.GameStates.Play)
         {
             if (CorrectNextPathPoint(GhostPreviousPoint, gameObject.transform.position))
             {

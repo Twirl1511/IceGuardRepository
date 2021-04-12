@@ -30,7 +30,7 @@ public class MenuController : MonoBehaviour
         {
             Debug.Log("проверяем первая ли игра при старте скрипта меню контрол");
             _startPanel.SetActive(true);
-            UIManager.GameState = UIManager.GameStates.Pause;
+            PauseManager.GameState = PauseManager.GameStates.Pause;
             _firstGame = false;
             PlayStages();
         }
@@ -52,7 +52,7 @@ public class MenuController : MonoBehaviour
         {
 
             PlayerHitPoints.HitPoints = 2;
-            UIManager.GameState = UIManager.GameStates.Play;
+            PauseManager.GameState = PauseManager.GameStates.Play;
             GameUI.SetActive(true);
             _startPanel.SetActive(false);
             Time.timeScale = 1;
@@ -64,7 +64,7 @@ public class MenuController : MonoBehaviour
             _startPanel.SetActive(false);
             Debug.Log("StartTipsPanel = " + _startPanel.activeSelf);
             PlayerHitPoints.HitPoints = 2;
-            UIManager.GameState = UIManager.GameStates.Play;
+            PauseManager.GameState = PauseManager.GameStates.Play;
             GameUI.SetActive(true);
 
             Time.timeScale = 1;
@@ -73,7 +73,7 @@ public class MenuController : MonoBehaviour
         else if (StaticTutorialStage.Stage == StaticTutorialStage.TutorStages.Third)
         {
             PlayerHitPoints.HitPoints = 2;
-            UIManager.GameState = UIManager.GameStates.Play;
+            PauseManager.GameState = PauseManager.GameStates.Play;
             GameUI.SetActive(true);
             _startPanel.SetActive(false);
             Time.timeScale = 1;
@@ -160,7 +160,7 @@ public class MenuController : MonoBehaviour
 
         if (TutorialScript.isTutorialFinished)
         {
-            UIManager.GameState = UIManager.GameStates.Play;
+            PauseManager.GameState = PauseManager.GameStates.Play;
             RepairDroneController.singleton.DroneState = RepairDroneController.DroneStates.Ready;
             CreatePlayer();
             _meteoriteController.gameObject.SetActive(true);
@@ -171,7 +171,7 @@ public class MenuController : MonoBehaviour
         else
         {
             PlayerHitPoints.HitPoints = 2;
-            UIManager.GameState = UIManager.GameStates.Play;
+            PauseManager.GameState = PauseManager.GameStates.Play;
             GameUI.SetActive(true);
             _startPanel.SetActive(false);
             Time.timeScale = 1;
