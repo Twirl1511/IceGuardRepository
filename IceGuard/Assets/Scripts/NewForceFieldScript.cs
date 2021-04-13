@@ -34,9 +34,14 @@ public class NewForceFieldScript : MonoBehaviour
         Health.color = _color;
 
         //Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
+<<<<<<< Updated upstream
         if (SecondsToDestroy >= lifeTime)
+=======
+        if (SecondsToDestroy >= lifeTime + 3)
+>>>>>>> Stashed changes
         {
             Destroy(this.gameObject);
+            Destroy(this.gameObject, 3);
         }
     }
 
