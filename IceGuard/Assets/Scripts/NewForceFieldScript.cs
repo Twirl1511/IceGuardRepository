@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class NewForceFieldScript : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class NewForceFieldScript : MonoBehaviour
     public static float TimeMultiplier;
     public float SecondsToDestroy;
     [SerializeField] private Collider Collider;
-    [SerializeField] private Image Health;
+    [SerializeField] private SpriteRenderer Health;
+    [SerializeField] private float HealthScaleMultiplayer;
+    [SerializeField] private GameObject _mine;
     [SerializeField] private float speedAppearMine;
     private Color _color;
+    private bool _flag = true;
 
     void Start()
     {
@@ -35,13 +39,20 @@ public class NewForceFieldScript : MonoBehaviour
 
         //Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
 
-        if (SecondsToDestroy >= lifeTime)
-
+        if (SecondsToDestroy >= lifeTime - 3 && _flag)
         {
-            Destroy(this.gameObject);
+            _flag = false;
+            
+            InvokeRepeating(nameof(Test), 0, 1);
+            Destroy(this.gameObject, 3);
         }
     }
 
+    private void Test()
+    {
+        Vector3 scale = new Vector3(_mine.transform.localScale.x * HealthScaleMultiplayer, _mine.transform.localScale.y * HealthScaleMultiplayer, _mine.transform.localScale.z * HealthScaleMultiplayer);
+        _mine.transform.DOScale(scale, 0.5f).From();
+    }
 
     public void AdjustedLifeTimerNew()
     {
