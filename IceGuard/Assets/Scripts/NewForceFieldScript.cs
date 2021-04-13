@@ -12,9 +12,12 @@ public class NewForceFieldScript : MonoBehaviour
     [SerializeField] private Collider Collider;
     [SerializeField] private Image Health;
     [SerializeField] private float speedAppearMine;
+    private Color _color;
 
     void Start()
     {
+        _color = Health.color;
+        print(1);
         TimeMultiplier = 1f;
         StartCoroutine(LaterColliderActivate());
         SecondsToDestroy = 0.00001f;
@@ -27,7 +30,10 @@ public class NewForceFieldScript : MonoBehaviour
 
     public void LifeTimer()
     {
-        Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
+        _color.a = 1 - (SecondsToDestroy / lifeTime);
+        Health.color = _color;
+
+        //Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
         if (SecondsToDestroy >= lifeTime)
         {
             Destroy(this.gameObject);
