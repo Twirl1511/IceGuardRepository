@@ -17,6 +17,7 @@ public class RepairDroneController : MonoBehaviour
     [SerializeField] public MeteoriteController _meteoriteController;
     [Header("Laser")]
     [SerializeField] private GameObject _laser;
+    [SerializeField] private float _laserLength;
     private GameObject _target;
     private float _timeToRepair;
 
@@ -128,10 +129,10 @@ public class RepairDroneController : MonoBehaviour
         yield return new WaitForSeconds(1);
         _timeToRepair = _target.GetComponent<RepairTargetScript>().TimeThenHeal - 1;
         yield return new WaitForSeconds(_timeToRepair);
-        _laser.transform.GetChild(0).DOScaleY(1, 1);
+        _laser.transform.GetChild(0).DOScaleY(_laserLength, 0.7f);
         yield return new WaitForSeconds(1);
-        _laser.transform.GetChild(0).DOScaleY(0.05f, 0.15f);
-        yield return new WaitForSeconds(1.5f);
+        _laser.transform.GetChild(0).DOScaleY(0.05f, 0.1f);
+        ////yield return new WaitForSeconds(1.5f);
         _laser.SetActive(false);
     }
 
