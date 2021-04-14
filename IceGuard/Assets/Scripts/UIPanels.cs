@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIPanels : MonoBehaviour
 {
     [SerializeField] private GameObject _startPanel;
+    [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _scorePanel;
     [SerializeField] private GameObject _settingsPanel;
     [SerializeField] private GameObject _resumeButtonSettingsPanel;
@@ -16,6 +17,11 @@ public class UIPanels : MonoBehaviour
     public void OnClickScorePanel()
     {
         _startPanel.SetActive(false);
+        _scorePanel.SetActive(true);
+    }
+    public void OnClickScorePanelFromGameOver()
+    {
+        _gameOverPanel.SetActive(false);
         _scorePanel.SetActive(true);
     }
     public void OnClickSettingsPanel()
