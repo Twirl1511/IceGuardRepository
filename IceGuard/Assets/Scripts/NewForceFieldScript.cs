@@ -20,8 +20,6 @@ public class NewForceFieldScript : MonoBehaviour
 
     void Start()
     {
-        //_color = Health.color;
-        print(1);
         TimeMultiplier = 1f;
         StartCoroutine(LaterColliderActivate());
         SecondsToDestroy = 0.00001f;

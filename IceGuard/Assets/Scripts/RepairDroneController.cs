@@ -16,8 +16,10 @@ public class RepairDroneController : MonoBehaviour
     [Header("MeteoriteController")]
     [SerializeField] public MeteoriteController _meteoriteController;
     [Header("Laser")]
-    [SerializeField] private GameObject _laser;
-    [SerializeField] private float _laserLength;
+    [SerializeField] private GameObject _laserParrent;
+    [SerializeField] private float _laserStartLength;
+    [SerializeField] private float[] _laserEndLengtsArray;
+    private float _laserEndLength;
     private GameObject _target;
     private float _timeToRepair;
 
@@ -38,14 +40,14 @@ public class RepairDroneController : MonoBehaviour
         {
             Destroy(this);
         }
-        _laser.SetActive(false);
+        _laserParrent.SetActive(false);
     }
 
     private void FixedUpdate()
     {
         if(_target != null)
         {
-            _laser.transform.LookAt(_target.transform, Vector3.forward);
+            _laserParrent.transform.LookAt(_target.transform, Vector3.forward);
         }
     }
 
@@ -116,12 +118,34 @@ public class RepairDroneController : MonoBehaviour
 
 
         _target = GameObject.Instantiate(Resources.Load(RepairDrone.name), position, Quaternion.identity) as GameObject;
+        _laserEndLength = CalculateLaserLength(position, _laserEndLengtsArray);
         
-        _laser.SetActive(true);
+        StartCoroutine(DelayLaserActive(1));
         StartCoroutine(LaterLaserAnimation());
     }
 
-    
+    IEnumerator DelayLaserActive(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        float timeToActivate = _target.GetComponent<RepairTargetScript>().TimeThenHeal - 3;
+        yield return new WaitForSeconds(timeToActivate);
+        _laserParrent.SetActive(true);
+    }
+
+    private float CalculateLaserLength(Vector3 pos, float[] posArray)
+    {
+        float length = pos.x switch
+        {
+            3 => posArray[0],
+            2 => posArray[1],
+            1 => posArray[2],
+            0 => posArray[3],
+            -1 => posArray[4],
+            -2 => posArray[5],
+            _ => 1,
+        };
+        return length;
+    }
 
     
     IEnumerator LaterLaserAnimation()
@@ -129,11 +153,11 @@ public class RepairDroneController : MonoBehaviour
         yield return new WaitForSeconds(1);
         _timeToRepair = _target.GetComponent<RepairTargetScript>().TimeThenHeal - 1;
         yield return new WaitForSeconds(_timeToRepair);
-        _laser.transform.GetChild(0).DOScaleY(_laserLength, 0.7f);
+        _laserParrent.transform.GetChild(0).DOScaleY(_laserEndLength, 0.7f);
         yield return new WaitForSeconds(1);
-        _laser.transform.GetChild(0).DOScaleY(0.05f, 0.1f);
-        ////yield return new WaitForSeconds(1.5f);
-        _laser.SetActive(false);
+        _laserParrent.transform.GetChild(0).DOScaleY(_laserStartLength, 0.1f);
+        yield return new WaitForSeconds(0.1f);
+        _laserParrent.SetActive(false);
     }
 
 }
