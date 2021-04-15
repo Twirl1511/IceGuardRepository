@@ -34,8 +34,6 @@ public class NewForceFieldScript : MonoBehaviour
 
     public void LifeTimer()
     {
-        //_color.a = 1 - (SecondsToDestroy / lifeTime);
-        //Health.color = _color;
         if (_flag)
         {
             Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
@@ -49,13 +47,6 @@ public class NewForceFieldScript : MonoBehaviour
             InvokeRepeating(nameof(LowerLastHealth), 0.5f, 1);
             Destroy(this.gameObject, 2.5f);
         }
-        //if (SecondsToDestroy >= lifeTime - 3 && _flag)
-        //{
-        //    _flag = false;
-
-        //    InvokeRepeating(nameof(Puslate), 0, 1);
-        //    Destroy(this.gameObject, 3);
-        //}
     }
     private void LowerLastHealth()
     {

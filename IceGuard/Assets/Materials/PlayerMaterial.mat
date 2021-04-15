@@ -7,19 +7,31 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_space_station
-  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
-  m_ShaderKeywords: _NORMALMAP _SPECULAR_COLOR
+  m_Name: PlayerMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 57426af7cdc283e439b0e672907f36f7,
+    type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_1:
+        m_Texture: {fileID: 2800000, guid: 10524dabf6abdc14d94913d565de2870, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_1a4fceb1916e43da8dc52dde356ad081:
+        m_Texture: {fileID: 2800000, guid: a73bfae12dfa0674da672c3c6c9f3ceb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_aa6f1d9ef01946b1893f935d36d523b2:
+        m_Texture: {fileID: 2800000, guid: f1d1b6f70a7249e4486424bc1f499797, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BackTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -101,13 +113,24 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_18416fb5679f4499ac5f16739893ff0a: 0.59
+    - Vector1_3292e9fde26d41829b7b6d97420db61e: 0
+    - Vector1_41c306cf6484419c84e70db820172a48: 0
+    - Vector1_521836cdbadf4839abdfe6212adabbe8: 0.61
+    - Vector1_9234d7f548ec444a9f3c35899c9c97d5: 4.01
+    - Vector1_f2c4b99171b547c2a89b53ad7823fa28: 0.3
+    - Vector1_fbde16f1ede44a209e57a576a3006c03: 0.75
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EnvironmentReflections: 1
     - _GlossMapScale: 0.455
     - _Glossiness: 0.5
     - _GlossinessSource: 0
@@ -118,6 +141,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SampleGI: 0
     - _Shininess: 0.153
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
@@ -127,11 +151,16 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
+    - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_387008b8f9f64bdd842ad3ae60746448: {r: 0, g: 40.156864, b: 0, a: 0}
+    - Color_6fdbb4d3a4b14a3898574f33dc6f197c: {r: 0.19541404, g: 0.8490566, b: 0.108134575,
+        a: 0}
+    - Color_9307b1ce0abd44b18453705eb212c92b: {r: 0, g: 12.996038, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.006372549, g: 0.0625, b: 0, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
 --- !u!114 &2849181520681083700
