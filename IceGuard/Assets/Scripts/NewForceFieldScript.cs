@@ -30,23 +30,38 @@ public class NewForceFieldScript : MonoBehaviour
         LifeTimer();
     }
 
+    
+
     public void LifeTimer()
     {
         //_color.a = 1 - (SecondsToDestroy / lifeTime);
         //Health.color = _color;
+        if (_flag)
+        {
+            Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
+        }
 
-        Health.fillAmount = 1 - (SecondsToDestroy / lifeTime);
-
-        if (SecondsToDestroy >= lifeTime - 3 && _flag)
+        if (Health.fillAmount <= 0.1f && _flag)
         {
             _flag = false;
             
-            InvokeRepeating(nameof(Test), 0, 1);
-            Destroy(this.gameObject, 3);
+            InvokeRepeating(nameof(Puslate), 0, 1);
+            InvokeRepeating(nameof(LowerLastHealth), 0.5f, 1);
+            Destroy(this.gameObject, 2.5f);
         }
-    }
+        //if (SecondsToDestroy >= lifeTime - 3 && _flag)
+        //{
+        //    _flag = false;
 
-    private void Test()
+        //    InvokeRepeating(nameof(Puslate), 0, 1);
+        //    Destroy(this.gameObject, 3);
+        //}
+    }
+    private void LowerLastHealth()
+    {
+        Health.fillAmount -= 0.033f;
+    }
+    private void Puslate()
     {
         Vector3 scale = new Vector3(_mine.transform.localScale.x * HealthScaleMultiplayer, _mine.transform.localScale.y * HealthScaleMultiplayer, _mine.transform.localScale.z * HealthScaleMultiplayer);
         _mine.transform.DOScale(scale, 0.5f).From();
