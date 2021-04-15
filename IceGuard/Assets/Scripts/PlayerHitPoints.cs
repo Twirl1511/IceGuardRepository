@@ -5,12 +5,24 @@ using UnityEngine.UI;
 
 public class PlayerHitPoints : MonoBehaviour
 {
-
+    public static PlayerHitPoints singleton;
     public static int HitPoints = 3;
     
     [SerializeField] private GameObject[] HPArray;
+
+
+
     void Start()
     {
+        if(singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         HitPoints = 3;
         
         foreach (var e in HPArray)
@@ -62,6 +74,7 @@ public class PlayerHitPoints : MonoBehaviour
     }
     public static void RestartHP()
     {
+        GlowingEffect.singleton.ChangeColor();
         HitPoints = 3;
     }
     public static int GetHitPoints()

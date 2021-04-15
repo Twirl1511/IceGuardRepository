@@ -168,7 +168,7 @@ public class MeteoriteController : MonoBehaviour
             
 
         }
-        print("Before = " + PropperCellsArray.Count);
+
 
         for (int i = 0; i< MeteoriteOcupiedPositions.Length; i++)
         {
@@ -182,7 +182,7 @@ public class MeteoriteController : MonoBehaviour
             }
         }
 
-        print("After = " + PropperCellsArray.Count);
+       
 
 
 

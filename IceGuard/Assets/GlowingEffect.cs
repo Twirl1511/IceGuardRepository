@@ -5,21 +5,29 @@ using DG.Tweening;
 
 public class GlowingEffect : MonoBehaviour
 {
-    //[SerializeField] private Material _playerMaterial;
-    Renderer rend;
+    public static GlowingEffect singleton;
+    [SerializeField] private Renderer rend1;
+    [SerializeField] private Renderer rend2;
+    [SerializeField] private float _intensity;
+    [SerializeField] private float _time;
+
     private void Start()
     {
-        rend = GetComponent<Renderer>();
-        InvokeRepeating(nameof(ChangeColor), 1, 2);
+        singleton = this;
     }
 
-    private void ChangeColor()
+    public void ChangeColor()
     {
-        //print(rend.material.shader.FindPropertyIndex("Metallic"));
-        //_playerMaterial.SetFloat(7, 8);
-        ////_playerMaterial.DOFloat(8, "_Intensity", 1);
-        //print(Shader.PropertyToID("Intensity"));
+        rend1.material.DOFloat(_intensity, "Intensity", _time).From(0);
+        rend2.material.DOFloat(_intensity, "Intensity", _time).From(0);
+        StartCoroutine(BackToDefault());
+    }
 
+    IEnumerator BackToDefault()
+    {
+        yield return new WaitForSeconds(_time);
+        rend1.material.DOFloat(0, "Intensity", _time);
+        rend2.material.DOFloat(0, "Intensity", _time);
     }
 
 
