@@ -21,18 +21,30 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EarthMobile
-  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
-  m_ShaderKeywords: _GLOSSINESS_FROM_BASE_ALPHA _NORMALMAP _SPECULAR_COLOR
+  m_Shader: {fileID: -6465566751694194690, guid: 57426af7cdc283e439b0e672907f36f7,
+    type: 3}
+  m_ShaderKeywords: _NORMALMAP _SPECULARHIGHLIGHTS_OFF _SPECULAR_COLOR
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_1a4fceb1916e43da8dc52dde356ad081:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_aa6f1d9ef01946b1893f935d36d523b2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 9b116def74d450549af70af4d532ec8f, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -110,20 +122,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Intensity: 0
+    - Vector1_521836cdbadf4839abdfe6212adabbe8: 0
+    - Vector1_9234d7f548ec444a9f3c35899c9c97d5: 2.23
     - _AlphaClip: 0
     - _AtmosphereDensity: 5
     - _AtmosphereStrength: 4.88
     - _Blend: 0
     - _BumpScale: 5
     - _CityLightIntensity: 0.4
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _CloudMapSpecularity: -0.07
     - _CloudPanSpeed: -0.08
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
     - _DetailMapSpecularity: -0.94
     - _DetailNormalMapScale: 1
     - _DetailPanSpeed: 0.01
     - _DstBlend: 0
+    - _EnvironmentReflections: 1
     - _GlossMapScale: 0.938
     - _Glossiness: 0.5
     - _GlossinessSource: 0
@@ -151,8 +170,10 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
+    - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_9307b1ce0abd44b18453705eb212c92b: {r: 0.02352929, g: 1, b: 0, a: 0}
     - _AtmosphereColor: {r: 0.51427335, g: 0.6587051, b: 0.85294116, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _CityLightColor: {r: 1, g: 1, b: 1, a: 1}
@@ -160,7 +181,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailColor: {r: 0.77205884, g: 0.77205884, b: 0.77205884, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.3}
     - _TextureColor: {r: 1, g: 1, b: 1, a: 1}
     - _node_1532: {r: 0.5017301, g: 0.8529412, b: 0.5477508, a: 1}
   m_BuildTextureStacks: []
