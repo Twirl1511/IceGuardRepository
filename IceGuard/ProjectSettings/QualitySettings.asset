@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 1
+  m_CurrentQuality: 2
   m_QualitySettings:
   - serializedVersion: 2
     name: Very Low
@@ -112,8 +112,9 @@ QualitySettings:
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
-    resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    resolutionScalingFixedDPIFactor: 60
+    customRenderPipeline: {fileID: 11400000, guid: 58832b86c98ad5d428be111f77a5815b,
+      type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: High
