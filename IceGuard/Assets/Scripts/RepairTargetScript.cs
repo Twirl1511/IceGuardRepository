@@ -79,7 +79,7 @@ public class RepairTargetScript : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 //Debug.Log(" коснулось плеера, чиним");
-                PlayerHitPoints.RestartHP();
+                PlayerHitPoints.singleton.RestartHP();
             }
         }
     }

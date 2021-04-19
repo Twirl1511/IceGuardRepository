@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerHitPoints : MonoBehaviour
 {
     public static PlayerHitPoints singleton;
-    public static int HitPoints = 3;
-    
+    public static int HitPoints = 3;   
     [SerializeField] private GameObject[] HPArray;
 
 
@@ -72,8 +72,9 @@ public class PlayerHitPoints : MonoBehaviour
     {
         HitPoints = 0;
     }
-    public static void RestartHP()
+    public void RestartHP()
     {
+
         GlowingEffect.singleton.ChangeColor();
         HitPoints = 3;
     }

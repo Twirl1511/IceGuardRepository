@@ -8,10 +8,8 @@ public class PlayerGhostScript : MonoBehaviour
     public Vector3 _endPosition;
     public AnimationCurve Easing;
     public static float TimeToReachNextTile = 0.5f;
-    [Range(0.1f, 1f)]
-    public float PublicTimeToReachNextTile = 0.5f; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
     [SerializeField] private GameObject PathPoint;
-    private List<GameObject> PathObjectsArray = new List<GameObject>(50);
+    //private List<GameObject> PathObjectsArray = new List<GameObject>(50);
     public enum States
     {
         ReadyToMove,
@@ -23,8 +21,8 @@ public class PlayerGhostScript : MonoBehaviour
 
     private void Start()
     {
-        
-        PathObjectsArray.Clear();
+
+        PathPointController.singleton.ClearAllPathPoints();
         NewPathGhostScript.GhostPathPoints.Clear();
         gameObject.GetComponent<PlayerGhostScript>().enabled = true;
         PlayerState = States.ReadyToMove;
@@ -35,7 +33,6 @@ public class PlayerGhostScript : MonoBehaviour
     {
         if (PauseManager.GameState == PauseManager.GameStates.Play)
         {
-            TimeToReachNextTile = PublicTimeToReachNextTile; /// УДАЛИТЬ ПОСЛЕ ТЕСТОВ
             Move();
             Death();
         }
@@ -81,11 +78,22 @@ public class PlayerGhostScript : MonoBehaviour
         {
             GameObject NewPathPoingObject;
             NewPathPoingObject = GameObject.Instantiate(Resources.Load(PathPoint.name), other.transform.position, Quaternion.identity) as GameObject;
-            PathObjectsArray.Add(NewPathPoingObject);
+            //PathObjectsArray.Add(NewPathPoingObject);
+            PathPointController.singleton.AddPathPoint(NewPathPoingObject);
 
         }
     }
 
+    public void ClearPathObjects(GameObject pathPoint)
+    {
+        //int index = PathObjectsArray.IndexOf(pathPoint);
+        //PathObjectsArray[index].SetActive(false);
+        //for(int i = index+1; i < PathObjectsArray.Count; i++)
+        //{
+        //    Destroy(PathObjectsArray[i]);
+        //}
+        //PathObjectsArray.RemoveRange(index + 1, PathObjectsArray.Count);
+    }
 
 
 

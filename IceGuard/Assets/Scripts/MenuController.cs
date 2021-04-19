@@ -136,7 +136,7 @@ public class MenuController : MonoBehaviour
         if (TutorialScript.isTutorialFinished)
         {
             GameUI.SetActive(true);
-            PlayerHitPoints.RestartHP();
+            PlayerHitPoints.singleton.RestartHP();
             Time.timeScale = 1;
             GameOverPanel.SetActive(false);
             SceneManager.LoadScene("TestScene");

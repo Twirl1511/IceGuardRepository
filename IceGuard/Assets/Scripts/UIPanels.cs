@@ -64,7 +64,15 @@ public class UIPanels : MonoBehaviour
     {
         panel.SetActive(false);
         _startPanel.SetActive(true);
-        _resumeFromStartPanel.SetActive(true);
+        
+        if(PlayerHitPoints.HitPoints > 0)
+        {
+            _resumeFromStartPanel.SetActive(true);
+        }
+        else
+        {
+            _resumeFromStartPanel.SetActive(false);
+        }
     }
     public void OnClickResumeFromStart()
     {
