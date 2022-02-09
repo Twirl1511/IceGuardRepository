@@ -25,13 +25,7 @@ public class AbortMoveScript : MonoBehaviour
                 oldPosition = Player.transform.position;
                 StartCoroutine(NewPositionDelay());
             }
-
-
         }
-
-
-
-
     }
 
 
